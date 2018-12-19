@@ -155,13 +155,14 @@
 
         <!--  START landing Section -->
         <div class="db_landing mt-50">
-            <div>
-                
-<select name="" id="">
-        <option value="ww">Select </option>
-    </select>
-    
-            </div>
+            <div class="db_calender">
+				<div class="db_calender_1">
+					<input type="text" id="datepicker-example1-start">
+				</div>
+				<div class="db_calender_2">
+					<input type="text" id="datepicker-example1-end">
+				</div>
+			</div>
             <div class="pending_main_div">
                 <div class="pending_div">
                     <div class="notify_img_container"><img src="assets/img/notification_icon.png"></div>
@@ -244,5 +245,15 @@
                 //$("javascript:void(0)banner_slider").toggleClass("search-container")
             });
         });
+
+		
+		$('#datepicker-example1-start').Zebra_DatePicker({
+			direction: true,
+			pair: $('#datepicker-example7-end')
+			});
+			 
+			$('#datepicker-example1-end').Zebra_DatePicker({
+				direction: 1
+		});
 
     </script>
