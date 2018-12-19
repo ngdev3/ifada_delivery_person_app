@@ -16,7 +16,26 @@ function closeNav() {
 		
 	}
 }
+/*Side Menu*/
+function openNav_2() {
+	
+    document.getElementById("mySidenav_2").style.width = "280px";
+    //document.getElementById("main").style.marginLeft = "250px";
+	//document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+    document.getElementById("main").style.width = "100%";
+}
 
+function closeNav_2() {
+	//alert();
+	//document.getElementById("mySidenav").style.width = "0px";
+	//document.getElementById("main").style.marginLeft= "0";
+	//document.body.style.backgroundColor = "white";
+	if(event.target.id != 'asdf'){
+		document.getElementById("mySidenav_2").style.width = "0";
+		//document.getElementById("main").style.marginLeft= "0";
+		    //document.body.style.backgroundColor = "white";
+	}
+}
 
 
 /* scroller nav*/
