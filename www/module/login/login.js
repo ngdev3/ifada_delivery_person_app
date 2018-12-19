@@ -72,11 +72,11 @@ app.controller('login', function ($scope, $http, $location, $cookieStore, model,
                     'Content-Type': 'application/x-www-form-urlencoded'
                 },
                 method: 'POST',
-                url: app_url + '/auth/login',
+                url: app_url + '/delivery_boy/login',
                 data: args //forms user object
 
             }).then(function (response) {
-                console.log("---------------");
+               
                 console.log(response);
                 
                 if (response.data.responseStatus == 'success') {
@@ -87,7 +87,8 @@ app.controller('login', function ($scope, $http, $location, $cookieStore, model,
                     var lname = response.data.data.last_name;
 
                     var fullName = fname+" "+lname;
-                    // console.log(fullName);
+                    console.log("*******************");
+                    console.log(response.data.data);
                     var userinfo = {
                         'uid': response.data.data.id,
                         'phone_no': response.data.data.mobile_number,
@@ -100,9 +101,11 @@ app.controller('login', function ($scope, $http, $location, $cookieStore, model,
                         'from'    : 'login',
                         'left_data':response.data.data  
                     }
+                    console.log(userinfo)
                     $cookieStore.put('userinfo', userinfo);
+                   // alert(userinfo)
                     //$scope.default_hit();
-                    $location.path('/dashboard/home');
+                   $location.path('/dashboard/home');
 
                 } else {
 
