@@ -1504,3 +1504,37 @@ li.progtrckr-todo.inprocessed span.pending_check i
     padding: 8px 0;
     width: 120px;
 }
+/*Calender*/
+.db_calender{
+	background: #1f1f1fa8;
+    padding: 10px 5px;
+    text-align: center;
+}
+.db_calender_1, .db_calender_2{
+	width: 140px;
+    display: inline-block;
+    text-align: right;
+    /* padding-right: 20px; */
+    overflow: hidden;
+    margin-right: 15px;
+}
+.db_calender_1 > label, .db_calender_2 > label{
+	width: 100%;
+    text-align: left;
+    color: #fff;
+}
+.db_calender_1 > input, .db_calender_2 > input{
+	padding: 10px;
+    border: none;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 5px;
+    width: 100%;
+    color: #1f1f1f;
+}
+.db_calender_2{
+	margin-right:0px;
+}
+.Zebra_DatePicker{
+	left: Calc(50% - 126px) !important;
+    top: 73px !important;
+}

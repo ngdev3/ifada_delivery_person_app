@@ -14,13 +14,13 @@
     padding: 50px 0px;
     border-radius: 50%;
     text-align: center;
-    max-height: 195px;
-    min-height: 195px;
+    max-height: 175px;
+    min-height: 175px;
     background-color: #d8fbd1;
     position: relative;
-    min-width: 195px;
-    max-width: 195px;
-	z-index: 1;
+    min-width: 175px;
+    max-width: 175px;
+    z-index: 1;
 }
 .pending_main_div > .pending_div .notify_text{
 	padding: 10px;
