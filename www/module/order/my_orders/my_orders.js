@@ -37,7 +37,9 @@ app.controller('myorders', function ($scope, $http, $location, $cookieStore, mod
         var args = $.param({
             country_id: sessionStorage.country,
              user_id: $cookieStore.get('userinfo').uid,
-             language_code : sessionStorage.lang_code
+             user_type: $cookieStore.get('userinfo').left_data.user_type,
+             language_code : sessionStorage.lang_code,
+             page : 0,
         });
         
 
@@ -47,7 +49,7 @@ app.controller('myorders', function ($scope, $http, $location, $cookieStore, mod
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
             method: 'POST',
-            url: app_url + '/my_order',
+            url: app_url + '/delivery_boy/order_list',
             data: args 
 
         }).then(function (response) {
@@ -55,8 +57,8 @@ app.controller('myorders', function ($scope, $http, $location, $cookieStore, mod
             res = response;
 
            console.log(res.data.data.order_list);
-           if(res.data.data.status == 'success'){
-            $scope.order_list = res.data.data.order_list;
+           if(res.data.responseCode == 200){
+            $scope.order_list = res.data.data.orders;
            }else{
                $scope.order_list= '';
             alert("Order Doesn't Exist");
