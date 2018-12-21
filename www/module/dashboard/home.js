@@ -93,6 +93,7 @@ app.controller('home', function ($scope, $filter, $http, $location, $cookieStore
         }else{
 
             $scope.profileImage = profile_image_path +$cookieStore.get("userinfo").profile_image; 
+            console.log($scope.profileImage)
         }
     }else{  
         if($cookieStore.get("userinfo")){
@@ -103,6 +104,7 @@ app.controller('home', function ($scope, $filter, $http, $location, $cookieStore
             }else{
 
                 $scope.profileImage = profile_image_path +$cookieStore.get("userinfo").profile_image; 
+                console.log($scope.profileImage)
             }
         }      
     }
