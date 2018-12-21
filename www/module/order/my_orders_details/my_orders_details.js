@@ -91,8 +91,10 @@ app.controller('orderdetails', function ($scope, $http, $location, $cookieStore,
     }
 
 
-    $scope.callCustomer = function(){
-        window.plugins.CallNumber.callNumber(onSuccess, onError, '+918887905070', false);
+    $scope.callCustomer = function(getnumber){
+        //alert(getnumber)
+        //return
+        window.plugins.CallNumber.callNumber(onSuccess, onError, getnumber, false);
 
     }
 

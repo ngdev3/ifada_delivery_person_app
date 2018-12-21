@@ -34,10 +34,10 @@
                     <nav class="navbar navbar-inverse">
                       <div class="container no-padding">
                         <ul class="nav navbar-nav top_header">
-                          <li class="menu_icon "><a href="javascript:void(0)"  ><img src="assets/img/icon/back.png" id="asdf" alt="menu icon"style="width: 13px;" /></a></li>
+                          <li class="menu_icon "><a href="javascript:void(0)"  ><img src="assets/img/icon/back.png" ng-click="back();" alt="menu icon"style="width: 13px;" /></a></li>
                             <li class="page_name left">
                                 <a href="javascript:void(0)" class="text-left ">
-                                    <p>Order ID: <span>12345</span></p>
+                                    <p>Order ID: <span>{{detail.order_id}}</span></p>
                                 </a>
                             </li>
                           
@@ -87,7 +87,7 @@
                                     <p class="cust_residence">{{detail.delivery_address.address}}, {{detail.delivery_address.CITY_NAME}}, {{detail.delivery_address.COUNTRY_NAME}}, {{detail.delivery_address.landmark}}, {{detail.delivery_address.zipcode}}</p>
                                 </div>
                                 <div class="order_type">
-                                    <div class="cod"><a href="javascript:void(0)">COD</a></div>
+                                    <div class="cod"><a href="javascript:void(0)">{{detail.order_by_leble}}</a></div>
                                 </div>
                                 <div class="call_customer" ng-click="callCustomer(detail.mobile_number)">
                                     <div class="cust_no pl-15 pr-15"><a href="javascript:void(0)">Call Customer</a></div>
@@ -101,17 +101,17 @@
                             <!-- Item Number-->
                             <div class="db_items">
                                 <h4>Item Details</h4>
-                                <p>Total No. Of Items - <span>2</span></p>
+                                <p>Total No. Of Items - <span>{{detail.total_items}}</span></p>
                             </div>
-                            <div class="main_item_div">
-                                <div class="db_item_main" ng-repeat="x in detail.items" >
+                            <div class="main_item_div" ng-repeat="x in detail.items">
+                                <div class="db_item_main">
                                     <div class="item_img_container">
                                         <div><img src="{{x.product_image}}"></div>
                                     </div>
                                     <div class="about_db_item">
                                         <h4>{{x.MENU_NAME}}</h4>
-                                        <p>Unit <span class="ml-30">{{x.FS_UNIT_NAME}}</span></p>
-                                        <p>Price <span class="ml-25">AED 140</span></p>
+                                        <p>Unit <span class="ml-30">{{x.UNIT_VALUE}}{{x.FS_UNIT_NAME}}</span></p>
+                                        <p>Price <span class="ml-25">AED {{x.total_price}}</span></p>
                                     </div>
                                 </div>
                                
