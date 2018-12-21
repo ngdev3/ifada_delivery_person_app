@@ -14,7 +14,7 @@ var lat;
 var lng;
 var profile_image_path = 'http://projects.tekshapers.in/ifadabeta/uploads/user_image/';
 
-var app = angular.module("myApp", ['ngRoute', 'ui.bootstrap', 'slickCarousel', 'ngSanitize', 'ngCookies', 'geolocation', 'ngCordovaOauth', 'ngCordova', /* 'kendo.directives', */ 'pascalprecht.translate']);
+var app = angular.module("myApp", ['ngRoute', 'ui.bootstrap', 'slickCarousel', 'ngSanitize', 'ngCookies', 'geolocation', 'ngCordovaOauth', 'ngCordova', /*'kendo.directives',*/, 'pascalprecht.translate']);
 
 //document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
 //document.getElementById("networkInfo").addEventListener("onload", networkInfo);
@@ -67,8 +67,10 @@ app.config(function ($routeProvider, $httpProvider) {
         .when("/register", {
             templateUrl: "module/register/register.html"
         })
-        
-      
+        .when("/language", {
+            templateUrl: "module/switchlanguage/switchlanguage.html"
+
+        })      
         .when("/dashboard/home", {
             templateUrl: "module/dashboard/home.html"
         })

@@ -7,14 +7,17 @@
     "files": {}
   },
   "installed_plugins": {
-    "cordova-plugin-whitelist": {
+    "cordova-plugin-device": {
       "PACKAGE_NAME": "com.tekshapers.ifadabeta"
     },
     "cordova-plugin-network-information": {
       "PACKAGE_NAME": "com.tekshapers.ifadabeta"
     },
-    "cordova-plugin-device": {
+    "cordova-plugin-whitelist": {
       "PACKAGE_NAME": "com.tekshapers.ifadabeta"
+    },
+    "cordova-plugin-call-number": {
+      "PACKAGE_NAME": "com.tekshapers.ifadadeliveryboy"
     }
   },
   "dependent_plugins": {}

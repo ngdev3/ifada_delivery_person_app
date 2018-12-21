@@ -1,8 +1,7 @@
-app.controller('home', function ($scope, $http, $location, $cookieStore, $timeout, loading, model, $rootScope, $route) {
+app.controller('home', function ($scope, $filter, $http, $location, $cookieStore, $timeout, loading, model, $rootScope, $route) {
     
     //$cookieStore.put('userinfo','userinfo')
-    alert('Hiii')
-    loading.active();
+    
     if (!$cookieStore.get('userinfo')) {
         $scope.loggedin = false;
        
@@ -20,14 +19,21 @@ app.controller('home', function ($scope, $http, $location, $cookieStore, $timeou
     }
 
   
-
+    date = new Date();
+    $scope.fromdate = $filter('date')(date, 'yyyy-MM-dd')
+   
+    console.log($scope.fromdate)
+    // return
     $scope.home = function () {
         //$location.path('dashboard/home')
         $route.reload()
     }
    
 
-   
+   $scope.fromRange = function(){
+    //    console.log($scope.fromRangedate)
+       console.log($('#datepicker-example1-start').val())
+   }
 
     $scope.signout = function () {
         $rootScope.DeleteData();
@@ -59,6 +65,10 @@ app.controller('home', function ($scope, $http, $location, $cookieStore, $timeou
    
     $scope.my_address = function(){
         $location.path('/address');
+    }
+
+    $scope.language = function(){
+        $location.path('/language');
     }
     $scope.logout = function(){
         $cookieStore.remove('userinfo');
@@ -109,8 +119,8 @@ app.controller('home', function ($scope, $http, $location, $cookieStore, $timeou
             'user_id'   :   $cookieStore.get('userinfo').uid,
             'user_type'   :   $cookieStore.get('userinfo').left_data.user_type,
             'language_code'   :   'en',
-            'from_date'   :   '2018-11-10',
-            'to_date'   :   '2018-12-17',
+            'from_date'   :   $('#datepicker-example1-start').val(),
+            'to_date'   :   $('#datepicker-example1-end').val(),
 
             
         });
@@ -131,11 +141,7 @@ app.controller('home', function ($scope, $http, $location, $cookieStore, $timeou
             if (res.data.responseCode == '200') {
                 //put cookie and redirect it    
                 $scope.listing = res.data.data;
-               // console.log($scope.listing);
-                angular.forEach(res.data.data.movie_list, function (value, key) {
-                            $scope.movies_list.push(value);
-                        });
-
+              
             } else {
 
                 //Throw error if not logged in

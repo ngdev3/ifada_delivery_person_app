@@ -116,8 +116,10 @@
 
                 <li ng-if="loggedin" ng-click="profile()"><a href="javascript:void(0)"><img src="assets/img/icon/profile.png"
                             alt="" /> <span>My Profile</span></a></li>
+                <li ng-click="language()"><a href="javascript:void(0)"><img src="assets/img/icon/language.png" alt="" />
+                        <span>{{'Switch_Language' | translate}}</span></a></li>
 
-               
+
                 <li ng-if="loggedin" ng-click="change_password()"><a href="javascript:void(0)"><img src="assets/img/icon/password.png"
                             alt="" /> <span>Change Password</span></a></li>
 
@@ -156,22 +158,25 @@
         <!--  START landing Section -->
         <div class="db_landing mt-50">
             <div class="db_calender">
-				<div class="db_calender_1">
-				    <label for="datepicker-example1-start">From:</label>
-					<input type="text" id="datepicker-example1-start">
-				</div>
-				<div class="db_calender_2">
-					<label for="datepicker-example1-end">To:</label>
-					<input type="text" id="datepicker-example1-end">
-				</div>
-			</div>
+                <div class="db_calender_1">
+                    <label for="datepicker-example1-start">From:</label>
+                    <input type="text" ng-value="fromdate" name="fromRangedate" ng-model="fromRangedate" ng-click="fromRange()"
+                        id="datepicker-example1-start">
+                </div>
+                <div class="db_calender_2">
+                    <label for="datepicker-example1-end">To:</label>
+                    <input type="text" ng-value="fromdate" id="datepicker-example1-end">
+                </div>
+                <button class="btn btn-success" ng-click="fetcCounts()">Get Counts</button>
+                
+            </div>
             <div class="pending_main_div">
                 <div class="pending_div">
                     <div class="notify_img_container"><img src="assets/img/notification_icon.png"></div>
                     <div class="notify_text">
                         <p>Pending</p>
                     </div>
-                    <span class="badge">5</span>
+                    <span class="badge">{{listing.delivered_orders.COUNT_DELIVERED}}</span>
                 </div>
             </div>
             <div class="pending_main_div">
@@ -180,7 +185,7 @@
                     <div class="notify_text pt-20">
                         <p>Delivered</p>
                     </div>
-                    <span class="badge">5</span>
+                    <span class="badge">{{listing.pending_orders.COUNT_PENDING}}</span>
                 </div>
             </div>
         </div>
@@ -248,14 +253,14 @@
             });
         });
 
-		
-		$('#datepicker-example1-start').Zebra_DatePicker({
-			direction: true,
-			pair: $('#datepicker-example7-end')
-			});
-			 
-			$('#datepicker-example1-end').Zebra_DatePicker({
-				direction: 1
-		});
+
+        $('#datepicker-example1-start').Zebra_DatePicker({
+            direction: true,
+            pair: $('#datepicker-example7-end')
+        });
+
+        $('#datepicker-example1-end').Zebra_DatePicker({
+            direction: 1
+        });
 
     </script>

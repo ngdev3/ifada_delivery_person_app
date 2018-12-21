@@ -902,7 +902,12 @@ li.menu_search_container a input{
 .pr-7{padding-right: 7px !important;}
 .wishlist-container {
     position: absolute;
-    top: 8px;
+    top: 23px;
+    right: 13px;
+}
+.wishlist-container.cart_remove{
+    position: absolute;
+    top: 13px;
     right: 13px;
 }
 .fill{
@@ -1051,7 +1056,7 @@ li.menu_search_container a input{
 .dlvry_container{
 	overflow: hidden;
     padding-bottom: 20px;
-    box-shadow: 0px 2px 11px #0000005c;
+    box-shadow: 0px 2px 11px rgba(0, 0, 0, 0.3607843137254902);
     clear: both;
 }
 .dlvry_heading{
@@ -1094,7 +1099,7 @@ li.menu_search_container a input{
 }
 .view_prod{
 	clear: both;
-    background: #000;
+    background: #1f1f1f;
     color: #fff;
     font-size: 13px;
     text-align: left;
@@ -1646,7 +1651,7 @@ li.menu_search_container a input{
 .prod_content_wrapper{
 	display: table-cell;
     width: auto;
-    padding-left: 10px;
+    padding-left: 25px;
 	vertical-align: middle;
 }
 .prod_content_wrapper p{
@@ -1714,4 +1719,182 @@ li.menu_search_container a input{
 	
     overflow: hidden;
     padding: 5px;
+}
+
+/* customer_review */
+
+
+.review-spr-container{
+	padding:10px;
+}
+
+.spr-reviews-header{
+	position:relative;
+}
+
+.spr-reviews-header img {
+    border: 1px solid #ccc;
+    border-radius: 50px;
+    width: 50px;
+	position: absolute;
+    top: 25px;
+}
+
+.spr-reviews-header h2 {
+    display: inline-block;
+	font-size: 14px;
+	padding-left: 55px;
+	margin-bottom: 1px;
+}
+
+.spr-summarys{
+    padding-bottom: 10px;
+}
+
+.customer-rating-star{
+	padding-left: 55px;
+    margin-top: -12px;
+}
+
+.spr-review-headers-byline {
+    position: absolute;
+    top: 27px;
+    right: 0;
+	font-size: 11px;
+}
+
+.customer-rating-star span i.fa-star{
+	color: #ff6b00;
+}
+
+.spr-summarys span i.fa-star{
+	color: #ff6b00;
+}
+
+.review-sections span{
+    width: 100%;
+    height: 1px;
+    border: 1px solid #ebebeb;
+    display: inline-block;
+}
+
+.spr-reviews-content{
+	margin-top: 14px;
+}
+
+.spr-reviews-content p {
+  line-height: 20px;
+}
+
+.spr-header h3{
+	margin-top: 12px;
+    font-size: 16px;
+}
+.review_icon{vertical-align: top;}
+.review_icon > img{width: 30px; float: right;}
+
+#item_review .modal-header {
+	background-color:green;	
+	position: relative;
+	border-radius: 6px 6px 0 0;
+}
+
+#item_review .customer-image{
+    position: absolute;
+    top: -38px;
+    left: calc(50% - 30px);
+    width: 70px;
+    border-radius: 50%;
+}
+
+#item_review .customer-image img {
+    width: 100%;
+}
+
+#item_review .customer-rating-star{
+	padding-left: 90px;
+    margin-top: 10px;
+}
+
+#item_review .modal-header h4{
+    text-align: center;
+    margin: 23px 0 1px 0;
+    color: #fff;
+    font-weight: 500;
+}
+
+#item_review .customer-rating-star {
+    margin: 30px 0 22px 0;
+    margin-left: 0px;
+    padding-left: 0px;
+}
+#item_review .form_container {
+    padding: 0;
+}
+.customer-rating-star span.spr-starratings{
+	width: 100%;
+    display: block;
+    text-align: center;
+	font-size: 16px;
+	margin-bottom: 22px;
+	color: #c73e20;
+}
+
+.comment_box_review{
+    padding: 10px;
+}
+
+.comment_box_review textarea{
+  
+  
+}
+
+.review-subbmit-button{
+	display: inline-block;
+    padding: 5px 12px 0 12px;
+    margin-bottom: 0;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 21px;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    border: none;
+    background-color: white;
+    color: green;
+}
+
+.review-subbmit-bttn{
+    padding-bottom: 10px;
+    padding-left: 220px;
+}
+
+#item_review .modal-dialog{
+    width: 92%;
+    margin: 15px auto;
+}
+
+#item_review .modal-content{
+	border: none;
+    border-radius: 7px;
+}
+
+.customer-rating-star span i {
+	font-size: 30px;
+    margin: 0 5px;
+	color: #ff6b00;
+}
+.customer-rating-star > span.cust_review i.fa-fw{
+	font-size:11px;
+	margin:0px -2px;
+}
+.customer-rating-star > span.cust_review{
+	text-align:left;
+}
+.spr-summary-actions-togglereviews::before{
+	content:"|";
+	margin-right: 5px;
+}
+.redeem_btn > button:focus{
+	color:#fff;
 }

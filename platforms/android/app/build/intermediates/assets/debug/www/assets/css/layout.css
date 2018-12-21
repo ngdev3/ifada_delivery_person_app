@@ -471,7 +471,7 @@ input.btn.btn-success.all-sub-cat_buttons:focus
 }
 .cart_remove i
 {
-    color: #f00
+    color: rgba(255, 0, 0, 0.6901960784313725);
 }
 .cart_footer
 {
@@ -972,6 +972,7 @@ li.progtrckr-todo.inprocessed span.pending_check i
 .pop_up_display{
 		height: 100vh;
     display: flex;
+    width: 100%;
 }
 .main_pop_up{
 	z-index: 9999999;
@@ -1378,7 +1379,7 @@ li.progtrckr-todo.inprocessed span.pending_check i
 
 .amount-input-wallet button {
     position: absolute;
-    top: 6px;
+    top: 8px;
     right: 6px;
     background: #006d07;
     color: #fff;
@@ -1417,9 +1418,13 @@ li.progtrckr-todo.inprocessed span.pending_check i
     outline: none;
     margin-top: 3px;
     position: absolute;
-    padding: 5px 10px;
+    padding: 0px 10px;
     right: -3px;
-    bottom: 15px;
+    bottom: 13px;
+	top:unset;
+	
+    /* line-height: 20px; */
+    height: 19px;
 }
 /*Search bar Icon*/
 .search_bar_span{
@@ -1498,4 +1503,39 @@ li.progtrckr-todo.inprocessed span.pending_check i
     display: inline-block;
     padding: 8px 0;
     width: 120px;
+}
+/*Calender*/
+.db_calender{
+	background: #fafafa;
+    padding: 10px 5px;
+    text-align: center;
+    box-shadow: 0px 0px 10px 2px rgba(172, 169, 169, 0.71);
+}
+.db_calender_1, .db_calender_2{
+	width: 140px;
+    display: inline-block;
+    text-align: right;
+    /* padding-right: 20px; */
+    overflow: hidden;
+    margin-right: 15px;
+}
+.db_calender_1 > label, .db_calender_2 > label{
+	width: 100%;
+    text-align: left;
+    color: #1f1f1f;
+}
+.db_calender_1 > input, .db_calender_2 > input{
+	padding: 10px;
+    border: 1px solid #1f1f1f;
+    background: transparent;
+    border-radius: 5px;
+    width: 100%;
+    color: #1f1f1f;
+}
+.db_calender_2{
+	margin-right:0px;
+}
+.Zebra_DatePicker{
+	left: Calc(50% - 126px) !important;
+    top: 73px !important;
 }

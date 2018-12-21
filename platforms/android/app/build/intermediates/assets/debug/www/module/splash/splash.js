@@ -1,13 +1,24 @@
 app.controller('splash', function ($translate, $scope, $http, $location, $interval, $cookieStore, loading, $rootScope, $cordovaFile) {
 
 
+   
+
+
     $scope.redirect = function () {
-        // $location.path('/dashboard/home');
+        if (!$cookieStore.get('userinfo')) {
+            $location.path('/login');
+            
+        }else{
+            $location.path('/dashboard/home');
+            
+        }
+        
     }
 
     setTimeout(function () {
         $scope.redirect();
     }, 100)
+
 
     $scope.season_fetch =   function(){
         //loading.active();
@@ -37,10 +48,11 @@ app.controller('splash', function ($translate, $scope, $http, $location, $interv
                 sessionStorage.lang = res.data.data.default_language_country.default_language;
                 sessionStorage.lang_code = res.data.data.default_language_country.language_code;
                 sessionStorage.currency = res.data.data.default_language_country.currency;
-               console.log("-----aaa-------"); 
+                $rootScope.currency = sessionStorage.currency;
+                console.log("-----aaa-------"); 
                console.log(sessionStorage) 
                $translate.use(sessionStorage.lang_code);
-               $location.path('/dashboard/home');
+               $location.path('/login');
            }else{
 
            }
@@ -51,6 +63,7 @@ app.controller('splash', function ($translate, $scope, $http, $location, $interv
 
     }
 
-   
+
+  
 
 });

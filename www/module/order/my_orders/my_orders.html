@@ -71,35 +71,35 @@
                                     <div class="db_number"><h4>{{x.mobile_number}}</h4></div>
                                 </div>
 
-                                <div class="order_status" ng-if="x.status == 5">
+                                <div class="order_status" ng-click="statusWiseHit(x.status)" ng-if="x.status == 5">
                                     <div class="delivered status_btn"><a href="javascript:void(0)">Delivered</a></div>
                                 </div>
-                                <div class="order_status" ng-if="x.status == 4">
+                                <div class="order_status" ng-click="statusWiseHit(x.status)" ng-if="x.status == 4">
                                     <div class="delivery status_btn"><a href="javascript:void(0)">Out For Delivery</a></div>
                                 </div>
-                                <div class="order_status" ng-if="x.status == 8">
+                                <div class="order_status" ng-click="statusWiseHit(x.status)" ng-if="x.status == 8">
                                     <div class="reschedule status_btn"><a href="javascript:void(0)">Re-scheduled</a></div>
                                 </div>
-                                <div class="order_status" ng-if="x.status == 3">
+                                <div class="order_status" ng-click="statusWiseHit(x.status)" ng-if="x.status == 3">
                                     <div class="inprocess status_btn"><a href="javascript:void(0)">In-Process</a></div>
                                 </div>
-                                <div class="order_status" ng-if="x.status == 7">
+                                <div class="order_status" ng-click="statusWiseHit(x.status)" ng-if="x.status == 7">
                                     <div class="delivered status_btn"><a href="javascript:void(0)">Rejected</a></div>
                                 </div>
-                                <div class="order_status" ng-if="x.status == 1">
+                                <div class="order_status" ng-click="statusWiseHit(x.status)" ng-if="x.status == 1">
                                     <div class="delivered status_btn"><a href="javascript:void(0)">Pending</a></div>
                                 </div>
-                                <div class="order_status" ng-if="x.status == 2">
+                                <div class="order_status" ng-click="statusWiseHit(x.status)" ng-if="x.status == 2">
                                     <div class="delivered status_btn"><a href="javascript:void(0)">Confirm</a></div>
                                 </div>
-                                <div class="order_status" ng-if="x.status == 6">
+                                <div class="order_status" ng-click="statusWiseHit(x.status)" ng-if="x.status == 6">
                                     <div class="delivered status_btn"><a href="javascript:void(0)">Cancelled</a></div>
                                 </div>
-                                <div class="order_status" ng-if="x.status == 9">
+                                <div class="order_status" ng-click="statusWiseHit(x.status)" ng-if="x.status == 9">
                                     <div class="delivered status_btn"><a href="javascript:void(0)">No Contacted</a></div>
                                 </div>
 
-                                <div class="db_view_order">
+                                <div class="db_view_order" ng-click="orderDetails(x.id, x.order_id)">
                                     <div class="view_details_btn"><a href="javascript:void(0)">View Details</a></div>
                                 </div>
                             </div>

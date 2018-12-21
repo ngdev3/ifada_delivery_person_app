@@ -1,103 +1,222 @@
 <style type="text/css">
-    .products_wrapper.ticket_wrapper {
-        display: block;
-        padding: 15px;
-    }
+
+.modal-header{
+	padding: 10px;
+	border-bottom: 1px solid #e5e5e5;
+}
+.modal-body {
+    position: relative;
+    padding: 10px 15px;
+}
+.modal-footer {
+    padding: 10px;
+    text-align: center;
+    border-top: 1px solid #e5e5e5;
+}
+.modal-footer button{
+    padding: 5px 25px;
+    background-color: #006d07;
+    color: #fff;
+}
+.tracking_btn {
+    padding: 5px 10px;
+}
 </style>
 
 <div ng-controller="myorders" ng-init="ordersInit()">
 
-    <header class="container-fluid nav-down">
-        <div class="row">
-            <nav class="navbar navbar-inverse">
-                <div class="container no-padding" >
-                    <ul class="nav navbar-nav top_header">
-                        <li class="menu_icon "><a href="javascript:void(0)"><img ng-click="back()" src="assets/img/icon/back.png" alt="menu icon"
-                                    style="width: 13px;" /></a></li>
-                        <li class="page_name left">
-                            <a href="javascript:void(0)" class="text-left ">
-                                <p>{{'My_Orders' | translate }}</p>
-                            </a>
-                        </li>
-                        <li class="cart_icon">
-                           <!--  <a href="javascript:void(0)"><img src="assets/img/icon/cart_icon.png" alt="cart icon" />
-                                <span class="badge">14</span>
-                            </a> -->
-                           <!--  <a href="javascript:void(0)"><img src="assets/img/icon/search_icon.png" alt="search icon" /></a> -->
-                        </li>
-                    </ul>
-                    <!-- <ul class="nav navbar-nav bottom_header">
-                        <li class="menu_search_container"><a href="javascript:void(0)">
-                                
-                                <input type="text" class="menu_search" placeholder="Search products brands and more" />
-                            </a></li>
-                    </ul> -->
-                </div>
+        <header class="container-fluid nav-down">
+                <div class="row">
+                    <nav class="navbar navbar-inverse">
+                      <div class="container no-padding">
+                        <ul class="nav navbar-nav top_header">
+                          <li class="menu_icon "><a href="javascript:void(0)"  ><img src="assets/img/icon/back.png" id="asdf" alt="menu icon"style="width: 13px;" /></a></li>
+                            <li class="page_name left">
+                                <a href="javascript:void(0)" class="text-left ">
+                                    <p>List Orders</p>
+                                </a>
+                            </li>
+                          
+                        </ul>
+                        <ul class="nav navbar-nav bottom_header">
+                          <li class="menu_search_container"><a href="javascript:void(0)">
+                            <!--<img src="assets/img/header/search_icon.png" alt="cart icon" />-->
+                            <input type="text" class="menu_search" placeholder="Search products brands and more"/>
+                          </a></li>
+                        </ul>
+                      </div>
+                    </nav>
                 
-            </nav>
-
-        </div>
-        <!-- MOBILE-MENU-AREA END -->
-    </header>
-    <!-- END HEADER -->
-
-    <!--  [PULSES] Sub categories content -->
-    <div class="container-fluid mt-55">
-        <div class="row">
-            <div class="">
-
-
-                <!-- ** My Order List  ** -->
-
-                <div class="no-padding item_lists_main" ng-if="order_list != ''"  ng-repeat="x in order_list.result" ng-click="orderDetails(x.id)">
-                    <a href="javascript:void(0)">
-                        <div class="prodcut_main_container">
-                            <div class="products_wrapper ticket_wrapper">
-
-                                <div class="row padding_ticket">
-                                    <div class="col-md-9 col-sm-9 col-xs-9 no-padding">
-                                        <h5 class="ordrlist_head"><img class="myorderlist_img" src="assets/img/my_order_list.png">{{'Order_ID' | translate}} {{x.id}}</h5>
-                                        <div>
-                                            <h5>{{'Total' | translate}} : {{currency}} {{x.final_amount}}</h5>
-                                            <p>{{x.created_date | date : 'dd-MM-yyyy'}}</p>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-3 col-sm-3 col-xs-3 no-padding" style="text-align: center;">
-                                        <input type="button" class="btn btn-default btn_discounts ticket_process_btns inprocess_order"
-                                            name="" value="In Process">
-                                        <i class="fa fa-angle-right nav_to_orders" aria-hidden="true"></i>
-                                    </div>
+                </div>
+                <!-- MOBILE-MENU-AREA END -->
+            </header>
+            <!-- END HEADER -->
+            
+            <!--  [PULSES] Sub categories content -->
+                <div class="container-fluid mt-55">
+                    <div class="row">
+                        <div class="">
+                            
+                            <!-- About Product Of a Customer -->
+                            <div class="about_customer db_order_main_div" ng-repeat="x in order_list">
+                                <div class="cust_address">
+                                    <h4 class="cust_name mb-0">Order ID: <span>{{x.ORDER_ID}}</span></h4>
+                                </div>
+                                <div class="db_delivery_add">
+                                    <div class="db_delivery"><h4>Deliver To<span>:</span></h4></div>
+                                    <div class="db_place"><h4>{{x.delivery_address.address}}, {{x.delivery_address.CITY_NAME}}, {{x.delivery_address.COUNTRY_NAME}}, {{x.delivery_address.landmark}}, {{x.delivery_address.zipcode}}</h4></div>
+                                </div>
+                                <div class="db_delivery_details mb-15">
+                                    <div class="db_phone"><h4>Mobile No.<span>:</span></h4></div>
+                                    <div class="db_number"><h4>{{x.mobile_number}}</h4></div>
                                 </div>
 
+                                <div class="order_status" ng-click="statusWiseHit(x.status)" ng-if="x.status == 5">
+                                    <div class="delivered status_btn"><a href="javascript:void(0)">Delivered</a></div>
+                                </div>
+                                <div class="order_status" ng-click="statusWiseHit(x.status)" ng-if="x.status == 4">
+                                    <div class="delivery status_btn"><a href="javascript:void(0)">Out For Delivery</a></div>
+                                </div>
+                                <div class="order_status" ng-click="statusWiseHit(x.status)" ng-if="x.status == 8">
+                                    <div class="reschedule status_btn"><a href="javascript:void(0)">Re-scheduled</a></div>
+                                </div>
+                                <div class="order_status" ng-click="statusWiseHit(x.status)" ng-if="x.status == 3">
+                                    <div class="inprocess status_btn"><a href="javascript:void(0)">In-Process</a></div>
+                                </div>
+                                <div class="order_status" ng-click="statusWiseHit(x.status)" ng-if="x.status == 7">
+                                    <div class="delivered status_btn"><a href="javascript:void(0)">Rejected</a></div>
+                                </div>
+                                <div class="order_status" ng-click="statusWiseHit(x.status)" ng-if="x.status == 1">
+                                    <div class="delivered status_btn"><a href="javascript:void(0)">Pending</a></div>
+                                </div>
+                                <div class="order_status" ng-click="statusWiseHit(x.status)" ng-if="x.status == 2">
+                                    <div class="delivered status_btn"><a href="javascript:void(0)">Confirm</a></div>
+                                </div>
+                                <div class="order_status" ng-click="statusWiseHit(x.status)" ng-if="x.status == 6">
+                                    <div class="delivered status_btn"><a href="javascript:void(0)">Cancelled</a></div>
+                                </div>
+                                <div class="order_status" ng-click="statusWiseHit(x.status)" ng-if="x.status == 9">
+                                    <div class="delivered status_btn"><a href="javascript:void(0)">No Contacted</a></div>
+                                </div>
 
-
+                                <div class="db_view_order" ng-click="orderDetails(x.id, x.order_id)">
+                                    <div class="view_details_btn"><a href="javascript:void(0)">View Details</a></div>
+                                </div>
                             </div>
+                            <!-- 2nd part -->				
+                            <!-- <div class="about_customer db_order_main_div">
+                                <div class="cust_address">
+                                    <h4 class="cust_name mb-0">Order ID: <span>OD08842</span></h4>
+                                </div>
+                                <div class="db_delivery_add">
+                                    <div class="db_delivery"><h4>Deliver To<span>:</span></h4></div>
+                                    <div class="db_place"><h4>4 Clarke Street South, Abu Dubai</h4></div>
+                                </div>
+                                <div class="db_delivery_details mb-15">
+                                    <div class="db_phone"><h4>Mobile No.<span>:</span></h4></div>
+                                    <div class="db_number"><h4>998548547625</h4></div>
+                                </div>
+                                <div class="order_status">
+                                    <div class="delivery status_btn"><a href="javascript:void(0)">Out For Delivery</a></div>
+                                </div>
+                                <div class="db_view_order">
+                                    <div class="view_details_btn"><a href="javascript:void(0)">View Details</a></div>
+                                </div>
+                            </div> -->
+                            <!--2nd part ends -->
+                            <!--3rd part -->
+                            <!-- <div class="about_customer db_order_main_div">
+                                <div class="cust_address">
+                                    <h4 class="cust_name mb-0">Order ID: <span>OD08842</span></h4>
+                                </div>
+                                <div class="db_delivery_add">
+                                    <div class="db_delivery"><h4>Deliver To<span>:</span></h4></div>
+                                    <div class="db_place"><h4>4 Clarke Street South, Abu Dubai</h4></div>
+                                </div>
+                                <div class="db_delivery_details mb-15">
+                                    <div class="db_phone"><h4>Mobile No.<span>:</span></h4></div>
+                                    <div class="db_number"><h4>998548547625</h4></div>
+                                </div>
+                                <div class="order_status">
+                                    <div class="reschedule status_btn"><a href="javascript:void(0)">Re-scheduled</a></div>
+                                </div>
+                                <div class="db_view_order">
+                                    <div class="view_details_btn"><a href="javascript:void(0)">View Details</a></div>
+                                </div>
+                            </div> -->
+                            <!--3rd part ends -->
+                            <!--4th part -->
+                            <!-- <div class="about_customer db_order_main_div">
+                                <div class="cust_address">
+                                    <h4 class="cust_name mb-0">Order ID: <span>OD08842</span></h4>
+                                </div>
+                                <div class="db_delivery_add">
+                                    <div class="db_delivery"><h4>Deliver To<span>:</span></h4></div>
+                                    <div class="db_place"><h4>4 Clarke Street South, Abu Dubai</h4></div>
+                                </div>
+                                <div class="db_delivery_details mb-15">
+                                    <div class="db_phone"><h4>Mobile No.<span>:</span></h4></div>
+                                    <div class="db_number"><h4>998548547625</h4></div>
+                                </div>
+                                <div class="order_status">
+                                    <div class="inprocess status_btn"><a href="javascript:void(0)">In-Process</a></div>
+                                </div>
+                                <div class="db_view_order">
+                                    <div class="view_details_btn"><a href="javascript:void(0)">View Details</a></div>
+                                </div>
+                            </div> -->
+                            <!--4th part ends -->
                         </div>
-                    </a>
-                </div>
-                <div  class="no_data_wrapper" ng-if="order_list == ''">
-                    <div class="">
-                        <img src="img/no_data_found.png">
-                        <h3 class="text-center">{{'No_Order_Found' | translate}}!!!</h3>
                     </div>
-                <!-- ** !. My Order List ** -->
-            </div>
-        </div>
-    </div>
-    <!--  !. [PULSES] Sub categories content -->
-
-
-    <script>
-
-
-        $(document).ready(function () {
-            $(".cart_icon a:last-child").click(function () {
-                //alert();
-                $(".bottom_header").slideToggle();
-                //$("#banner_slider").toggleClass("search-container")
+                </div>
+            <!--  !. [PULSES] Sub categories content -->
+            <!-- modal box -->
+            <div id="myModal" class="modal fade" role="dialog">
+                <div class="modal-vcenter">
+              <div class="modal-dialog">
+            
+                <!-- Modal content-->
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title text-center">Update Status</h4>
+                  </div>
+                  <div class="modal-body">
+                    <!-- Content Of modal-->
+                            <div class="radio mb-20 mt-10">
+                                <input id="radio-1" name="radio" type="radio">
+                                <label for="radio-1" class="radio-label"><span>On the way</span></label>
+                            </div>
+                          <div class="radio mb-20">
+                            <input id="radio-2" name="radio" type="radio">
+                            <label for="radio-2" class="radio-label"><span>Delivered</span></label>
+                          </div>
+                          <div class="radio mb-20">
+                            <input id="radio-3" name="radio" type="radio">
+                            <label for="radio-3" class="radio-label"><span>Cancelled</span></label>
+                          </div>
+            
+                    <!-- Content Of modal-->
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
+                  </div>
+                </div>
+            
+              </div>
+              </div>
+            </div>	
+            
+                
+            <script>
+            
+                
+            $(document).ready(function(){
+                $(".cart_icon a:last-child").click(function(){
+                    //alert();
+                    $(".bottom_header").slideToggle();
+                    //$("#banner_slider").toggleClass("search-container")
+                });	
             });
-        });
-    </script>
-
+                </script>	
 </div>

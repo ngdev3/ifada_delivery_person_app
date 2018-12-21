@@ -1,136 +1,189 @@
+<style>
+	
+    .modal-header{
+	padding: 10px;
+	border-bottom: 1px solid #e5e5e5;
+}  
+.modal-body {
+    position: relative;
+    padding: 10px 15px;
+}
+.modal-footer {
+    padding: 10px;
+    text-align: center;
+    border-top: 1px solid #e5e5e5;
+}
+.modal-footer button{
+    padding: 5px 25px;
+    background-color: #006d07;
+    color: #fff;
+}
+.tracking_btn {
+    padding: 5px 10px;
+}
+.modal-title {
+    font-size: 17px;
+	text-transform: uppercase;
+}
+</style>
 <div ng-controller="orderdetails" ng-init="ordersDetalisInit()" >
 
 
         <header class="container-fluid nav-down">
-            <div class="row">
-                <nav class="navbar navbar-inverse">
-                  <div class="container no-padding">
-                    <ul class="nav navbar-nav top_header text-center">
-                      <li class="menu_icon "><a href="javascript:void(0)"  ><img src="assets/img/icon/back.png" ng-click="back()" alt="menu icon"style="width: 13px;" /></a></li>
-                        <li class="page_name left">
-                            <a href="javascript:void(0)" class="text-left ">
-                                <p>{{'Order_Summary' | translate}}</p>
-                            </a>
-                        </li>
-                      
-                    </ul>
-                    
-                  </div>
-                </nav>
+                <div class="row">
+                    <nav class="navbar navbar-inverse">
+                      <div class="container no-padding">
+                        <ul class="nav navbar-nav top_header">
+                          <li class="menu_icon "><a href="javascript:void(0)"  ><img src="assets/img/icon/back.png" id="asdf" alt="menu icon"style="width: 13px;" /></a></li>
+                            <li class="page_name left">
+                                <a href="javascript:void(0)" class="text-left ">
+                                    <p>Order ID: <span>12345</span></p>
+                                </a>
+                            </li>
+                          
+                        </ul>
+                        <ul class="nav navbar-nav bottom_header">
+                          <li class="menu_search_container"><a href="javascript:void(0)">
+                            <!--<img src="assets/img/header/search_icon.png" alt="cart icon" />-->
+                            <input type="text" class="menu_search" placeholder="Search products brands and more"/>
+                          </a></li>
+                        </ul>
+                      </div>
+                    </nav>
+                
+                </div>
+                <!-- MOBILE-MENU-AREA END -->
+            </header>
+            <!-- END HEADER -->
             
-            </div> 
-            <!-- MOBILE-MENU-AREA END -->
-        </header>
-        <!-- END HEADER -->
-              
-        <!--  START Banner SLIDER -->
-            <div class="container-fluid mt-55">
-            <div class="row">    
-                <div class="order_container">
-                    <div class="dlvry_container no-padding">
-                        <div class="order_heading col-xs-12">
-                            <p>{{'Order_ID' | translate}} <span>{{detail.id}}</span></p>
-                        </div>
-                        <div class="order_subcontainer" ng-repeat="y in detail_distribution">
-                            <div class="order_subcontainer_heading col-xs-12">
-                                <p>{{'Order_ID' | translate}} &nbsp;<span>{{detail.id}}-{{y.id}} </span></p>
-                                <p class="status_btn" ng-if="y.status == '1'">Pending</p>
-                                <p class="status_btn" ng-if="y.status == '2'">Confirm</p>
-                                <p class="status_btn" ng-if="y.status == '3'">Delivery Boy Assigned</p>
-                                <p class="status_btn" ng-if="y.status == '4'">Out for delivery</p>
-                                <p class="status_btn" ng-if="y.status == '5'">Delivered</p>
-                                <p class="status_btn" ng-if="y.status == '6'">Cancelled</p>
-                                <p class="status_btn" ng-if="y.status == '7'">Rejected</p>                                
-                                <a href="" class="track_btn" ng-click="trackOrder(y.id,detail.id)">{{'Track_Order' | translate}}</a>
+            <!--  [PULSES] Sub categories content -->
+                <div class="container-fluid mt-55">
+                    <div class="row">
+                        <div class="">
+                            <!-- ** Buttons** -->
+                            <div class="pulses_buttons  tracking_main_container db_order_div">
+            
+                                <h5 class="tracking_heading db_track">
+                                    <span>
+                                        <img src="assets/img/db_orderl.png">
+                                    </span>12/03/12
+                                </h5>
+                                <h5 class="tracking_heading db_track">
+                                    <span>
+                                        <img src="assets/img/db_clock.png">
+                                    </span>10:00 AM
+                                </h5>
+                                
+                                <input type="button" class="btn btn-default tracking_btn ticket_process_btns ticket_pending" name="" value="Pending">
+                                
                             </div>
-                            <div class="order_subcontainer_detail col-xs-12">
-                                <p><span>{{'Order_on' | translate}}: {{y.updated_date.split(' ')[0] | date : 'dd-MM-yyyy'}}</span><span>{{'Order_Amt' | translate}}: {{currency}} {{y.final_amount}}</span></p>
+                            <!-- ** !. Buttons ** -->
+                            
+                            <!-- ** Product Lists ** -->
+                            <!-- About Product Of a Customer -->
+                            <div class="about_customer">
+                                <div class="cust_address">
+                                    <h4 class="cust_name">Rajat Jha</h4>
+                                    <p class="cust_residence">4 Clarke Street South, Abu Dubai, United Arab Emirates </p>
+                                </div>
+                                <div class="order_type">
+                                    <div class="cod"><a href="javascript:void(0)">COD</a></div>
+                                </div>
+                                <div class="call_customer" ng-click="callCustomer()">
+                                    <div class="cust_no pl-15 pr-15"><a href="javascript:void(0)">Call Customer</a></div>
+                                </div>
+                                <div class="view_map">
+                                    <div class="cust_location"><a href="javascript:void(0)">View Map</a></div>
+                                </div>
                             </div>
-                            <div class="order_subcontainer__content col-xs-12" ng-repeat="z in y.items">
-                                <div class="prod_row_wrapper" >
-                                    <div class="prod_img_wrapper">
-                                        <img src="{{z.product_image}}" class="img-responsive" />						
+                            <!-- About Product Of a Customer Ends -->
+            
+                            <!-- Item Number-->
+                            <div class="db_items">
+                                <h4>Item Details</h4>
+                                <p>Total No. Of Items - <span>2</span></p>
+                            </div>
+                            <div class="main_item_div">
+                                <div class="db_item_main">
+                                    <div class="item_img_container">
+                                        <div><img src="assets/img/db_item.png"></div>
                                     </div>
-                                    <div class="prod_content_wrapper">
-                                        <p class="order_sub_name">{{z.MENU_NAME}}</p>
-                                        <p><span>{{'Units' | translate}} </span>{{z.UNIT_VALUE}}{{z.FS_UNIT_NAME}}</p>
-                                        <p><span>{{'Price' | translate}} </span>{{currency}} {{z.unit_price}}</p>
-                                        <p><span>{{'VAT' | translate}} </span>{{currency}} {{z.tax_amount}}</p>
-                                        <p><span>{{'Qnty' | translate}} </span>{{z.quantity}}</p>
+                                    <div class="about_db_item">
+                                        <h4>Dry Fruits</h4>
+                                        <p>Unit <span class="ml-30">500 gm</span></p>
+                                        <p>Price <span class="ml-25">AED 140</span></p>
                                     </div>
                                 </div>
-                                <!-- <div class="prod_row_wrapper">
-                                    <div class="prod_img_wrapper">
-                                        <img src="assets/img/product/order_img1.png" class="img-responsive" />						
+                                <div class="db_item_main">
+                                    <div class="item_img_container">
+                                        <div><img src="assets/img/db_item2.png"></div>
                                     </div>
-                                    <div class="prod_content_wrapper">
-                                        <p class="order_sub_name">Dry Fruits</p>
-                                        <p><span>Unit </span>500g</p>
-                                        <p><span>Price </span>AED 140</p>
+                                    <div class="about_db_item">
+                                        <h4>Dry Fruits</h4>
+                                        <p>Unit <span class="ml-30">500 gm</span></p>
+                                        <p>Price <span class="ml-25">AED 140</span></p>
                                     </div>
-                                </div> -->
-                                   
+                                </div>
+                                <div class="item_total">
+                                    <h4>Total Amount: <span>AED 280</span></h4>
+                                </div>
                             </div>
-                            <div ng-if="y.ORDER_STATUS != '6'" class="submit-btn col-sm-6 col-xs-12 text-center">
-                                <a class="cancel_order" href="javascript:void(0)" ng-click="deleteOrder(y.id,detail.id)">{{'Cancel' | translate}}</a>
-						    </div>
-                              <div ng-if="y.ORDER_STATUS == '6'" class="submit-btn col-sm-6 col-xs-12 text-center">
-                                <a href="javascript:void(0)" style="background-color: #eda1a8">{{'Order_Cancelled' | translate}} </a>
-                              </div>
-                        </div>
-                       
-                    </div>
-                    <div class="dlvry_time_container mt-15">
-                        <div class="dlvry_address col-xs-12">
-                            <div class="dlvry_address_heading">
-                                
-                                
-                                <table class="mui-table">
-                                  <tbody>
-                                    <tr>
-                                      <td width="100px;">{{'Payment' | translate}}</td>
-                                      <td width="20px;">:</td>
-                                      <td ng-if="detail.payment_type == '1'">{{'COD' | translate}}<span> ({{currency}}-{{codamount | number : 2}})</span></td>
-                                      <td ng-if="detail.payment_type == '2'">{{'Online' | translate}}</td>
-                                      <td ng-if="detail.payment_type == ''">{{'Wallet' | translate}}</td>
-                                    </tr>
-                                    <tr ng-if="detail.coupon_code_amount != '0.00'">
-                                      <td>{{'Coupon_discount' | translate}}</td>
-                                      <td width="20px;">:</td>
-                                      <td>{{detail.coupon_code_amount}}</td>
-                                    </tr>
-                                    <tr>
-                                      <td>{{'Ordered_On' | translate}}</td>
-                                      <td width="20px;">:</td>
-                                      <td>{{delivery_address.updated_date.split(' ')[0] | date : 'dd-MM-yyyy'}}</td>
-                                    </tr>
-                                    <tr>
-                                      <td>{{'Deliver_To' | translate}}</td>
-                                      <td width="20px;">:</td>
-                                      <td>{{delivery_address.address}}</td>
-                                    </tr>
-                                    <tr>
-                                      <td>{{'Mobile_Number' | translate}}</td>
-                                      <td width="20px;">:</td>
-                                      <td>{{delivery_address.mobile_number}}</td>
-                                    </tr>
-                                    <tr ng-if="detail.wallet_used_amount !='0.00'">
-                                        <td>{{'Wallet_used_amount' | translate}}</td>
-                                        <td width="20px;">:</td>
-                                        <td>{{detail.wallet_used_amount | number : 2}}</td>
-                                    </tr>
-                                  </tbody>
-                                </table>
+                            <div class="update_status">
+                                <div><a href="javascript:void(0)" data-toggle="modal" data-target="#myModal">Update Status</a></div>
                             </div>
+                            <!-- Item Number Ends-->
+                            
                         </div>
                     </div>
-                    <div class="view_prod">
-                        <p class="col-xs-6"><a href="view_cart.php">{{'Total_Amount' | translate}}</a></p>
-                        <p class="col-xs-6 text-right">{{currency}} {{detail.final_amount | number : 2}}</p>
-                    </div>
-                    
                 </div>
-            </div>
-            </div>
-        <!--  END Banner SLIDER -->
+            <!--  !. [PULSES] Sub categories content -->
+            <!-- modal box -->
+            <div id="myModal" class="modal fade" role="dialog">
+                <div class="modal-vcenter">
+              <div class="modal-dialog">
+            
+                <!-- Modal content-->
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title text-center">Update Status</h4>
+                  </div>
+                  <div class="modal-body">
+                    <!-- Content Of modal-->
+                            <div class="radio mb-20 mt-10">
+                                <input id="radio-1" name="radio" type="radio">
+                                <label for="radio-1" class="radio-label"><span>On the way</span></label>
+                            </div>
+                          <div class="radio mb-20">
+                            <input id="radio-2" name="radio" type="radio">
+                            <label for="radio-2" class="radio-label"><span>Delivered</span></label>
+                          </div>
+                          <div class="radio mb-20">
+                            <input id="radio-3" name="radio" type="radio">
+                            <label for="radio-3" class="radio-label"><span>Cancelled</span></label>
+                          </div>
+            
+                    <!-- Content Of modal-->
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
+                  </div>
+                </div>
+            
+              </div>
+              </div>
+            </div>	
+            
+                
+            <script>
+            
+                
+            $(document).ready(function(){
+                $(".cart_icon a:last-child").click(function(){
+                    //alert();
+                    $(".bottom_header").slideToggle();
+                    //$("#banner_slider").toggleClass("search-container")
+                });	
+            });
+                </script>	
 </div>

@@ -146,8 +146,12 @@ app.controller('myorders', function ($scope, $http, $location, $cookieStore, mod
     }
     //End of Function
 
-    $scope.orderDetails = function (orderID) {
-        $cookieStore.put('orderID', orderID);
+    $scope.orderDetails = function (mormderID, orderID) {
+        var orderData = {
+            m_order_id:mormderID,
+            order_id:orderID,
+        }
+        $cookieStore.put('orderID', orderData);
         $location.path('/order/myorderdetails');
     }
 
