@@ -66,15 +66,15 @@
                                 <h5 class="tracking_heading db_track">
                                     <span>
                                         <img src="assets/img/db_orderl.png">
-                                    </span>12/03/12
+                                    </span>{{detail.ORDER_DATE}}
                                 </h5>
                                 <h5 class="tracking_heading db_track">
                                     <span>
                                         <img src="assets/img/db_clock.png">
-                                    </span>10:00 AM
+                                    </span>{{detail.ORDER_TIME}}
                                 </h5>
                                 
-                                <input type="button" class="btn btn-default tracking_btn ticket_process_btns ticket_pending" name="" value="Pending">
+                                <input type="button" class="btn btn-default tracking_btn ticket_process_btns ticket_pending" name="" ng-value="detail.order_type">
                                 
                             </div>
                             <!-- ** !. Buttons ** -->
@@ -83,13 +83,13 @@
                             <!-- About Product Of a Customer -->
                             <div class="about_customer">
                                 <div class="cust_address">
-                                    <h4 class="cust_name">Rajat Jha</h4>
-                                    <p class="cust_residence">4 Clarke Street South, Abu Dubai, United Arab Emirates </p>
+                                    <h4 class="cust_name">{{detail.CUSTOMER_NAME}}</h4>
+                                    <p class="cust_residence">{{detail.delivery_address.address}}, {{detail.delivery_address.CITY_NAME}}, {{detail.delivery_address.COUNTRY_NAME}}, {{detail.delivery_address.landmark}}, {{detail.delivery_address.zipcode}}</p>
                                 </div>
                                 <div class="order_type">
                                     <div class="cod"><a href="javascript:void(0)">COD</a></div>
                                 </div>
-                                <div class="call_customer" ng-click="callCustomer()">
+                                <div class="call_customer" ng-click="callCustomer(detail.mobile_number)">
                                     <div class="cust_no pl-15 pr-15"><a href="javascript:void(0)">Call Customer</a></div>
                                 </div>
                                 <div class="view_map">
@@ -104,28 +104,19 @@
                                 <p>Total No. Of Items - <span>2</span></p>
                             </div>
                             <div class="main_item_div">
-                                <div class="db_item_main">
+                                <div class="db_item_main" ng-repeat="x in detail.items" >
                                     <div class="item_img_container">
-                                        <div><img src="assets/img/db_item.png"></div>
+                                        <div><img src="{{x.product_image}}"></div>
                                     </div>
                                     <div class="about_db_item">
-                                        <h4>Dry Fruits</h4>
-                                        <p>Unit <span class="ml-30">500 gm</span></p>
+                                        <h4>{{x.MENU_NAME}}</h4>
+                                        <p>Unit <span class="ml-30">{{x.FS_UNIT_NAME}}</span></p>
                                         <p>Price <span class="ml-25">AED 140</span></p>
                                     </div>
                                 </div>
-                                <div class="db_item_main">
-                                    <div class="item_img_container">
-                                        <div><img src="assets/img/db_item2.png"></div>
-                                    </div>
-                                    <div class="about_db_item">
-                                        <h4>Dry Fruits</h4>
-                                        <p>Unit <span class="ml-30">500 gm</span></p>
-                                        <p>Price <span class="ml-25">AED 140</span></p>
-                                    </div>
-                                </div>
+                               
                                 <div class="item_total">
-                                    <h4>Total Amount: <span>AED 280</span></h4>
+                                    <h4>Total Amount: <span>AED {{x.total_price_after_discount}}</span></h4>
                                 </div>
                             </div>
                             <div class="update_status">
