@@ -46,7 +46,19 @@ app.controller('home', function ($scope, $filter, $http, $location, $cookieStore
 
 /* Function For Hot Deals */
 
-    
+    //datepicker
+	
+		$scope.monthSelectorOptions = {
+            start: "year",
+            depth: "year"
+          };
+          $scope.getType = function(x) {
+            return typeof x;
+          };
+          $scope.isDate = function(x) {
+            return x instanceof Date;
+          };
+ 	//datepicker
 
 
    
