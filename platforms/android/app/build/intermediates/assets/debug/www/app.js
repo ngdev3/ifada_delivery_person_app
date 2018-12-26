@@ -2,7 +2,7 @@ var project_name = '/ifadabeta/webservices';
 var base_url = 'http://projects.tekshapers.in';
 var country = 'en';
 var WebUrl = base_url + project_name;
-var app_upload_url = base_url + project_name;
+var app_upload_url = base_url + project_name; 
 var app_url = base_url + project_name;
 var FACEBOOK_APPID = '1421853664598058';
 var api_key = '0ed2e4b57d1f837276553b00d3fc2a29';
@@ -14,7 +14,7 @@ var lat;
 var lng;
 var profile_image_path = 'http://projects.tekshapers.in/ifadabeta/uploads/user_image/';
 
-var app = angular.module("myApp", ['ngRoute', 'ui.bootstrap', 'slickCarousel', 'ngSanitize', 'ngCookies', 'geolocation', 'ngCordovaOauth', 'ngCordova', /* 'kendo.directives', */ 'pascalprecht.translate']);
+var app = angular.module("myApp", ['ngRoute', 'ui.bootstrap', 'slickCarousel', 'ngSanitize', 'ngCookies', 'geolocation', 'ngCordovaOauth', 'ngCordova', /*'kendo.directives',*/, 'pascalprecht.translate']);
 
 //document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
 //document.getElementById("networkInfo").addEventListener("onload", networkInfo);
@@ -67,30 +67,10 @@ app.config(function ($routeProvider, $httpProvider) {
         .when("/register", {
             templateUrl: "module/register/register.html"
         })
-        .when("/address", {
-            templateUrl: "module/address/address.html"
-        })
-        .when("/address/add", {
-            templateUrl: "module/address/address_add.html"
-        })
-        .when("/address/edit/:id", {
-            templateUrl: "module/address/address_edit.html"
-        })
-        .when("/cart", {
-            templateUrl: "module/cart/cart.html"
-        })
-        .when("/category", {
-            templateUrl: "module/category/category.html"
-        })
-        .when("/contactus", {
-            templateUrl: "module/cms/contactus/contactus.html"
-        })
-        .when("/policy", {
-            templateUrl: "module/cms/privacy_policy/policy.html"
-        })
-        .when("/terms", {
-            templateUrl: "module/cms/terms_and_conditions/terms_and_conditions.html"
-        })
+        .when("/language", {
+            templateUrl: "module/switchlanguage/switchlanguage.html"
+
+        })      
         .when("/dashboard/home", {
             templateUrl: "module/dashboard/home.html"
         })
@@ -100,9 +80,7 @@ app.config(function ($routeProvider, $httpProvider) {
         .when("/myaccount/account", {
             templateUrl: "module/myaccount/myaccount.html"
         })
-        .when("/wishlist", {
-            templateUrl: "module/wishlist/wishlist.html"
-        })
+      
         .when("/myaccount/profile", {
             templateUrl: "module/myaccount/myprofile.html"
         })
@@ -114,13 +92,7 @@ app.config(function ($routeProvider, $httpProvider) {
         })
         .when("/order/track_order", {
             templateUrl: "module/order/track_order/track_order.html"
-        })
-        .when("/product/list", {
-            templateUrl: "module/product/list/product_list.html"
-        })
-        .when("/product/view", {
-            templateUrl: "module/product/view/product_view.html"
-        })
+        })       
         .when("/sidemenu", {
             templateUrl: "module/sidemenu/sidemenu.html"
         })
@@ -133,63 +105,8 @@ app.config(function ($routeProvider, $httpProvider) {
         .when("/otp", {
             templateUrl: "module/otp/otp.html"
         })
-        .when("/notification", {
-            templateUrl: "module/notification/notification.html"
-        })
-        .when("/payment", {
-            templateUrl: "module/payment/payment_summary.html"
-        })
-        .when("/payment/mode", {
-            templateUrl: "module/payment/payment_mode.html"
-        })
-        .when("/addressdetail", {
-            templateUrl: "module/address_detail/address_detail.html"
-        })
-        .when("/subcategory", {
-            templateUrl: "module/subcategory/subcategory.html"
-        })
-        .when("/deliverytime", {
-            templateUrl: "module/delivery/delivery_time.html"
-        })
-        .when("/thankyou", {
-            templateUrl: "module/thankyou/thankyou.html"
-
-        }).when("/store", {
-            templateUrl: "module/fetch_store/fetch.html"
-
-        }).when("/offers", {
-            templateUrl: "module/offers/offers.html"
-
-        }).when("/newpassword", {
+        .when("/newpassword", {
             templateUrl: "module/forgot/newpassword.html"
-
-        }).when("/wallet", {
-            templateUrl: "module/wallet/wallet.html"
-
-        })
-        .when("/language", {
-            templateUrl: "module/switchlanguage/switchlanguage.html"
-
-        })
-        .when("/switch_country", {
-            templateUrl: "module/switch_country/switch_country.html"
-
-        })
-        .when("/value_packs", {
-            templateUrl: "module/value_packs/value_packs.html"
-
-        }).when("/view_ticket", {
-            templateUrl: "module/ticket/view/view_ticket.html"
-
-        }).when("/list_ticket", {
-            templateUrl: "module/ticket/list/list_ticket.html"
-
-        }).when("/aboutus", {
-            templateUrl: "module/cms/about_us/about_us.html"
-        }).when("/rewards", {
-            templateUrl: "module/myreward/myreward.html"
-        }).when("/add_ticket", {
-            templateUrl: "module/ticket/add/add_ticket.html"
 
         })
 

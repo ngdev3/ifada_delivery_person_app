@@ -128,7 +128,7 @@ app.controller('login', function ($scope, $http, $location, $cookieStore, model,
                     
                     }else{
 
-                        alert(response.data.responseMessage);
+                        alert('Invalid Login Credentials');
                     }
                     //model.show('Alert', response.data.responseMessage);
                 }

@@ -35,8 +35,9 @@ app.controller('orderdetails', function ($scope, $http, $location, $cookieStore,
         loading.active();
 
         var args = $.param({
-        order_id: $cookieStore.get('orderID'),
             user_id:$cookieStore.get("userinfo").uid,
+            order_id: $cookieStore.get('orderID').order_id,
+            m_order_id: $cookieStore.get('orderID').m_order_id,
             country_id: sessionStorage.country,
             language_code: sessionStorage.lang_code
         });
@@ -46,7 +47,7 @@ app.controller('orderdetails', function ($scope, $http, $location, $cookieStore,
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
             method: 'POST',
-            url: app_url + '/order_summary',
+            url: app_url + '/delivery_boy/order_detail',
             data: args //forms user object
 
         }).then(function (response) {
@@ -56,27 +57,27 @@ app.controller('orderdetails', function ($scope, $http, $location, $cookieStore,
             console.log(res.data.data)
             if (res.data.data.status == 'success') {
                 $scope.detail = res.data.data.basic_info;
-                $scope.codamount = res.data.data.basic_info.final_amount - res.data.data.basic_info.wallet_used_amount;
-                $scope.delivery_address = res.data.data.delivery_address;
-                $scope.detail_distribution = res.data.data.basic_info.order_manufacturer_distribution;
-                var orderinfo = {
-                    'order_on': res.data.data.delivery_address.updated_date,
-                    'address': res.data.data.delivery_address.address,
-                    'mobile_number': res.data.data.delivery_address.mobile_number,
-                    'payment_type': res.data.data.basic_info.payment_type,
-                    'landmark' :  res.data.data.delivery_address.landmark,
-                    'location' :  res.data.data.delivery_address.location,
-                    'zipcode'  : res.data.data.delivery_address.zipcode,
+              //  $scope.codamount = res.data.data.basic_info.final_amount - res.data.data.basic_info.wallet_used_amount;
+                // $scope.delivery_address = res.data.data.delivery_address;
+                // $scope.detail_distribution = res.data.data.basic_info.order_manufacturer_distribution;
+                // var orderinfo = {
+                //     'order_on': res.data.data.delivery_address.updated_date,
+                //     'address': res.data.data.delivery_address.address,
+                //     'mobile_number': res.data.data.delivery_address.mobile_number,
+                //     'payment_type': res.data.data.basic_info.payment_type,
+                //     'landmark' :  res.data.data.delivery_address.landmark,
+                //     'location' :  res.data.data.delivery_address.location,
+                //     'zipcode'  : res.data.data.delivery_address.zipcode,
                     
-                }
-                $cookieStore.put('orderinfo', orderinfo);
+                // }
+                // $cookieStore.put('orderinfo', orderinfo);
 
-                $scope.item= [];
-                for(var i=0; i<$scope.detail_distribution.length;i++){
-                    $scope.item = res.data.data.basic_info.order_manufacturer_distribution[i].items;
+                // $scope.item= [];
+                // for(var i=0; i<$scope.detail_distribution.length;i++){
+                //     $scope.item = res.data.data.basic_info.order_manufacturer_distribution[i].items;
                     
-                }
-                console.log($scope.item)
+                // }
+                // console.log($scope.item)
             } else {
 
                 //Throw error if not logged in
@@ -90,6 +91,19 @@ app.controller('orderdetails', function ($scope, $http, $location, $cookieStore,
     }
 
 
+    $scope.callCustomer = function(){
+        window.plugins.CallNumber.callNumber(onSuccess, onError, '+918887905070', false);
+
+    }
+
+    function onSuccess(result){
+        alert("Success:"+result);
+      }
+       
+      function onError(result) {
+        alert("Error:"+result);
+      }
+    
     $scope.downloadinvoice = function (invoicedatas, invoiceurl) {
 
         // alert(invoicedatas);
