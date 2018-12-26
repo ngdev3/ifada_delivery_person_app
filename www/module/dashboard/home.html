@@ -162,8 +162,11 @@
 				<div class="db_calender_1">
 					<h4>from:</h4>
 					<input kendo-date-picker
-					 ng-model="dateString"
-					 k-ng-model="dateObject"
+                    ng-model="fromDateString"
+                    k-ng-model="fromDateObject"
+                    k-max = "maxDate"
+                    k-rebind="maxDate"
+                    k-on-change="fromDateChanged()"
 					 style="width: 100%;" />
 
 					
@@ -171,8 +174,12 @@
 				<div class="db_calender_2">
 					<h4>to:</h4>
 					<input kendo-date-picker
-					 ng-model="dateString"
-					 k-ng-model="date_Object"
+                    ng-model="toDateString"
+                    k-ng-model="toDateObject"
+                    k-min = "minDate"
+                    k-max = "toDateString"
+                    k-rebind = "minDate"
+                    k-on-change="toDateChanged()"
 					 style="width: 100%;" />
 				 </div>
 				

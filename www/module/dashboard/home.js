@@ -18,22 +18,11 @@ app.controller('home', function ($scope, $filter, $http, $location, $cookieStore
         $location.path('/login');
     }
 
-  
-    date = new Date();
-    $scope.fromdate = $filter('date')(date, 'yyyy-MM-dd')
-   
-    console.log($scope.fromdate)
-    // return
     $scope.home = function () {
         //$location.path('dashboard/home')
         $route.reload()
     }
    
-
-   $scope.fromRange = function(){
-    //    console.log($scope.fromRangedate)
-       console.log($('#datepicker-example1-start').val())
-   }
 
     $scope.signout = function () {
         $rootScope.DeleteData();
@@ -43,6 +32,30 @@ app.controller('home', function ($scope, $filter, $http, $location, $cookieStore
     }
 
   
+    var date = new Date();
+    $scope.fromDateString = $filter('date')(date, 'yyyy-MM-dd')
+    $scope.fromDateObject = null;
+    $scope.toDateString = $filter('date')(date, 'yyyy-MM-dd')
+    $scope.toDateObject = null;
+    $scope.maxDate = new Date();
+    $scope.minDate = new Date(2000, 0, 1, 0, 0, 0);
+    $scope.fromDateChanged = function(){
+      $scope.minDate = new Date($scope.fromDateString);
+      console.log("min changed " + $scope.fromDateString);
+    };
+    $scope.toDateChanged = function(){
+      $scope.maxDate = new Date($scope.toDateString);
+      console.log("min changed " + $scope.toDateString);
+    };
+    $scope.clear = function(){
+      $scope.fromDateString = '';
+      $scope.toDateString = '';
+      $scope.fromDateObject = null;
+      $scope.toDateObject = null;
+      $scope.maxDate = new Date();
+      $scope.minDate = new Date(2000, 0, 1, 0, 0, 0);
+    }
+
 
 /* Function For Hot Deals */
 
