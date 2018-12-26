@@ -1,7 +1,7 @@
 app.controller('update_order', function ($scope, $http, $location, $cookieStore, model, loading, $rootScope, $cordovaFileTransfer) {
 
-    
-    
+
+
     if (!$cookieStore.get('userinfo')) {
         $location.path('/login');
         return false;
@@ -12,7 +12,7 @@ app.controller('update_order', function ($scope, $http, $location, $cookieStore,
     }
 
 
-  $scope.orderinfo = $cookieStore.get('orderinfo');
+    $scope.orderinfo = $cookieStore.get('orderinfo');
     /**
      * Created By Sajal Goyal
      * Dated on 17/10/2018
@@ -20,41 +20,61 @@ app.controller('update_order', function ($scope, $http, $location, $cookieStore,
      * function name : orderAgain
      * work on clicking on Order Again and work using reorder API
      */
-    $scope.check_conditions = function(){
-    
-        if($("input[name='radio']:checked").val() == '8'){
-            $scope.Reschedule = '1';
-         }else{
-            $scope.Reschedule = '';
-         }
+    $scope.check_conditions = function () {
 
-         if($("input[name='radio']:checked").val() != '9'){
-            
-           $('#hno').removeAttr('required');
-        }else{
+        if ($("input[name='radio']:checked").val() == '8') {
+            $scope.Reschedule = '1';
+            $("#myModal").modal("show");
+        } else {
+            $scope.Reschedule = '';
+        }
+
+        if ($("input[name='radio']:checked").val() != '9') {
+
+            $('#hno').removeAttr('required');
+        } else if ($("input[name='radio']:checked").val() == '9') {
             $('#hno').attr('required', true);
         }
 
     }
-     
+
+    $scope.form={};
+    $scope.schedule = function(form){
+        console.log(form)
+        console.log($scope.date)
+
+    }
+
     $scope.form = {};
     $scope.update_status = function (form) {
 
-        if($("input[name='radio']:checked").val() == '9'){
         var error_str = '';
-        if ($scope[form].comment.$error.required !== undefined)
-           {
-               error_str += "Comment";
-              
-            if (error_str !== '')
-            {
-                error_str = " <span style='font-weight:700;'>Following fields must have valid information:</span> <br/> " + error_str;
-                alert(error_str);
-                return;
+        console.log($scope.form.radio)
+        if ($scope.form.radio == undefined || $scope.form.radio == '')
+        {
+            error_str == "Order Status";
+        }else{
+            error_str == "";
+        }
+        if ($("input[name='radio']:checked").val() == '9') {
+          
+            if ($scope.comment == undefined || $scope.comment == '') {
+            
+                error_str += "Comment";
+               
             }
-           }
-           } 
-        //console.log($scope.form.radio);
+           
+        }
+        if (error_str !== '')
+        {
+            
+            error_str = " <span style='font-weight:700;'>Following fields must have valid information:</span> <br/> " + error_str;
+            // model.show('Alert', error_str);
+            alert(error_str);
+            return;
+        }
+     
+        console.log(error_str);
         loading.active();
 
         var args = $.param({
@@ -76,9 +96,9 @@ app.controller('update_order', function ($scope, $http, $location, $cookieStore,
 
         }).then(function (response) {
             res = response;
-             
-            if (res.data.status == 'success') {
-                console.log(res);return;
+
+            if (res.data.responseStatus == 'success') {
+                console.log(res); return;
                 //put cookie and redirect it    
                 //model.show('Alert', res.data.responseMessage);
                 $location.path('/cart');
@@ -86,7 +106,7 @@ app.controller('update_order', function ($scope, $http, $location, $cookieStore,
             } else {
                 //Throw error if not logged in
                 //model.show('Alert', res.data.responseMessage);
-                alert(res.data.status);
+              alert('ppppppppppppp');
             }
 
         }).finally(function () {

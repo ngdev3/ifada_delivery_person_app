@@ -32,6 +32,7 @@
         padding-left: 0px;
         padding-right: 0px;
     }
+    
     </style>
     <header class="container-fluid nav-down">
         <div class="row">
@@ -67,7 +68,7 @@
                 <div class="" style="padding: 10px 20px;">
                     <div class="mt-10">
                         <div class="radio mb-20" ng-repeat="x in order_status">
-                            <input type="radio" id="radio_{{x.id}}" name="radio" ng-model="form.radio" value="{{x.id}}" required ng-change="check_conditions()">
+                            <input type="radio" id="radio_{{x.id}}" ng-model="radio" name="radio" value="{{x.id}}" required ng-change="check_conditions()">
                             <label for="radio_{{x.id}}" class="radio-label"><span>{{x.order_type}}</span></label>
                         </div>
                     </div>
@@ -80,17 +81,18 @@
                             <label for="hno">Date-time</label>
                           </div> -->
 
-                          <div class="db_calender_2" ng-show="Reschedule == '1'">
+                          <!-- <div class="db_calender_2" ng-show="Reschedule == '1'">
                                 <label for="datepicker-example1-end">To:</label>
                                 <input type="text" ng-value="fromdate" id="datepicker-example1-end">
-                            </div>
+                            </div> -->
                 </div>
                 <div class="reason_btn">
                     <div class="reason_cancel pr-10">
                         <a href="javascript:void(0)">Cancel</a>
                     </div>
                     <div class="reason_ok pl-10">
-                        <a href="javascript:void(0)" data-toggle="modal" data-target="#myModal" ng-click="update_status('update_order_status')">Ok</a>
+                        <a href="javascript:void(0)" ng-click="update_status('update_order_status')">Ok</a>
+                        <!-- data-toggle="modal" data-target="#myModalmyModal" -->
                     </div>
                 </div>
             </form>
@@ -98,7 +100,8 @@
         </div>
     <!--  !. [PULSES] Sub categories content -->
     <!-- modal box -->
-    <div id="myModal" class="modal fade" role="dialog">
+    <div id="myModal" class="modal fade" role="dialog" >
+        <form name="rescheduledate" nonvalidate>
         <div class="modal-vcenter">
           <div class="modal-dialog">
     
@@ -108,26 +111,27 @@
               <div class="modal-body">
                 <!-- Content Of modal-->
                         <div class="mui-textfield col-sm-6 col-xs-6 mr-20">
-                            <input type="text"  id="hno" placeholder="DD/MM/YY">
+                            <input type="text" id="datepicker-example1-start" name="date" ng-model="date" placeholder="DD/MM/YY" required>
                             <label for="hno"></label>
                         </div>
                         <div class="mui-textfield col-sm-6 col-xs-3">
-                            <input type="text"  id="hno_2" placeholder="00:00">
+                            <input type="text" name="time" ng-model="time" id="hno_2" placeholder="00:00" required>
                             <label for="hno_2"></label>
                         </div>
     
                 <!-- Content Of modal-->
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="schedule('rescheduledate')">OK</button>
               </div>
             </div>
     
           </div>
       </div>
+    </form>
     </div>	
     
-        
+</div>       
     <script>
     
         
@@ -139,8 +143,8 @@
         });	
     });
 
-    $('#datepicker-example1-end').Zebra_DatePicker({
-            direction: 1
+    $('#datepicker-example1-start').Zebra_DatePicker({
+            direction: true,
+            pair: $('#datepicker-example7-end')
         });
         </script>	
-</div>
