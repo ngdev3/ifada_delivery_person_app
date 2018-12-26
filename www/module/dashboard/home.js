@@ -35,8 +35,9 @@ app.controller('home', function ($scope, $http, $location, $cookieStore, $timeou
         $cookieStore.remove("storeinfo");
         $location.path('/login');
     }
-
-  
+	
+	
+	
 
 /* Function For Hot Deals */
 
@@ -96,8 +97,22 @@ app.controller('home', function ($scope, $http, $location, $cookieStore, $timeou
             }
         }      
     }
-
- 
+	
+	//datepicker
+	
+		$scope.monthSelectorOptions = {
+            start: "year",
+            depth: "year"
+          };
+          $scope.getType = function(x) {
+            return typeof x;
+          };
+          $scope.isDate = function(x) {
+            return x instanceof Date;
+          };
+ 	//datepicker
+	
+	
     $scope.fetcCounts = function(){
        // alert()
        console.log($cookieStore.get('userinfo'))

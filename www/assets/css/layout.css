@@ -1514,7 +1514,7 @@ li.progtrckr-todo.inprocessed span.pending_check i
 .db_calender_1, .db_calender_2{
 	width: 140px;
     display: inline-block;
-    text-align: right;
+    text-align: left;
     /* padding-right: 20px; */
     overflow: hidden;
     margin-right: 15px;
@@ -1538,4 +1538,28 @@ li.progtrckr-todo.inprocessed span.pending_check i
 .Zebra_DatePicker{
 	left: Calc(50% - 126px) !important;
     top: 73px !important;
+}
+/*Date Picker*/
+.k-content, .k-panel>li.k-item, .k-panelbar>li.k-item, .k-tiles {
+    background-color: #fafafa;
+}
+.k-datepicker .k-input, .k-timepicker .k-input {
+    background-color: #fff;
+}
+.k-picker-wrap.k-state-default>.k-select {
+    border-color: #fafafa;
+    display: flex;
+    align-items: center;
+}
+.k-icon{
+	width:100%;
+}
+.k-picker-wrap.k-state-default {
+    border-color: #cdcccc;
+}
+.k-animation-container{
+    transform: translateZ(0px);
+    top: 110px !important;
+    z-index: 10002;
+    left: 97.3594px !important;
 }
