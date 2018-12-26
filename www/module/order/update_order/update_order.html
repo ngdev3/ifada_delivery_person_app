@@ -38,16 +38,16 @@
             <nav class="navbar navbar-inverse">
               <div class="container no-padding">
                 <ul class="nav navbar-nav top_header">
-                  <li class="menu_icon "><a href="#"  ><img src="assets/img/icon/back.png" id="asdf" alt="menu icon"style="width: 13px;" /></a></li>
+                  <li class="menu_icon "><a href="javascript:void(0)"  ><img src="assets/img/icon/back.png" id="asdf" alt="menu icon"style="width: 13px;" /></a></li>
                     <li class="page_name left">
-                        <a href="#" class="text-left ">
+                        <a href="javascript:void(0)" class="text-left ">
                             <p>Select a reason</p>
                         </a>
                     </li>
                   
                 </ul>
                 <ul class="nav navbar-nav bottom_header">
-                  <li class="menu_search_container"><a href="#">
+                  <li class="menu_search_container"><a href="javascript:void(0)">
                     <!--<img src="assets/img/header/search_icon.png" alt="cart icon" />-->
                     <input type="text" class="menu_search" placeholder="Search products brands and more"/>
                   </a></li>
@@ -64,22 +64,25 @@
         <div class="container-fluid mt-55">
             <div class="row">
                 <div class="" style="padding: 10px 20px;">
-                    <div class="radio mb-20 mt-10">
-                        <input id="radio-1" name="radio" type="radio">
-                        <label for="radio-1" class="radio-label"><span>Customer Rejected</span></label>
+                    <div class="mt-10">
+                        <div class="radio mb-20" ng-repeat="x in order_status">
+                            <input id="radio-1" name="radio" type="radio" ng-model="radio">
+                            <label for="radio-1" class="radio-label"><span>{{x.order_type}}</span></label>
+                        </div>
                     </div>
-                    <div class="radio mb-20">
+                   
+                    <!-- <div class="radio mb-20">
                         <input id="radio-2" name="radio" type="radio">
-                        <label for="radio-2" class="radio-label"><span>Not Available</span></label>
+                        <label for="radio-2" class="radio-label"><span>Delivered</span></label>
                     </div>
                     <div class="radio mb-20">
                         <input id="radio-3" name="radio" type="radio">
-                        <label for="radio-3" class="radio-label"><span>Re-scheduled</span></label>
+                        <label for="radio-3" class="radio-label"><span>Re-Scheduled</span></label>
                     </div>
                     <div class="radio mb-20">
                         <input id="radio-4" name="radio" type="radio">
-                        <label for="radio-4" class="radio-label"><span>Other Reasons</span></label>
-                    </div>
+                        <label for="radio-4" class="radio-label"><span>No Contact</span></label>
+                    </div> -->
                     <div class="mui-textfield col-sm-12 col-xs-12">
                         <input type="text"  id="hno" placeholder="Comment">
                         <label for="hno">Comment</label>
@@ -87,10 +90,10 @@
                 </div>
                 <div class="reason_btn">
                     <div class="reason_cancel pr-10">
-                        <a href="#">Cancel</a>
+                        <a href="javascript:void(0)">Cancel</a>
                     </div>
                     <div class="reason_ok pl-10">
-                        <a href="#" data-toggle="modal" data-target="#myModal">Ok</a>
+                        <a href="javascript:void(0)" data-toggle="modal" data-target="#myModal">Ok</a>
                     </div>
                 </div>
             </div>
