@@ -60,7 +60,7 @@ app.controller('orderdetails', function ($scope, $http, $location, $cookieStore,
 
             console.log(res.data.data)
             if (res.data.data.status == 'success') {
-                $scope.detail = res.data.data.order_data;
+                $rootScope.detail = res.data.data.order_data;
                 $rootScope.order_status = res.data.data.order_status;
               //  $scope.codamount = res.data.data.basic_info.final_amount - res.data.data.basic_info.wallet_used_amount;
                 // $scope.delivery_address = res.data.data.delivery_address;

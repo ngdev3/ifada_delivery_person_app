@@ -12,74 +12,57 @@ app.controller('update_order', function ($scope, $http, $location, $cookieStore,
     }
 
 
-    /**
-     * Funtion: ordersDetalisInit from my_orders_details.html on ng-init
-     * Name: Sajal Goyal
-     * Created-on: 10/10/2018 at 11:00am
-     * Get the order details by sending the http request
-     */
-
-
-    $scope.trackorderDetail = function () {
-        loading.active();
-
-        var args = $.param({
-            'order_id': $cookieStore.get('orderids').order_id,
-            'm_order_id': $cookieStore.get('orderids').m_id,
-            'language_code':sessionStorage.lang_code
-        });
-
-        $http({
-            headers: {
-                //'token': '40d3dfd36e217abcade403b73789d732',
-                'Content-Type': 'application/x-www-form-urlencoded'
-            },
-            method: 'POST',
-            url: app_url + '/track_order',
-            data: args
-
-        }).then(function (response) {
-            res = response;
-            
-            if (res.data.responseStatus == 'success') {
-                
-                $scope.trackorder = res.data.data.order_status;
-                $scope.orderhistory = res.data.data.orderHistory;
-                /* console.log($scope.orderhistory)
-                for(var i=0; i<$scope.orderhistory.length; i++){
-                    $scope.trackhistory = $scope.orderhistory[i].order_status;
-                }
-                console.log($scope.trackhistory) */
-                $scope.trackorder_location = res.data.data.order_location;
-                $location.path('/order/track_order');
-
-            } else {
-                //Throw error if not logged in
-                //model.show('Alert', res.data.responseMessage);
-                alert(res.data.responseStatus);
-            }
-
-        }).finally(function () {
-            loading.deactive();
-        });
-       
-    }
-
   $scope.orderinfo = $cookieStore.get('orderinfo');
     /**
-     * Created By Nitin Kumar
+     * Created By Sajal Goyal
      * Dated on 17/10/2018
      * Start of Function
      * function name : orderAgain
      * work on clicking on Order Again and work using reorder API
      */
-    $scope.orderAgain = function (no) {
+    $scope.check_conditions = function(){
+    
+        if($("input[name='radio']:checked").val() == '8'){
+            $scope.Reschedule = '1';
+         }else{
+            $scope.Reschedule = '';
+         }
+
+         if($("input[name='radio']:checked").val() != '9'){
+            
+           $('#hno').removeAttr('required');
+        }else{
+            $('#hno').attr('required', true);
+        }
+
+    }
+     
+    $scope.form = {};
+    $scope.update_status = function (form) {
+
+        if($("input[name='radio']:checked").val() == '9'){
+        var error_str = '';
+        if ($scope[form].comment.$error.required !== undefined)
+           {
+               error_str += "Comment";
+              
+            if (error_str !== '')
+            {
+                error_str = " <span style='font-weight:700;'>Following fields must have valid information:</span> <br/> " + error_str;
+                alert(error_str);
+                return;
+            }
+           }
+           } 
+        //console.log($scope.form.radio);
         loading.active();
 
         var args = $.param({
-            'uid': GlobalUID,
-            'order_no': no,
-            'device_type': "android"
+            'user_id': $cookieStore.get('userinfo').uid,
+            'order_id': $rootScope.detail.order_id,
+            'm_order_id': $rootScope.detail.id,
+            'order_status': $scope.form.radio,
+            'language_code': sessionStorage.lang_code
         });
 
         $http({
@@ -88,14 +71,14 @@ app.controller('update_order', function ($scope, $http, $location, $cookieStore,
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
             method: 'POST',
-            url: app_url + '/profileapi/reorder',
+            url: app_url + '/delivery_boy/update_order_status',
             data: args
 
         }).then(function (response) {
             res = response;
-            // console.log(res);
+             
             if (res.data.status == 'success') {
-                console.log(res);
+                console.log(res);return;
                 //put cookie and redirect it    
                 //model.show('Alert', res.data.responseMessage);
                 $location.path('/cart');

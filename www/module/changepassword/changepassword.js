@@ -111,7 +111,7 @@ app.controller('changepassword', function ($scope, $http, $location, $cookieStor
                     'Content-Type': 'application/x-www-form-urlencoded'
                 },
                 method: 'POST',
-                url: app_url + '/auth/change_password',
+                url: app_url + '/delivery_boy/auth/change_password',
                 data: args //forms user object
 
             }).then(function (response) {

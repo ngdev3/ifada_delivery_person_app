@@ -38,7 +38,7 @@
             <nav class="navbar navbar-inverse">
               <div class="container no-padding">
                 <ul class="nav navbar-nav top_header">
-                  <li class="menu_icon "><a href="javascript:void(0)"  ><img src="assets/img/icon/back.png" id="asdf" alt="menu icon"style="width: 13px;" /></a></li>
+                  <li class="menu_icon "><a href="javascript:void(0)"  ><img src="assets/img/icon/back.png" ng-click="back()" alt="menu icon"style="width: 13px;" /></a></li>
                     <li class="page_name left">
                         <a href="javascript:void(0)" class="text-left ">
                             <p>Select a reason</p>
@@ -63,39 +63,37 @@
     <!--  [PULSES] Sub categories content -->
         <div class="container-fluid mt-55">
             <div class="row">
+                <form name="update_order_status" nonvalidate>
                 <div class="" style="padding: 10px 20px;">
                     <div class="mt-10">
                         <div class="radio mb-20" ng-repeat="x in order_status">
-                            <input id="radio-1" name="radio" type="radio" ng-model="radio">
-                            <label for="radio-1" class="radio-label"><span>{{x.order_type}}</span></label>
+                            <input type="radio" id="radio_{{x.id}}" name="radio" ng-model="form.radio" value="{{x.id}}" required ng-change="check_conditions()">
+                            <label for="radio_{{x.id}}" class="radio-label"><span>{{x.order_type}}</span></label>
                         </div>
                     </div>
-                          
-                    <!-- <div class="radio mb-20">
-                        <input id="radio-2" name="radio" type="radio">
-                        <label for="radio-2" class="radio-label"><span>Delivered</span></label>
-                    </div>
-                    <div class="radio mb-20">
-                        <input id="radio-3" name="radio" type="radio">
-                        <label for="radio-3" class="radio-label"><span>Re-Scheduled</span></label>
-                    </div>
-                    <div class="radio mb-20">
-                        <input id="radio-4" name="radio" type="radio">
-                        <label for="radio-4" class="radio-label"><span>No Contact</span></label>
-                    </div> -->
                     <div class="mui-textfield col-sm-12 col-xs-12">
-                        <input type="text"  id="hno" placeholder="Comment">
+                        <input type="text" name="comment" ng-model="comment" id="hno" placeholder="Comment" required>
                         <label for="hno">Comment</label>
                       </div>
+                      <!-- <div class="mui-textfield col-sm-12 col-xs-12" ng-show="Reschedule == '1'">
+                            <input type="text" name="slots" ng-model="slots" id="hno" placeholder="Date time slot">
+                            <label for="hno">Date-time</label>
+                          </div> -->
+
+                          <div class="db_calender_2" ng-show="Reschedule == '1'">
+                                <label for="datepicker-example1-end">To:</label>
+                                <input type="text" ng-value="fromdate" id="datepicker-example1-end">
+                            </div>
                 </div>
                 <div class="reason_btn">
                     <div class="reason_cancel pr-10">
                         <a href="javascript:void(0)">Cancel</a>
                     </div>
                     <div class="reason_ok pl-10">
-                        <a href="javascript:void(0)" data-toggle="modal" data-target="#myModal">Ok</a>
+                        <a href="javascript:void(0)" data-toggle="modal" data-target="#myModal" ng-click="update_status('update_order_status')">Ok</a>
                     </div>
                 </div>
+            </form>
             </div>
         </div>
     <!--  !. [PULSES] Sub categories content -->
@@ -140,5 +138,9 @@
             //$("#banner_slider").toggleClass("search-container")
         });	
     });
+
+    $('#datepicker-example1-end').Zebra_DatePicker({
+            direction: 1
+        });
         </script>	
 </div>
