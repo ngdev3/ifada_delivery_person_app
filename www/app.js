@@ -92,6 +92,8 @@ app.config(function ($routeProvider, $httpProvider) {
         })
         .when("/order/track_order", {
             templateUrl: "module/order/track_order/track_order.html"
+        }) .when("/order/update_order", {
+            templateUrl: "module/order/update_order/update_order.html"
         })       
         .when("/sidemenu", {
             templateUrl: "module/sidemenu/sidemenu.html"
