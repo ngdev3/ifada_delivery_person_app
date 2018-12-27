@@ -41,9 +41,9 @@ app.controller('update_order', function ($scope, $http, $location, $cookieStore,
 
     
     $scope.schedule = function(myform){
-        console.log(myform)
+        //console.log(myform)
         console.log($scope.dateString)
-        console.log($scope.scheduletime)
+        //console.log($scope.scheduletime)
 
     }
 
@@ -72,7 +72,7 @@ app.controller('update_order', function ($scope, $http, $location, $cookieStore,
     $scope.update_status = function (form) {
        
         if ($("input[name='radio']:checked").val() == '8') {
-        if($scope.dateString == undefined || $scope.dateString == '' || $scope.scheduletime == undefined || $scope.scheduletime == ''){
+        if($scope.dateString == undefined || $scope.dateString == ''){
             alert('Please Provide Date & Time');
             return;
         }
@@ -111,6 +111,8 @@ app.controller('update_order', function ($scope, $http, $location, $cookieStore,
             'order_id': $rootScope.detail.order_id,
             'm_order_id': $rootScope.detail.id,
             'order_status': $scope.form.radio,
+            'delivery_date' : $scope.dateString,
+            'comments' : $scope.comment,
             'language_code': sessionStorage.lang_code
         });
 
