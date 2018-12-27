@@ -21,12 +21,13 @@ app.controller('update_order', function ($scope, $http, $location, $cookieStore,
      * work on clicking on Order Again and work using reorder API
      */
     $scope.check_conditions = function () {
-
+        console.log('1')
         if ($("input[name='radio']:checked").val() == '8') {
             $scope.Reschedule = '1';
             $("#myModal").modal("show");
         } else {
             $scope.Reschedule = '';
+            $("#myModal").modal("hide");
         }
 
         if ($("input[name='radio']:checked").val() != '9') {
@@ -38,16 +39,38 @@ app.controller('update_order', function ($scope, $http, $location, $cookieStore,
 
     }
 
-    $scope.form={};
-    $scope.schedule = function(form){
-        console.log(form)
-        console.log($scope.date)
+    
+    $scope.schedule = function(myform){
+        console.log(myform)
+        console.log($scope.dateString)
+        console.log($scope.scheduletime)
 
     }
 
+    $scope.getType = function(x) {
+        return typeof x;
+    };
+    $scope.isDate = function(x) {
+        return x instanceof Date;
+    };
+
+    //datepicker
+	
+    $scope.monthSelectorOptions = {
+        start: "year",
+        depth: "year"
+      };
+      $scope.getType = function(x) {
+        return typeof x;
+      };
+      $scope.isDate = function(x) {
+        return x instanceof Date;
+      };
+ 	//datepicker
+
     $scope.form = {};
     $scope.update_status = function (form) {
-
+       
         var error_str = '';
         console.log($scope.form.radio)
         if ($scope.form.radio == undefined || $scope.form.radio == '')
@@ -106,7 +129,7 @@ app.controller('update_order', function ($scope, $http, $location, $cookieStore,
             } else {
                 //Throw error if not logged in
                 //model.show('Alert', res.data.responseMessage);
-              alert('ppppppppppppp');
+              alert('Error in Status update');
             }
 
         }).finally(function () {
