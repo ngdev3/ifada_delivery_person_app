@@ -71,6 +71,12 @@ app.controller('update_order', function ($scope, $http, $location, $cookieStore,
     $scope.form = {};
     $scope.update_status = function (form) {
        
+        if ($("input[name='radio']:checked").val() == '8') {
+        if($scope.dateString == undefined || $scope.dateString == '' || $scope.scheduletime == undefined || $scope.scheduletime == ''){
+            alert('Please Provide Date & Time');
+            return;
+        }
+     }
         var error_str = '';
         console.log($scope.form.radio)
         if ($scope.form.radio == undefined || $scope.form.radio == '')
