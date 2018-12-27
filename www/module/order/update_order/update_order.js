@@ -21,7 +21,7 @@ app.controller('update_order', function ($scope, $http, $location, $cookieStore,
      * work on clicking on Order Again and work using reorder API
      */
     $scope.check_conditions = function () {
-        console.log('1')
+        //console.log('1')
         if ($("input[name='radio']:checked").val() == '8') {
             $scope.Reschedule = '1';
             $("#myModal").modal("show");
@@ -121,10 +121,10 @@ app.controller('update_order', function ($scope, $http, $location, $cookieStore,
             res = response;
 
             if (res.data.responseStatus == 'success') {
-                console.log(res); return;
+                console.log(res); 
                 //put cookie and redirect it    
                 //model.show('Alert', res.data.responseMessage);
-                $location.path('/cart');
+                $location.path('/myorderdetails');
 
             } else {
                 //Throw error if not logged in

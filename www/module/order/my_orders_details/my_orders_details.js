@@ -63,7 +63,7 @@ app.controller('orderdetails', function (NgMap, $scope, $http, $location, $cooki
             res = response;
 
             console.log(res.data.data)
-            if (res.data.data.status == 'success') {
+            if (res.data.data.responseStatus == 'success') {
                 $rootScope.detail = res.data.data.order_data;
                 $rootScope.order_status = res.data.data.order_status;
                 //  $scope.codamount = res.data.data.basic_info.final_amount - res.data.data.basic_info.wallet_used_amount;
