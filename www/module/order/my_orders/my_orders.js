@@ -70,6 +70,18 @@ app.controller('myorders', function ($scope, $http, $location, $cookieStore, mod
 
 
     }
+	
+	$scope.init =function(id){
+		    var max_heightss = $(".accordion-panel_"+id).css("maxHeight");
+		 var iScrollHeight = $(".accordion-panel_"+id).prop("scrollHeight");
+		 if(max_heightss!="0px"){
+			 $("#accord_"+id).removeClass("selected");
+			  $(".accordion-panel_"+id).css('max-height', '0');
+		 }else{
+			 $("#accord_"+id).addClass("selected");
+			   $(".accordion-panel_"+id).css('max-height', iScrollHeight+'px');
+		 }
+	}
 
     /**
      * created by Nitin
