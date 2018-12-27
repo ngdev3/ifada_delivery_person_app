@@ -14,7 +14,7 @@ var lat;
 var lng;
 var profile_image_path = 'http://projects.tekshapers.in/ifadabeta/uploads/user_image/';
 
-var app = angular.module("myApp", ['ngRoute', 'ui.bootstrap', 'slickCarousel', 'ngSanitize', 'ngCookies', 'geolocation', 'ngCordovaOauth', 'ngCordova', 'kendo.directives', 'pascalprecht.translate']);
+var app = angular.module("myApp", ['ngRoute', 'ui.bootstrap', 'slickCarousel', 'ngSanitize', 'ngCookies', 'geolocation', 'ngMap', 'ngCordovaOauth', 'ngCordova', 'kendo.directives', 'pascalprecht.translate']);
 
 //document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
 //document.getElementById("networkInfo").addEventListener("onload", networkInfo);
@@ -654,6 +654,7 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
 
 
     $rootScope.mycart = function () {
+        return
         var args = $.param({
             country_id: sessionStorage.country,
             language_code: sessionStorage.lang_code,

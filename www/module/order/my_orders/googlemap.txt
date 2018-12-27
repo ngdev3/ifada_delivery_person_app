@@ -1,0 +1,3 @@
+  <ng-map class="ios-mapsection" style="height:500px;">
+                <marker draggable="true"  zoom="10"  position="{{lat}}, {{lng}}" zoom="1" on-drag="vm.drag()" title="hello" animation="Animation.DROP"></marker>
+            </ng-map>
