@@ -178,7 +178,8 @@ app.config(function ($translateProvider) {
      Applied : 'Applied',
      Wallet_used_amount : 'Wallet Used Amount',
      Qnty : 'Qnty',
-     Terms_n_Conditions : 'Terms And Conditions'
+     Terms_n_Conditions : 'Terms And Conditions',
+     No_Order_Found:'No Order Found'
      
   });
 
@@ -366,6 +367,7 @@ app.config(function ($translateProvider) {
     Wallet_used_amount : 'كمية المحفظة المستخدمة',
     Add_Address : 'اضف عنوان',
     Qnty : 'كمية',
-    Terms_n_Conditions : 'الأحكام والشروط'
+    Terms_n_Conditions : 'الأحكام والشروط',
+    No_Order_Found:'لم يتم العثور على طلب'
   });
 }); 

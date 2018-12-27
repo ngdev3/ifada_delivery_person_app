@@ -5,6 +5,7 @@ app.controller('myorders', function ($scope, $http, $location, $cookieStore, mod
         $location.path('/login');
         return false;
     }
+    
 
   //  var GlobalUID = $cookieStore.get('userinfo').uid; //Global Uid for get the response by sending the http request.
 
@@ -34,14 +35,31 @@ app.controller('myorders', function ($scope, $http, $location, $cookieStore, mod
 
         loading.active();
 
+       if(status == 'direct'){
+
         var args = $.param({
             country_id: sessionStorage.country,
              user_id: $cookieStore.get('userinfo').uid,
              user_type: $cookieStore.get('userinfo').left_data.user_type,
              language_code : sessionStorage.lang_code,
-             page : 0,
+             page : 0,             
+             status:type
+             
 
         });
+
+       }else{
+
+        var args = $.param({
+            country_id: sessionStorage.country,
+             user_id: $cookieStore.get('userinfo').uid,
+             user_type: $cookieStore.get('userinfo').left_data.user_type,
+             language_code : sessionStorage.lang_code,
+             page : 0
+        });
+
+    }
+      
         
 
         $http({
@@ -60,9 +78,16 @@ app.controller('myorders', function ($scope, $http, $location, $cookieStore, mod
            //console.log(res.data.data.order_list);
            if(res.data.responseCode == 200){
             $scope.order_list = res.data.data.orders;
-           }else{
+            $cookieStore.remove('orderstatus');
+
+            if(status !== 'direct'){
+
+                $scope.order_status = res.data.data.order_status;
+            }
+           
+        }else{
                $scope.order_list= '';
-            alert("Order Doesn't Exist");
+           // alert("Order Doesn't Exist");
            }
 
         }).finally(function () {
@@ -167,6 +192,26 @@ app.controller('myorders', function ($scope, $http, $location, $cookieStore, mod
         $cookieStore.put('orderID', orderData);
         $location.path('/order/myorderdetails');
     }
+
+
+    $scope.fetch_order_list = function (status = null, id = null) {
+        
+        if(status == 'direct'){
+            $scope.ordersInit(status,id);
+        }
+
+    }
+
+    if ($cookieStore.get('orderstatus')) {
+        $scope.ordersInit('direct',$cookieStore.get('orderstatus').status);
+        
+    }else{
+        
+        $scope.ordersInit('apply');
+    }
+
+
+
     
 
 

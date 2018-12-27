@@ -183,6 +183,15 @@ app.controller('home', function ($scope, $filter, $http, $location, $cookieStore
           };
  	//datepicker
 
+     $scope.getorders = function(status){
+
+        var orderData = {
+            status:status
+        }
+        $cookieStore.put('orderstatus', orderData);
+        $location.path('/order/myorder');
+
+     }
 
 });
 

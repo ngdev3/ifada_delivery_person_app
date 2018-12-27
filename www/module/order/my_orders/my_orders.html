@@ -1,298 +1,295 @@
 <style type="text/css">
+    .modal-header {
+        padding: 10px;
+        border-bottom: 1px solid #e5e5e5;
+    }
 
-.modal-header{
-	padding: 10px;
-	border-bottom: 1px solid #e5e5e5;
-}
-.modal-body {
-    position: relative;
-    padding: 10px 15px;
-}
-.modal-footer {
-    padding: 10px;
-    text-align: center;
-    border-top: 1px solid #e5e5e5;
-}
-.modal-footer button{
-    padding: 5px 25px;
-    background-color: #006d07;
-    color: #fff;
-}
-.tracking_btn {
-    padding: 5px 10px;
-}
+    .modal-body {
+        position: relative;
+        padding: 10px 15px;
+    }
+
+    .modal-footer {
+        padding: 10px;
+        text-align: center;
+        border-top: 1px solid #e5e5e5;
+    }
+
+    .modal-footer button {
+        padding: 5px 25px;
+        background-color: #006d07;
+        color: #fff;
+    }
+
+    .tracking_btn {
+        padding: 5px 10px;
+    }
 </style>
 
-<div ng-controller="myorders" ng-init="ordersInit()">
+<div ng-controller="myorders" >
 
-        <header class="container-fluid nav-down">
-                <div class="row">
-                    <nav class="navbar navbar-inverse">
-                      <div class="container no-padding">
-                        <ul class="nav navbar-nav top_header">
-                          <li class="menu_icon "><a href="javascript:void(0)"  ><img src="assets/img/icon/back.png" ng-click="back()" alt="menu icon"style="width: 13px;" /></a></li>
-                            <li class="page_name left">
-                                <a href="javascript:void(0)" class="text-left ">
-                                    <p>List Orders</p>
-                                </a>
-                            </li>
-							 <li class="cart_icon">
-                    <a href="javascript:void(0);" ng-if="!best_picks_of_the_season"><img src="assets/img/header/filter.png" alt="search icon" onclick="openFilter()"/></a>
-                      
-                  </li>
-                          
-                        </ul>
-                        <!--<ul class="nav navbar-nav bottom_header">
+    <header class="container-fluid nav-down">
+        <div class="row">
+            <nav class="navbar navbar-inverse">
+                <div class="container no-padding">
+                    <ul class="nav navbar-nav top_header">
+                        <li class="menu_icon "><a href="javascript:void(0)"><img src="assets/img/icon/back.png"
+                                    ng-click="back()" alt="menu icon" style="width: 13px;" /></a></li>
+                        <li class="page_name left">
+                            <a href="javascript:void(0)" class="text-left ">
+                                <p>List Orders</p>
+                            </a>
+                        </li>
+                        <li class="cart_icon">
+                            <a href="javascript:void(0);" ng-if="!best_picks_of_the_season"><img src="assets/img/header/filter.png"
+                                    alt="search icon" onclick="openFilter()" /></a>
+
+                        </li>
+
+                    </ul>
+                    <!--<ul class="nav navbar-nav bottom_header">
                           <li class="menu_search_container"><a href="javascript:void(0)">
                             <!--<img src="assets/img/header/search_icon.png" alt="cart icon" />-->
-                            <!--<input type="text" class="menu_search" placeholder="Search products brands and more"/>
+                    <!--<input type="text" class="menu_search" placeholder="Search products brands and more"/>
                           </a></li>
                         </ul>-->
-                      </div>
+                </div>
+            </nav>
+
+        </div>
+        <!-- MOBILE-MENU-AREA END -->
+    </header>
+    <!-- END HEADER -->
+    <!--Filter Start -->
+    <div id="mySidenav-right" class="sidenav-right">
+        <form name="filter_form" nonvaldidate>
+            <header id="filter-header" class="container-fluid nav-down" style="top: 0 !important;">
+                <div class="row">
+                    <nav class="navbar navbar-inverse">
+                        <div class="container-fluid no-padding">
+                            <ul class="nav navbar-nav top_header">
+                                <li class="menu_icon"><a href="javascript:void(0)"><img onclick="closeFilter()" src="assets/img/header/cross_icon.png"
+                                            id="asdf" alt="menu icon" /></a></li>
+                                <li class="logo_name" style="width: 100%"><a class="text-center back">Filter</a></li>
+
+                            </ul>
+                        </div>
                     </nav>
-                
                 </div>
-                <!-- MOBILE-MENU-AREA END -->
             </header>
-            <!-- END HEADER -->
-			<!--Filter Start -->
-    <div id="mySidenav-right" class="sidenav-right">		
-		<form name="filter_form" nonvaldidate>
-				<header id="filter-header" class="container-fluid nav-down" style="top: 0 !important;">
-					<div class="row">
-						<nav class="navbar navbar-inverse">
-						  <div class="container-fluid no-padding">
-							<ul class="nav navbar-nav top_header">
-							  <li class="menu_icon"><a href="javascript:void(0)" ><img onclick="closeFilter()" src="assets/img/header/cross_icon.png" id="asdf" alt="menu icon" /></a></li>
-							  <li class="logo_name" style="width: 100%"><a class="text-center back">Filter</a></li>
-							  
-							</ul>
-						  </div>
-						</nav>
-					</div>
-				</header>
-				<div class="filter-body">
-					<div class="filter-container">
-						<button class="accordion" id="accord_2" ng-click="init(2);">Order Option</button>
-						<div class="accordion-panel accordion-panel_2">
-						  <div class="accordion-container">
-								<div class="accordion-options">
-                        <div class="pretty p-icon p-curve p-pulse">
-                            <input type="radio" ng-model="sort" name="sort" value="1">
-                            <div class="state p-info-o">
-                                <i class="icon fa fa-check"></i>
-                                <label>pending</label>
+            <div class="filter-body">
+                <div class="filter-container">
+                    <button class="accordion" id="accord_2" ng-click="init(2);">Order Option</button>
+                    <div class="accordion-panel accordion-panel_2">
+                        <div class="accordion-container">
+                            <div class="accordion-options" ng-repeat="x in order_status">
+                                <div class="pretty p-icon p-curve p-pulse">
+                                    <input type="radio" ng-model="sort" name="sort" ng-click="fetch_order_list('direct',x.id)" ng-value="x.id">
+                                    <div class="state p-info-o">
+                                        <i class="icon fa fa-check"></i>
+                                        <label ng-if="x.id == 3">Pending</label>
+                                        <label ng-if="x.id != 3">{{x.order_type}}</label>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="accordion-options">
-                        <div class="pretty p-icon p-curve p-pulse">
-                            <input  type="radio" ng-model="sort" name="sort" value="3">
-                            <div class="state p-info-o">
-                                <i class="icon fa fa-check"></i>
-                                <label>Delivered</label>
-                            </div>
-                        </div>
-                    </div>
-					<div class="accordion-options">
-						<div class="pretty p-icon p-curve p-pulse">
-							<input type="radio" ng-model="sort" name="sort" value="4">
-							<div class="state p-info-o">
-								<i class="icon fa fa-check"></i>
-								<label>Pending</label>
-							</div>
-						</div>
-					</div>
-					<div class="accordion-options">
-						<div class="pretty p-icon p-curve p-pulse">
-							<input type="radio" ng-model="sort" name="sort" value="5">
-							<div class="state p-info-o">
-								<i class="icon fa fa-check"></i>
-								<label>Delivered</label>
-							</div>
-						</div>
-					</div>	
-								
-							</div>
-						</div>
-					</div>
-				</div>
-				<footer>
-					<div class="apply_btn_container">
-						<button onclick="closeFilter()"> Cancel</button>
-						<button onclick="closeFilter()" ng-click="fetch_order_list(cat_id,'','apply')"> Apply</button>
-					</div>
-				</footer>
-		</form>
-</div>
-    
-    <!--Filter End -->
-            
-            <!--  [PULSES] Sub categories content -->
-                <div class="container-fluid mt-55">
-                    <div class="row">
-                        <div class="">
-                            
-                            <!-- About Product Of a Customer -->
-                            <div class="about_customer db_order_main_div" ng-repeat="x in order_list">
-                                <div class="cust_address">
-                                    <h4 class="cust_name mb-0">Order ID: <span>{{x.ORDER_ID}}</span></h4>
-                                </div>
-                                <div class="db_delivery_add">
-                                    <div class="db_delivery"><h4>Deliver To<span>:</span></h4></div>
-                                    <div class="db_place"><h4>{{x.delivery_address.address}}, {{x.delivery_address.CITY_NAME}}, {{x.delivery_address.COUNTRY_NAME}}, {{x.delivery_address.landmark}}, {{x.delivery_address.zipcode}}</h4></div>
-                                </div>
-                                <div class="db_delivery_details mb-15">
-                                    <div class="db_phone"><h4>Mobile No.<span>:</span></h4></div>
-                                    <div class="db_number"><h4>{{x.mobile_number}}</h4></div>
-                                </div>
+                           
 
-                                <div class="order_status" ng-click="statusWiseHit(x.status)" ng-if="x.status == 5">
-                                    <div class="delivered status_btn"><a href="javascript:void(0)">Delivered</a></div>
-                                </div>
-                                <div class="order_status" ng-click="statusWiseHit(x.status)" ng-if="x.status == 4">
-                                    <div class="delivery status_btn"><a href="javascript:void(0)">Out For Delivery</a></div>
-                                </div>
-                                <div class="order_status" ng-click="statusWiseHit(x.status)" ng-if="x.status == 8">
-                                    <div class="reschedule status_btn"><a href="javascript:void(0)">Re-scheduled</a></div>
-                                </div>
-                                <div class="order_status" ng-click="statusWiseHit(x.status)" ng-if="x.status == 3">
-                                    <div class="inprocess status_btn"><a href="javascript:void(0)">In-Process</a></div>
-                                </div>
-                                <div class="order_status" ng-click="statusWiseHit(x.status)" ng-if="x.status == 7">
-                                    <div class="delivered status_btn"><a href="javascript:void(0)">Rejected</a></div>
-                                </div>
-                                <div class="order_status" ng-click="statusWiseHit(x.status)" ng-if="x.status == 1">
-                                    <div class="delivered status_btn"><a href="javascript:void(0)">Pending</a></div>
-                                </div>
-                                <div class="order_status" ng-click="statusWiseHit(x.status)" ng-if="x.status == 2">
-                                    <div class="delivered status_btn"><a href="javascript:void(0)">Confirm</a></div>
-                                </div>
-                                <div class="order_status" ng-click="statusWiseHit(x.status)" ng-if="x.status == 6">
-                                    <div class="delivered status_btn"><a href="javascript:void(0)">Cancelled</a></div>
-                                </div>
-                                <div class="order_status" ng-click="statusWiseHit(x.status)" ng-if="x.status == 9">
-                                    <div class="delivered status_btn"><a href="javascript:void(0)">No Contacted</a></div>
-                                </div>
-
-                                <div class="db_view_order" ng-click="orderDetails(x.id, x.order_id)">
-                                    <div class="view_details_btn"><a href="javascript:void(0)">View Details</a></div>
-                                </div>
-                            </div>
-                            <!-- 2nd part -->				
-                            <!-- <div class="about_customer db_order_main_div">
-                                <div class="cust_address">
-                                    <h4 class="cust_name mb-0">Order ID: <span>OD08842</span></h4>
-                                </div>
-                                <div class="db_delivery_add">
-                                    <div class="db_delivery"><h4>Deliver To<span>:</span></h4></div>
-                                    <div class="db_place"><h4>4 Clarke Street South, Abu Dubai</h4></div>
-                                </div>
-                                <div class="db_delivery_details mb-15">
-                                    <div class="db_phone"><h4>Mobile No.<span>:</span></h4></div>
-                                    <div class="db_number"><h4>998548547625</h4></div>
-                                </div>
-                                <div class="order_status">
-                                    <div class="delivery status_btn"><a href="javascript:void(0)">Out For Delivery</a></div>
-                                </div>
-                                <div class="db_view_order">
-                                    <div class="view_details_btn"><a href="javascript:void(0)">View Details</a></div>
-                                </div>
-                            </div> -->
-                            <!--2nd part ends -->
-                            <!--3rd part -->
-                            <!-- <div class="about_customer db_order_main_div">
-                                <div class="cust_address">
-                                    <h4 class="cust_name mb-0">Order ID: <span>OD08842</span></h4>
-                                </div>
-                                <div class="db_delivery_add">
-                                    <div class="db_delivery"><h4>Deliver To<span>:</span></h4></div>
-                                    <div class="db_place"><h4>4 Clarke Street South, Abu Dubai</h4></div>
-                                </div>
-                                <div class="db_delivery_details mb-15">
-                                    <div class="db_phone"><h4>Mobile No.<span>:</span></h4></div>
-                                    <div class="db_number"><h4>998548547625</h4></div>
-                                </div>
-                                <div class="order_status">
-                                    <div class="reschedule status_btn"><a href="javascript:void(0)">Re-scheduled</a></div>
-                                </div>
-                                <div class="db_view_order">
-                                    <div class="view_details_btn"><a href="javascript:void(0)">View Details</a></div>
-                                </div>
-                            </div> -->
-                            <!--3rd part ends -->
-                            <!--4th part -->
-                            <!-- <div class="about_customer db_order_main_div">
-                                <div class="cust_address">
-                                    <h4 class="cust_name mb-0">Order ID: <span>OD08842</span></h4>
-                                </div>
-                                <div class="db_delivery_add">
-                                    <div class="db_delivery"><h4>Deliver To<span>:</span></h4></div>
-                                    <div class="db_place"><h4>4 Clarke Street South, Abu Dubai</h4></div>
-                                </div>
-                                <div class="db_delivery_details mb-15">
-                                    <div class="db_phone"><h4>Mobile No.<span>:</span></h4></div>
-                                    <div class="db_number"><h4>998548547625</h4></div>
-                                </div>
-                                <div class="order_status">
-                                    <div class="inprocess status_btn"><a href="javascript:void(0)">In-Process</a></div>
-                                </div>
-                                <div class="db_view_order">
-                                    <div class="view_details_btn"><a href="javascript:void(0)">View Details</a></div>
-                                </div>
-                            </div> -->
-                            <!--4th part ends -->
                         </div>
                     </div>
                 </div>
-            <!--  !. [PULSES] Sub categories content -->
-            <!-- modal box -->
-            <div id="myModal" class="modal fade" role="dialog">
-                <div class="modal-vcenter">
-              <div class="modal-dialog">
-            
+            </div>
+            <footer>
+                <div class="apply_btn_container">
+                    <button onclick="closeFilter()"> Cancel</button>
+                    <button onclick="closeFilter()" ng-click="fetch_order_list('apply','')"> Apply</button>
+                </div>
+            </footer>
+        </form>
+    </div>
+
+    <!--Filter End -->
+
+    <!--  [PULSES] Sub categories content -->
+    <div class="container-fluid mt-55">
+        <div class="row">
+            <div class="">
+
+                <!-- About Product Of a Customer -->
+                <div class="about_customer db_order_main_div" ng-repeat="x in order_list">
+                    <div class="cust_address">
+                        <h4 class="cust_name mb-0">Order ID: <span>{{x.ORDER_ID}}</span></h4>
+                    </div>
+                    <div class="db_delivery_add">
+                        <div class="db_delivery">
+                            <h4>Deliver To<span>:</span></h4>
+                        </div>
+                        <div class="db_place">
+                            <h4>{{x.delivery_address.address}}, {{x.delivery_address.CITY_NAME}},
+                                {{x.delivery_address.COUNTRY_NAME}}, {{x.delivery_address.landmark}},
+                                {{x.delivery_address.zipcode}}</h4>
+                        </div>
+                    </div>
+                    <div class="db_delivery_details mb-15">
+                        <div class="db_phone">
+                            <h4>Mobile No.<span>:</span></h4>
+                        </div>
+                        <div class="db_number">
+                            <h4>{{x.mobile_number}}</h4>
+                        </div>
+                    </div>
+
+                    <div class="order_status" ng-click="statusWiseHit(x.status)" ng-if="x.status == 5">
+                        <div class="delivered status_btn"><a href="javascript:void(0)">Delivered</a></div>
+                    </div>
+                    <div class="order_status" ng-click="statusWiseHit(x.status)" ng-if="x.status == 4">
+                        <div class="delivery status_btn"><a href="javascript:void(0)">Out For Delivery</a></div>
+                    </div>
+                    <div class="order_status" ng-click="statusWiseHit(x.status)" ng-if="x.status == 8">
+                        <div class="reschedule status_btn"><a href="javascript:void(0)">Re-scheduled</a></div>
+                    </div>
+                    <div class="order_status" ng-click="statusWiseHit(x.status)" ng-if="x.status == 3">
+                        <div class="inprocess status_btn"><a href="javascript:void(0)">Pending</a></div>
+                    </div>
+                    <div class="order_status" ng-click="statusWiseHit(x.status)" ng-if="x.status == 7">
+                        <div class="delivered status_btn"><a href="javascript:void(0)">Rejected</a></div>
+                    </div>
+                    <div class="order_status" ng-click="statusWiseHit(x.status)" ng-if="x.status == 1">
+                        <div class="delivered status_btn"><a href="javascript:void(0)">Pending</a></div>
+                    </div>
+                    <div class="order_status" ng-click="statusWiseHit(x.status)" ng-if="x.status == 2">
+                        <div class="delivered status_btn"><a href="javascript:void(0)">Confirm</a></div>
+                    </div>
+                    <div class="order_status" ng-click="statusWiseHit(x.status)" ng-if="x.status == 6">
+                        <div class="delivered status_btn"><a href="javascript:void(0)">Cancelled</a></div>
+                    </div>
+                    <div class="order_status" ng-click="statusWiseHit(x.status)" ng-if="x.status == 9">
+                        <div class="delivered status_btn"><a href="javascript:void(0)">No Contacted</a></div>
+                    </div>
+
+                    <div class="db_view_order" ng-click="orderDetails(x.id, x.order_id)">
+                        <div class="view_details_btn"><a href="javascript:void(0)">View Details</a></div>
+                    </div>
+                </div>
+
+                <div  style="margin-top: 50px;position: fixed;" class="no_data_wrapper" ng-if="!order_list">
+                    <div class="">
+                        <img src="img/no_data_found.png">
+                        <h3 class="text-center">{{'No_Order_Found' | translate}}!!!</h3>
+                </div>
+                <!-- 2nd part -->
+                <!-- <div class="about_customer db_order_main_div">
+                                <div class="cust_address">
+                                    <h4 class="cust_name mb-0">Order ID: <span>OD08842</span></h4>
+                                </div>
+                                <div class="db_delivery_add">
+                                    <div class="db_delivery"><h4>Deliver To<span>:</span></h4></div>
+                                    <div class="db_place"><h4>4 Clarke Street South, Abu Dubai</h4></div>
+                                </div>
+                                <div class="db_delivery_details mb-15">
+                                    <div class="db_phone"><h4>Mobile No.<span>:</span></h4></div>
+                                    <div class="db_number"><h4>998548547625</h4></div>
+                                </div>
+                                <div class="order_status">
+                                    <div class="delivery status_btn"><a href="javascript:void(0)">Out For Delivery</a></div>
+                                </div>
+                                <div class="db_view_order">
+                                    <div class="view_details_btn"><a href="javascript:void(0)">View Details</a></div>
+                                </div>
+                            </div> -->
+                <!--2nd part ends -->
+                <!--3rd part -->
+                <!-- <div class="about_customer db_order_main_div">
+                                <div class="cust_address">
+                                    <h4 class="cust_name mb-0">Order ID: <span>OD08842</span></h4>
+                                </div>
+                                <div class="db_delivery_add">
+                                    <div class="db_delivery"><h4>Deliver To<span>:</span></h4></div>
+                                    <div class="db_place"><h4>4 Clarke Street South, Abu Dubai</h4></div>
+                                </div>
+                                <div class="db_delivery_details mb-15">
+                                    <div class="db_phone"><h4>Mobile No.<span>:</span></h4></div>
+                                    <div class="db_number"><h4>998548547625</h4></div>
+                                </div>
+                                <div class="order_status">
+                                    <div class="reschedule status_btn"><a href="javascript:void(0)">Re-scheduled</a></div>
+                                </div>
+                                <div class="db_view_order">
+                                    <div class="view_details_btn"><a href="javascript:void(0)">View Details</a></div>
+                                </div>
+                            </div> -->
+                <!--3rd part ends -->
+                <!--4th part -->
+                <!-- <div class="about_customer db_order_main_div">
+                                <div class="cust_address">
+                                    <h4 class="cust_name mb-0">Order ID: <span>OD08842</span></h4>
+                                </div>
+                                <div class="db_delivery_add">
+                                    <div class="db_delivery"><h4>Deliver To<span>:</span></h4></div>
+                                    <div class="db_place"><h4>4 Clarke Street South, Abu Dubai</h4></div>
+                                </div>
+                                <div class="db_delivery_details mb-15">
+                                    <div class="db_phone"><h4>Mobile No.<span>:</span></h4></div>
+                                    <div class="db_number"><h4>998548547625</h4></div>
+                                </div>
+                                <div class="order_status">
+                                    <div class="inprocess status_btn"><a href="javascript:void(0)">In-Process</a></div>
+                                </div>
+                                <div class="db_view_order">
+                                    <div class="view_details_btn"><a href="javascript:void(0)">View Details</a></div>
+                                </div>
+                            </div> -->
+                <!--4th part ends -->
+            </div>
+        </div>
+    </div>
+    <!--  !. [PULSES] Sub categories content -->
+    <!-- modal box -->
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-vcenter">
+            <div class="modal-dialog">
+
                 <!-- Modal content-->
                 <div class="modal-content">
-                  <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title text-center">Update Status</h4>
-                  </div>
-                  <div class="modal-body">
-                    <!-- Content Of modal-->
-                            <div class="radio mb-20 mt-10">
-                                <input id="radio-1" name="radio" type="radio">
-                                <label for="radio-1" class="radio-label"><span>On the way</span></label>
-                            </div>
-                          <div class="radio mb-20">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title text-center">Update Status</h4>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Content Of modal-->
+                        <div class="radio mb-20 mt-10">
+                            <input id="radio-1" name="radio" type="radio">
+                            <label for="radio-1" class="radio-label"><span>On the way</span></label>
+                        </div>
+                        <div class="radio mb-20">
                             <input id="radio-2" name="radio" type="radio">
                             <label for="radio-2" class="radio-label"><span>Delivered</span></label>
-                          </div>
-                          <div class="radio mb-20">
+                        </div>
+                        <div class="radio mb-20">
                             <input id="radio-3" name="radio" type="radio">
                             <label for="radio-3" class="radio-label"><span>Cancelled</span></label>
-                          </div>
-            
-                    <!-- Content Of modal-->
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
-                  </div>
+                        </div>
+
+                        <!-- Content Of modal-->
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
+                    </div>
                 </div>
-            
-              </div>
-              </div>
-            </div>	
-            
-                
-            <script>
-            
-                
-            $(document).ready(function(){
-                $(".cart_icon a:last-child").click(function(){
-                    //alert();
-                    $(".bottom_header").slideToggle();
-                    //$("#banner_slider").toggleClass("search-container")
-                });	
+
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+
+
+        $(document).ready(function () {
+            $(".cart_icon a:last-child").click(function () {
+                //alert();
+                $(".bottom_header").slideToggle();
+                //$("#banner_slider").toggleClass("search-container")
             });
-                </script>	
+        });
+    </script>
 </div>
