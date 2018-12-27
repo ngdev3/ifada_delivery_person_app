@@ -1,12 +1,16 @@
-app.controller('orderdetails', function ($scope, $http, $location, $cookieStore, model, loading, $rootScope, $cordovaFileTransfer) {
+app.controller('orderdetails', function (NgMap, $scope, $http, $location, $cookieStore, model, loading, $rootScope, $cordovaFileTransfer) {
 
-    
-    
+
+
     if (!$cookieStore.get('userinfo')) {
         $location.path('/login');
         return false;
     }
-    
+
+
+   
+
+
     $scope.home = function () {
         //$location.path('/home');
         window.history.back();
@@ -25,21 +29,21 @@ app.controller('orderdetails', function ($scope, $http, $location, $cookieStore,
      */
 
 
-     $scope.trackOrder = function(m_id,id){
-    var ids = {
-        'order_id' : id,
-        'm_id' : m_id
+    $scope.trackOrder = function (m_id, id) {
+        var ids = {
+            'order_id': id,
+            'm_id': m_id
+        }
+        $cookieStore.put('orderids', ids);
+        $location.path('/order/track_order')
+
     }
-       $cookieStore.put('orderids',ids);
-       $location.path('/order/track_order') 
-         
-     }
 
     $scope.ordersDetalisInit = function () {
         loading.active();
 
         var args = $.param({
-            user_id:$cookieStore.get("userinfo").uid,
+            user_id: $cookieStore.get("userinfo").uid,
             order_id: $cookieStore.get('orderID').order_id,
             m_order_id: $cookieStore.get('orderID').m_order_id,
             country_id: sessionStorage.country,
@@ -62,7 +66,7 @@ app.controller('orderdetails', function ($scope, $http, $location, $cookieStore,
             if (res.data.data.status == 'success') {
                 $rootScope.detail = res.data.data.order_data;
                 $rootScope.order_status = res.data.data.order_status;
-              //  $scope.codamount = res.data.data.basic_info.final_amount - res.data.data.basic_info.wallet_used_amount;
+                //  $scope.codamount = res.data.data.basic_info.final_amount - res.data.data.basic_info.wallet_used_amount;
                 // $scope.delivery_address = res.data.data.delivery_address;
                 // $scope.detail_distribution = res.data.data.basic_info.order_manufacturer_distribution;
                 // var orderinfo = {
@@ -73,14 +77,14 @@ app.controller('orderdetails', function ($scope, $http, $location, $cookieStore,
                 //     'landmark' :  res.data.data.delivery_address.landmark,
                 //     'location' :  res.data.data.delivery_address.location,
                 //     'zipcode'  : res.data.data.delivery_address.zipcode,
-                    
+
                 // }
                 // $cookieStore.put('orderinfo', orderinfo);
 
                 // $scope.item= [];
                 // for(var i=0; i<$scope.detail_distribution.length;i++){
                 //     $scope.item = res.data.data.basic_info.order_manufacturer_distribution[i].items;
-                    
+
                 // }
                 // console.log($scope.item)
             } else {
@@ -96,21 +100,32 @@ app.controller('orderdetails', function ($scope, $http, $location, $cookieStore,
     }
 
 
-    $scope.callCustomer = function(getnumber){
+    $scope.lat = '28.627997399999998';//$cookieStore.get('latlng_edit').lat;
+    $scope.lng = '77.435687';//$cookieStore.get('latlng_edit').lng;
+
+    //28.627997399999998, 77.435687
+    NgMap.getMap().then(function (map) {
+        var latlng = new google.maps.LatLng($scope.lat, $scope.lng);
+        map.setCenter(latlng);
+        map.setZoom(15);
+    });
+
+    
+    $scope.callCustomer = function (getnumber) {
         //alert(getnumber)
         //return
         window.plugins.CallNumber.callNumber(onSuccess, onError, getnumber, false);
 
     }
 
-    function onSuccess(result){
-        console.log("Success:"+result);
-      }
-       
-      function onError(result) {
+    function onSuccess(result) {
+        console.log("Success:" + result);
+    }
+
+    function onError(result) {
         alert("App Does not have access");
-      }
-    
+    }
+
     $scope.downloadinvoice = function (invoicedatas, invoiceurl) {
 
         // alert(invoicedatas);
@@ -231,7 +246,7 @@ app.controller('orderdetails', function ($scope, $http, $location, $cookieStore,
     }
 
     //End of Function
-    $scope.deleteOrder = function (m_id,id) {
+    $scope.deleteOrder = function (m_id, id) {
 
         $.confirm({
             title: 'Cancel Order!',
@@ -259,11 +274,11 @@ app.controller('orderdetails', function ($scope, $http, $location, $cookieStore,
                         var name = this.$content.find('.name').val(); //to get the prompt value
 
                         var args = $.param({
-                           
+
                             'order_id': id,
                             'manufacturer_distribution_id': m_id,
-                            'cancel_reason' : name,
-                            'user_id' : $cookieStore.get('userinfo').uid
+                            'cancel_reason': name,
+                            'user_id': $cookieStore.get('userinfo').uid
                         });
 
                         //alert(name);return false; 
@@ -278,7 +293,7 @@ app.controller('orderdetails', function ($scope, $http, $location, $cookieStore,
                                 data: args
                             }).then(function (response) {
                                 loading.deactive();
-                                 
+
                                 // $.alert('Confirmed!');
                                 if (response.data.responseStatus == "success") {
                                     alert("Order Successfully Cancelled");
@@ -301,6 +316,6 @@ app.controller('orderdetails', function ($scope, $http, $location, $cookieStore,
     }
 
 
-   
+
 
 });
