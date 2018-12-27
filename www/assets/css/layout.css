@@ -1537,7 +1537,8 @@ li.progtrckr-todo.inprocessed span.pending_check i
 }
 .Zebra_DatePicker{
 	left: Calc(50% - 126px) !important;
-    top: 73px !important;
+    top: 136px !important;
+    z-index: 9999999999;
 }
 /*Date Picker*/
 .k-content, .k-panel>li.k-item, .k-panelbar>li.k-item, .k-tiles {

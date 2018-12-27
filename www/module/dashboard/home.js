@@ -18,22 +18,11 @@ app.controller('home', function ($scope, $filter, $http, $location, $cookieStore
         $location.path('/login');
     }
 
-  
-    date = new Date();
-    $scope.fromdate = $filter('date')(date, 'yyyy-MM-dd')
-   
-    console.log($scope.fromdate)
-    // return
     $scope.home = function () {
         //$location.path('dashboard/home')
         $route.reload()
     }
    
-
-   $scope.fromRange = function(){
-    //    console.log($scope.fromRangedate)
-       console.log($('#datepicker-example1-start').val())
-   }
 
     $scope.signout = function () {
         $rootScope.DeleteData();
@@ -43,23 +32,6 @@ app.controller('home', function ($scope, $filter, $http, $location, $cookieStore
     }
 
   
-
-/* Function For Hot Deals */
-
-    //datepicker
-	
-		$scope.monthSelectorOptions = {
-            start: "year",
-            depth: "year"
-          };
-          $scope.getType = function(x) {
-            return typeof x;
-          };
-          $scope.isDate = function(x) {
-            return x instanceof Date;
-          };
- 	//datepicker
-
 
    
     $scope.myorder = function(){
@@ -126,15 +98,15 @@ app.controller('home', function ($scope, $filter, $http, $location, $cookieStore
        // alert()
        console.log($cookieStore.get('userinfo'))
       // return
-        loading.active();
+      //  loading.active();
         //store cookie if check box for remember me is checked and codition goes true only otherwise none
         var args = $.param({
             
             'user_id'   :   $cookieStore.get('userinfo').uid,
             'user_type'   :   $cookieStore.get('userinfo').left_data.user_type,
             'language_code'   :   'en',
-            'from_date'   :   $('#datepicker-example1-start').val(),
-            'to_date'   :   $('#datepicker-example1-end').val(),
+            'from_date'   :   $scope.fromDateString,
+            'to_date'   :   $scope.toDateString,
 
             
         });
@@ -149,7 +121,7 @@ app.controller('home', function ($scope, $filter, $http, $location, $cookieStore
             data: args //forms user object
 
         }).then(function (response) {
-            loading.deactive();
+        //    loading.deactive();
             res = response;
             console.log(res.data.data);
             if (res.data.responseCode == '200') {
@@ -166,6 +138,51 @@ app.controller('home', function ($scope, $filter, $http, $location, $cookieStore
 
         });
     }
+
+    
+    var date = new Date();
+    $scope.fromDateString = $filter('date')(date, 'yyyy-MM-dd')
+    $scope.fromDateObject = null;
+    $scope.toDateString = $filter('date')(date, 'yyyy-MM-dd')
+    $scope.toDateObject = null;
+    $scope.maxDate = new Date();
+    $scope.minDate = new Date(2000, 0, 1, 0, 0, 0);
+    $scope.fromDateChanged = function(){
+      $scope.minDate = new Date($scope.fromDateString);
+      console.log("min changed " + $scope.fromDateString);
+      $scope.fetcCounts()
+    };
+    $scope.toDateChanged = function(){
+      $scope.maxDate = new Date($scope.toDateString);
+      console.log("min changed " + $scope.toDateString);
+      $scope.fetcCounts();
+    };
+    $scope.clear = function(){
+      $scope.fromDateString = '';
+      $scope.toDateString = '';
+      $scope.fromDateObject = null;
+      $scope.toDateObject = null;
+      $scope.maxDate = new Date();
+      $scope.minDate = new Date(2000, 0, 1, 0, 0, 0);
+    }
+
+
+/* Function For Hot Deals */
+
+    //datepicker
+	
+		$scope.monthSelectorOptions = {
+            start: "year",
+            depth: "year"
+          };
+          $scope.getType = function(x) {
+            return typeof x;
+          };
+          $scope.isDate = function(x) {
+            return x instanceof Date;
+          };
+ 	//datepicker
+
 
 });
 

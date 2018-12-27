@@ -56,7 +56,7 @@ app.controller('myorders', function ($scope, $http, $location, $cookieStore, mod
 
             res = response;
 
-           console.log(res.data.data.order_list);
+           //console.log(res.data.data.order_list);
            if(res.data.responseCode == 200){
             $scope.order_list = res.data.data.orders;
            }else{
