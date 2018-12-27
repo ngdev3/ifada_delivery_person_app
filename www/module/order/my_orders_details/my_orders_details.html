@@ -110,8 +110,11 @@
                                     </div>
                                     <div class="about_db_item">
                                         <h4>{{x.MENU_NAME}}</h4>
-                                        <p>Unit <span class="ml-30">{{x.UNIT_VALUE}}{{x.FS_UNIT_NAME}}</span></p>
-                                        <p>Price <span class="ml-25">AED {{x.total_price}}</span></p>
+                                        <p>{{'Units' | translate}} <span class="ml-25">{{x.UNIT_VALUE}}{{x.FS_UNIT_NAME}}</span></p>
+                                        <p>{{'Price' | translate}}  <span class="ml-25">{{currency}} {{x.unit_price}}</span></p>
+                                        <p>{{'VAT' | translate}}  <span class="ml-25">{{currency}}  {{x.tax_amount}}</span></p>
+                                        <p>{{'Qty' | translate}}  <span class="ml-25">{{x.quantity}}</span></p>
+                                        
                                     </div>
                                 </div>
                                
