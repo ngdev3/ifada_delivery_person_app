@@ -1561,5 +1561,5 @@ li.progtrckr-todo.inprocessed span.pending_check i
     transform: translateZ(0px);
     top: 140px !important;
     z-index: 10002;
-    left: 97.3594px !important;
+    left: calc(50% - 133px)!important;
 }
