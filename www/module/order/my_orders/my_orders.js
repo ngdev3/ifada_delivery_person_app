@@ -30,7 +30,7 @@ app.controller('myorders', function ($scope, $http, $location, $cookieStore, mod
      */
 
 
-    $scope.ordersInit = function () {
+    $scope.ordersInit = function (status = null, type = null) {
 
         loading.active();
 
@@ -40,6 +40,7 @@ app.controller('myorders', function ($scope, $http, $location, $cookieStore, mod
              user_type: $cookieStore.get('userinfo').left_data.user_type,
              language_code : sessionStorage.lang_code,
              page : 0,
+
         });
         
 
@@ -166,5 +167,8 @@ app.controller('myorders', function ($scope, $http, $location, $cookieStore, mod
         $cookieStore.put('orderID', orderData);
         $location.path('/order/myorderdetails');
     }
+    
+
+
 
 });

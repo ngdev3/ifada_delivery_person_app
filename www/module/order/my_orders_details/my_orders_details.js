@@ -97,18 +97,19 @@ app.controller('orderdetails', function (NgMap, $scope, $http, $location, $cooki
         }).finally(function () {
             loading.deactive();
         });
+
+        $scope.orderlocationPoint = function (lat, lng) {
+            var orderData = {
+                lat:lat,
+                lng:lng,
+            }
+            $cookieStore.put('locationpoints', orderData);
+            $location.path('/map');
+        }
     }
 
 
-    $scope.lat = '28.627997399999998';//$cookieStore.get('latlng_edit').lat;
-    $scope.lng = '77.435687';//$cookieStore.get('latlng_edit').lng;
-
-    //28.627997399999998, 77.435687
-    NgMap.getMap().then(function (map) {
-        var latlng = new google.maps.LatLng($scope.lat, $scope.lng);
-        map.setCenter(latlng);
-        map.setZoom(15);
-    });
+   
 
     
     $scope.callCustomer = function (getnumber) {

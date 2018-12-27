@@ -110,6 +110,9 @@ app.config(function ($routeProvider, $httpProvider) {
         .when("/newpassword", {
             templateUrl: "module/forgot/newpassword.html"
 
+        }) .when("/map", {
+            templateUrl: "module/map/map.html"
+
         })
 
 
