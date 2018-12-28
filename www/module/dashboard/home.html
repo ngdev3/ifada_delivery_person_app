@@ -160,13 +160,14 @@
             <div class="db_calender">
                 <div class="demo-section k-content">
 				<div class="db_calender_1">
-					<h4>From:</h4>
+					<h4>From:-</h4>
 					<input kendo-date-picker
                     ng-model="fromDateString"
                     k-ng-model="fromDateObject"
                     k-max = "maxDate"
                     k-rebind="maxDate"
                     k-on-change="fromDateChanged()"
+                    k-format="'yyyy-MM-dd'"
 					 style="width: 100%;" />
 
 					
@@ -180,6 +181,7 @@
                     k-max = "toDateString"
                     k-rebind = "minDate"
                     k-on-change="toDateChanged()"
+                    k-format="'yyyy-MM-dd'"
 					 style="width: 100%;" />
 				 </div>
 				

@@ -66,13 +66,13 @@
                                 <h5 class="tracking_heading db_track">
                                     <span>
                                         <img src="assets/img/db_orderl.png">
-                                    </span>{{detail.ORDER_DATE}}
+                                    </span>{{detail.delivery_date}}
                                 </h5>
-                                <h5 class="tracking_heading db_track">
+                                <!-- <h5 class="tracking_heading db_track">
                                     <span>
                                         <img src="assets/img/db_clock.png">
                                     </span>{{detail.ORDER_TIME}}
-                                </h5>
+                                </h5> -->
                                 
                                 <input type="button" class="btn btn-default tracking_btn ticket_process_btns ticket_pending" name="" ng-value="detail.order_type">
                                 
@@ -103,8 +103,8 @@
                                 <h4>Item Details</h4>
                                 <p>Total No. Of Items - <span>{{detail.total_items}}</span></p>
                             </div>
-                            <div class="main_item_div" ng-repeat="x in detail.items">
-                                <div class="db_item_main">
+                            <div class="main_item_div" >
+                                <div class="db_item_main" ng-repeat="x in detail.items">
                                     <div class="item_img_container">
                                         <div><img src="{{x.product_image}}"></div>
                                     </div>
@@ -119,7 +119,9 @@
                                 </div>
                                
                                 <div class="item_total">
-                                    <h4>Total Amount: <span>AED {{x.total_price_after_discount}}</span></h4>
+                                    <h4 ng-if="detail.IS_WALLET_USED == 1">Wallet Amount Paid: <span>{{currency}} {{detail.WALLET_USED_AMOUNT}}</span></h4>
+                                    <h4 ng-if="detail.amount_to_be_received > 0">COD Amount: <span>{{currency}} {{detail.amount_to_be_received}}</span></h4>
+                                    <h4>Total Amount: <span>{{currency}} {{detail.FINAL_AMOUNT}}</span></h4>
                                 </div>
                             </div>
                             <div class="update_status">

@@ -148,13 +148,13 @@ app.controller('home', function ($scope, $filter, $http, $location, $cookieStore
     $scope.maxDate = new Date();
     $scope.minDate = new Date(2000, 0, 1, 0, 0, 0);
     $scope.fromDateChanged = function(){
-      $scope.minDate = new Date($scope.fromDateString);
-      console.log("min changed " + $scope.fromDateString);
+      $scope.minDate = $filter('date')(new Date($scope.fromDateString), 'yyyy-MM-dd');
+      console.log("min changed " + $scope.minDate);
       $scope.fetcCounts()
     };
     $scope.toDateChanged = function(){
-      $scope.maxDate = new Date($scope.toDateString);
-      console.log("min changed " + $scope.toDateString);
+      $scope.maxDate =  $filter('date')(new Date($scope.toDateString), 'yyyy-MM-dd');
+      console.log("min changed " + $scope.maxDate);
       $scope.fetcCounts();
     };
     $scope.clear = function(){

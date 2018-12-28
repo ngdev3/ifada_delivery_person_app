@@ -1,4 +1,4 @@
-app.controller('update_order', function ($scope, $http, $location, $cookieStore, model, loading, $rootScope, $cordovaFileTransfer) {
+app.controller('update_order', function ($filter, $scope, $http, $location, $cookieStore, model, loading, $rootScope, $cordovaFileTransfer) {
 
 
 
@@ -11,6 +11,8 @@ app.controller('update_order', function ($scope, $http, $location, $cookieStore,
         window.history.back();
     }
 
+    var date = new Date();
+    $scope.dateString = $filter('date')(date, 'yyyy-MM-dd')
 
     $scope.orderinfo = $cookieStore.get('orderinfo');
     /**
