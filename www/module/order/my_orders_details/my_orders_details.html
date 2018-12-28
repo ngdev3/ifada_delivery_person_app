@@ -84,16 +84,17 @@
                             <!-- About Product Of a Customer -->
                             <div class="about_customer">
                                 <div class="cust_address">
-                                    <h4 class="cust_name">{{detail.CUSTOMER_NAME}}</h4>
-                                    <p class="cust_residence">{{detail.delivery_address.address}}, {{detail.delivery_address.CITY_NAME}}, {{detail.delivery_address.COUNTRY_NAME}}, {{detail.delivery_address.landmark}}, {{detail.delivery_address.zipcode}}</p>
+                                    <h4 class="cust_name">{{detail.CUSTOMER_NAME | ucwords}}</h4>
+                                    <p class="cust_residence">{{detail.delivery_address.address | ucwords}}, {{detail.delivery_address.CITY_NAME}}, {{detail.delivery_address.COUNTRY_NAME}}, {{detail.delivery_address.landmark}}, {{detail.delivery_address.zipcode}}</p>
+                                    <p class="cust_residence">Mobile No:- {{detail.mobile_number}}</p>
                                 </div>
                                 <div class="order_type">
                                     <div class="cod"><a href="javascript:void(0)">{{detail.order_by_leble}}</a></div>
                                 </div>
-                                <div class="call_customer" ng-click="callCustomer(detail.mobile_number)">
+                                <div class="call_customer"  ng-if="detail.status != '5'" ng-click="callCustomer(detail.mobile_number)">
                                     <div class="cust_no pl-15 pr-15"><a href="javascript:void(0)">Call Customer</a></div>
                                 </div>
-                                <div class="view_map">
+                                <div class="view_map"  ng-if="detail.status != '5'">
                                     <div class="cust_location"><a href="javascript:void(0)" ng-click="orderlocationPoint(detail.delivery_address.lattitude, detail.delivery_address.longitude)">View Map</a></div>
                                 </div>
                             </div>
@@ -101,8 +102,8 @@
             
                             <!-- Item Number-->
                             <div class="db_items">
-                                <h4>Item Details</h4>
-                                <p>Total No. Of Items - <span>{{detail.total_items}}</span></p>
+                                <h4>{{'Item_Details'  | translate}}</h4>
+                                <p>{{'Total_No_Of_Items'  | translate}} - <span>{{detail.total_items}}</span></p>
                             </div>
                             <div class="main_item_div" >
                                 <div class="db_item_main" ng-repeat="x in detail.items">
@@ -120,13 +121,13 @@
                                 </div>
                                
                                 <div class="item_total">
-                                    <h4 ng-if="detail.IS_WALLET_USED == 1">Wallet Amount Paid: <span>{{currency}} {{detail.WALLET_USED_AMOUNT}}</span></h4>
-                                    <h4 ng-if="detail.amount_to_be_received > 0">COD Amount: <span>{{currency}} {{detail.amount_to_be_received}}</span></h4>
-                                    <h4>Total Amount: <span>{{currency}} {{detail.FINAL_AMOUNT}}</span></h4>
+                                    <h4>{{'Total_Order_Amount'  | translate}}: <span>{{currency}} {{detail.FINAL_AMOUNT}}</span></h4>
+                                    <h4 ng-if="detail.IS_WALLET_USED == 1">{{'Amount_Paid_From_Wallet'  | translate}}: <span>{{currency}} {{detail.WALLET_USED_AMOUNT}}</span></h4>
+                                    <h4 ng-if="detail.amount_to_be_received > 0">{{'Amount_To_Be_Collected'  | translate}}: <span>{{currency}} {{detail.amount_to_be_received}}</span></h4>
                                 </div>
                             </div>
                             <div class="update_status" ng-if="detail.status != '5'">
-                                <div><a href="javascript:void(0)" ng-click="update_order()" >Update Status</a></div>
+                                <div><a href="javascript:void(0)" ng-click="update_order()" >{{'Update_Status'  | translate}}</a></div>
                             </div>
                             <!-- Item Number Ends-->
                             

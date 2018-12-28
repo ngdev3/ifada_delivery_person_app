@@ -179,7 +179,13 @@ app.config(function ($translateProvider) {
      Wallet_used_amount : 'Wallet Used Amount',
      Qnty : 'Qnty',
      Terms_n_Conditions : 'Terms And Conditions',
-     No_Order_Found:'No Order Found'
+     No_Order_Found:'No Order Found',
+     Update_Status:'Update Status',
+     Amount_To_Be_Collected:'Amount To Be Collected',
+     Amount_Paid_From_Wallet:'Amount Paid From Wallet',
+     Total_Order_Amount:'Total Order Amount',
+     Total_No_Of_Items: 'Total No Of Items',
+     Item_Details:'Item Details',
      
   });
 
@@ -368,6 +374,12 @@ app.config(function ($translateProvider) {
     Add_Address : 'اضف عنوان',
     Qnty : 'كمية',
     Terms_n_Conditions : 'الأحكام والشروط',
-    No_Order_Found:'لم يتم العثور على طلب'
+    No_Order_Found:'لم يتم العثور على طلب',
+    Update_Status:'تحديث الحالة',
+     Amount_To_Be_Collected:'المبلغ المراد جمعه',
+     Amount_Paid_From_Wallet:'المبلغ المدفوع من المحفظة',
+     Total_Order_Amount:'مجموع مبلغ الطلب',
+     Total_No_Of_Items: 'مجموع عدد العناصر',
+     Item_Details:'تفاصيل العنصر',
   });
 }); 
