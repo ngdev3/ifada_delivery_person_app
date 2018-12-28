@@ -30,11 +30,11 @@ app.controller('myorders', function ($scope, $http, $location, $cookieStore, mod
      * Get the order list by sending the http request
      */
 
-
+    $scope.hittoset = 0
     $scope.ordersInit = function (status = null, type = null) {
 
         loading.active();
-
+        $scope.hittoset = 1
        if(status == 'direct'){
 
         var args = $.param({
@@ -86,6 +86,7 @@ app.controller('myorders', function ($scope, $http, $location, $cookieStore, mod
             }
            
         }else{
+            $scope.hittoset = 2
                $scope.order_list= '';
            // alert("Order Doesn't Exist");
            }

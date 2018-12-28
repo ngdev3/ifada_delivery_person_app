@@ -12,8 +12,8 @@ app.controller('orderdetails', function (NgMap, $scope, $http, $location, $cooki
 
 
     $scope.home = function () {
-        //$location.path('/home');
-        window.history.back();
+        $location.path('/order/myorder');
+        //window.history.back();
     }
     $scope.update_order = function () {
         $location.path('/order/update_order');

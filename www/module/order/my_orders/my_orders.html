@@ -115,7 +115,7 @@
             <div class="">
 
                 <!-- About Product Of a Customer -->
-                <div class="about_customer db_order_main_div" ng-repeat="x in order_list">
+                <div class="about_customer db_order_main_div" ng-repeat="x in order_list" ng-if="hittoset == '1'">
                     <div class="cust_address">
                         <h4 class="cust_name mb-0">Order ID: <span>{{x.ORDER_ID}}</span></h4>
                     </div>
@@ -171,7 +171,7 @@
                     </div>
                 </div>
 
-                <div  style="margin-top: 50px;position: fixed;" class="no_data_wrapper" ng-if="!order_list">
+                <div  style="margin-top: 50px;position: fixed;" class="no_data_wrapper" ng-if="hittoset == '2'">
                     <div class="">
                         <img src="img/no_data_found.png">
                         <h3 class="text-center">{{'No_Order_Found' | translate}}!!!</h3>

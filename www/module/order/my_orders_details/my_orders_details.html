@@ -34,7 +34,7 @@
                     <nav class="navbar navbar-inverse">
                       <div class="container no-padding">
                         <ul class="nav navbar-nav top_header">
-                          <li class="menu_icon "><a href="javascript:void(0)"  ><img src="assets/img/icon/back.png" ng-click="back();" alt="menu icon"style="width: 13px;" /></a></li>
+                          <li class="menu_icon "><a href="javascript:void(0)"  ><img src="assets/img/icon/back.png" ng-click="home();" alt="menu icon"style="width: 13px;" /></a></li>
                             <li class="page_name left">
                                 <a href="javascript:void(0)" class="text-left ">
                                     <p>Order ID: <span>{{detail.order_id}}</span></p>
@@ -74,7 +74,8 @@
                                     </span>{{detail.ORDER_TIME}}
                                 </h5> -->
                                 
-                                <input type="button" class="btn btn-default tracking_btn ticket_process_btns ticket_pending" name="" ng-value="detail.order_type">
+                                <input type="button" class="btn btn-default tracking_btn ticket_process_btns ticket_pending" name="" ng-if="detail.status != '3'" ng-value="detail.order_type">
+                                <input type="button" class="btn btn-default tracking_btn ticket_process_btns ticket_pending" name="" ng-if="detail.status == '3'" value="Out For Delivery">
                                 
                             </div>
                             <!-- ** !. Buttons ** -->
@@ -124,8 +125,8 @@
                                     <h4>Total Amount: <span>{{currency}} {{detail.FINAL_AMOUNT}}</span></h4>
                                 </div>
                             </div>
-                            <div class="update_status">
-                                <div><a href="javascript:void(0)" ng-click="update_order()">Update Status</a></div>
+                            <div class="update_status" ng-if="detail.status != '5'">
+                                <div><a href="javascript:void(0)" ng-click="update_order()" >Update Status</a></div>
                             </div>
                             <!-- Item Number Ends-->
                             
