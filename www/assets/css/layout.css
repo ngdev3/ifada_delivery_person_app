@@ -1564,3 +1564,7 @@ li.progtrckr-todo.inprocessed span.pending_check i
     z-index: 10002;
     left: calc(50% - 133px)!important;
 }
+#calender_pop_up{
+    width: 200px;
+    margin: 0 auto;
+}

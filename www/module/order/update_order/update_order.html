@@ -35,16 +35,11 @@
     .k-animation-container{
         right:100px !important;
     }
-<<<<<<< HEAD
+
     /* <!-- .k-list-container.k-list-scroller.k-popup.k-group.k-reset.k-state-border-up{ --> */
         /* <!-- width:100px !important; -->
     <!-- } --> */
-=======
-     /* .k-list-container.k-list-scroller.k-popup.k-group.k-reset.k-state-border-up{ 
-         width:100px !important; 
-     }  */
->>>>>>> cc6ca90a12fee2ea66762572cbff8654e0c8d905
-    
+
     </style>
     <header class="container-fluid nav-down">
         <div class="row">
@@ -81,7 +76,10 @@
                     <div class="mt-10">
                         <div class="radio mb-20" ng-repeat="x in order_status">
                             <input type="radio" id="radio_{{x.id}}" ng-model="form.radio" name="radio" value="{{x.id}}" ng-click="check_conditions()" required>
-                            <label for="radio_{{x.id}}" class="radio-label"><span>{{x.order_type}}</span></label>
+                            <label for="radio_{{x.id}}" class="radio-label"><span>{{x.order_type}}</span>
+                                <span ng-if="dateString != '' && Reschedule == '1' && x.id == '8'"> {{dateString}}</span>
+                                <span ng-if="CODamount && x.id == '5' && delivered == '1'"> (COD - {{CODamount}})</span>
+                            </label>
                         </div>
                     </div>
                     <div class="mui-textfield col-sm-12 col-xs-12">
@@ -122,11 +120,12 @@
               
               <div class="modal-body">
                 <!-- Content Of modal-->
-                        <div class="mui-textfield col-sm-6 col-xs-6 mr-10">
-                            <div id="">
+                        <div class="mui-textfield col-sm-12 col-xs-12 mr-10">
+                            <div id="calender_pop_up">
                                 <div class="demo-section k-content">
                                     <div>
                                         <input kendo-date-picker
+                                        name="dateString"
                                          ng-model="dateString"
                                          k-ng-model="dateObject"
                                          style="width: 100%;" required>

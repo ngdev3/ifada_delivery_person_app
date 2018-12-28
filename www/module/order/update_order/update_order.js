@@ -20,6 +20,7 @@ app.controller('update_order', function ($scope, $http, $location, $cookieStore,
      * function name : orderAgain
      * work on clicking on Order Again and work using reorder API
      */
+    
     $scope.check_conditions = function () {
         //console.log('1')
         if ($("input[name='radio']:checked").val() == '8') {
@@ -28,6 +29,12 @@ app.controller('update_order', function ($scope, $http, $location, $cookieStore,
         } else {
             $scope.Reschedule = '';
             $("#myModal").modal("hide");
+        }
+
+        if ($("input[name='radio']:checked").val() == '5') {
+            $scope.delivered = '1';
+        }else{
+            $scope.delivered = '';
         }
 
         if ($("input[name='radio']:checked").val() != '9') {
@@ -76,6 +83,8 @@ app.controller('update_order', function ($scope, $http, $location, $cookieStore,
             alert('Please Provide Date & Time');
             return;
         }
+     }else{
+        $scope.dateString = ''
      }
         var error_str = '';
         console.log($scope.form.radio)
