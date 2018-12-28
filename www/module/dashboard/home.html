@@ -193,7 +193,8 @@
                     <div class="notify_text">
                         <p>Pending</p>
                     </div>
-                    <span class="badge">{{listing.delivered_orders.COUNT_DELIVERED}}</span>
+                    <span class="badge">{{listing.pending_orders.COUNT_PENDING}}</span>
+                   
                 </div>
             </div>
             <div class="pending_main_div" ng-click="getorders('5')">
@@ -202,7 +203,7 @@
                     <div class="notify_text pt-20">
                         <p>Delivered</p>
                     </div>
-                    <span class="badge">{{listing.pending_orders.COUNT_PENDING}}</span>
+                    <span class="badge">{{listing.delivered_orders.COUNT_DELIVERED}}</span>
                 </div>
             </div>
         </div>

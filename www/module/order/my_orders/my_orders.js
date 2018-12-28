@@ -74,11 +74,11 @@ app.controller('myorders', function ($scope, $http, $location, $cookieStore, mod
         }).then(function (response) {
 
             res = response;
-
+            $cookieStore.remove('orderstatus');
            //console.log(res.data.data.order_list);
            if(res.data.responseCode == 200){
             $scope.order_list = res.data.data.orders;
-            $cookieStore.remove('orderstatus');
+           
 
             if(status !== 'direct'){
 
