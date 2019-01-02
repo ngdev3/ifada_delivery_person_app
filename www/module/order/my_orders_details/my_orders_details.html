@@ -37,7 +37,7 @@
                           <li class="menu_icon "><a href="javascript:void(0)"  ><img src="assets/img/icon/back.png" ng-click="home();" alt="menu icon"style="width: 13px;" /></a></li>
                             <li class="page_name left">
                                 <a href="javascript:void(0)" class="text-left ">
-                                    <p>Order ID: <span>{{detail.order_id}}</span></p>
+                                    <p>{{'Order_ID' | translate }}: <span>{{detail.order_id}}</span></p>
                                 </a>
                             </li>
                           
@@ -75,7 +75,7 @@
                                 </h5> -->
                                 
                                 <input type="button" class="btn btn-default tracking_btn ticket_process_btns ticket_pending" name="" ng-if="detail.status != '3'" ng-value="detail.order_type">
-                                <input type="button" class="btn btn-default tracking_btn ticket_process_btns ticket_pending" name="" ng-if="detail.status == '3'" value="Out For Delivery">
+                                <input type="button" class="btn btn-default tracking_btn ticket_process_btns ticket_pending" name="" ng-if="detail.status == '3'" value="{{'Out_For_Delivery' | translate}}">
                                 
                             </div>
                             <!-- ** !. Buttons ** -->
@@ -86,16 +86,16 @@
                                 <div class="cust_address">
                                     <h4 class="cust_name">{{detail.CUSTOMER_NAME | ucwords}}</h4>
                                     <p class="cust_residence">{{detail.delivery_address.address | ucwords}}, {{detail.delivery_address.CITY_NAME}}, {{detail.delivery_address.COUNTRY_NAME}}, {{detail.delivery_address.landmark}}, {{detail.delivery_address.zipcode}}</p>
-                                    <p class="cust_residence">Mobile No:- {{detail.mobile_number}}</p>
+                                    <p class="cust_residence">{{'Mobile_Number' | translate}}:- {{detail.mobile_number}}</p>
                                 </div>
                                 <div class="order_type">
                                     <div class="cod"><a href="javascript:void(0)">{{detail.order_by_leble}}</a></div>
                                 </div>
                                 <div class="call_customer"  ng-if="detail.status != '5'" ng-click="callCustomer(detail.mobile_number)">
-                                    <div class="cust_no pl-15 pr-15"><a href="javascript:void(0)">Call Customer</a></div>
+                                    <div class="cust_no pl-15 pr-15"><a href="javascript:void(0)">{{'Call_Customer' | translate}}</a></div>
                                 </div>
                                 <div class="view_map"  ng-if="detail.status != '5'">
-                                    <div class="cust_location"><a href="javascript:void(0)" ng-click="orderlocationPoint(detail.delivery_address.lattitude, detail.delivery_address.longitude)">View Map</a></div>
+                                    <div class="cust_location"><a href="javascript:void(0)" ng-click="orderlocationPoint(detail.delivery_address.lattitude, detail.delivery_address.longitude)">{{'View_Map' | translate}}</a></div>
                                 </div>
                             </div>
                             <!-- About Product Of a Customer Ends -->
@@ -115,7 +115,7 @@
                                         <p>{{'Units' | translate}} <span class="ml-25">{{x.UNIT_VALUE}}{{x.FS_UNIT_NAME}}</span></p>
                                         <p>{{'Price' | translate}}  <span class="ml-25">{{currency}} {{x.unit_price}}</span></p>
                                         <p>{{'VAT' | translate}}  <span class="ml-25">{{currency}}  {{x.tax_amount}}</span></p>
-                                        <p>{{'Qty' | translate}}  <span class="ml-25">{{x.quantity}}</span></p>
+                                        <p>{{'Qnty' | translate}}  <span class="ml-25">{{x.quantity}}</span></p>
                                         
                                     </div>
                                 </div>
@@ -144,27 +144,27 @@
                 <div class="modal-content">
                   <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title text-center" ng-click="update_order()">Update Status</h4>
+                    <h4 class="modal-title text-center" ng-click="update_order()">{{'Update_Status' | translate}}</h4>
                   </div>
                   <div class="modal-body">
                     <!-- Content Of modal-->
                             <div class="radio mb-20 mt-10">
                                 <input id="radio-1" name="radio" type="radio">
-                                <label for="radio-1" class="radio-label"><span>On the way</span></label>
+                                <label for="radio-1" class="radio-label"><span>{{'On_the_way' | translate}}</span></label>
                             </div>
                           <div class="radio mb-20">
                             <input id="radio-2" name="radio" type="radio">
-                            <label for="radio-2" class="radio-label"><span>Delivered</span></label>
+                            <label for="radio-2" class="radio-label"><span>{{'Delivered' | translate}}</span></label>
                           </div>
                           <div class="radio mb-20">
                             <input id="radio-3" name="radio" type="radio">
-                            <label for="radio-3" class="radio-label"><span>Cancelled</span></label>
+                            <label for="radio-3" class="radio-label"><span>{{'Cancelled' | translate}}</span></label>
                           </div>
             
                     <!-- Content Of modal-->
                   </div>
                   <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">{{'OK' | translate}}</button>
                   </div>
                 </div>
             

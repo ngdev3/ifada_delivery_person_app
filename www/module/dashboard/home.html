@@ -112,22 +112,22 @@
                     </a></li>
 
                 <li ng-if="loggedin" ng-click="myorder()"><a href="javascript:void(0)"><img src="assets/img/icon/orders.png"
-                            alt="" /> <span>My Orders</span></a></li>
+                            alt="" /> <span>{{'My_Orders' | translate }}</span></a></li>
 
                 <li ng-if="loggedin" ng-click="profile()"><a href="javascript:void(0)"><img src="assets/img/icon/profile.png"
-                            alt="" /> <span>My Profile</span></a></li>
+                            alt="" /> <span>{{'My_Profile' | translate }}</span></a></li>
                 <li ng-click="language()"><a href="javascript:void(0)"><img src="assets/img/icon/language.png" alt="" />
                         <span>{{'Switch_Language' | translate}}</span></a></li>
 
 
                 <li ng-if="loggedin" ng-click="change_password()"><a href="javascript:void(0)"><img src="assets/img/icon/password.png"
-                            alt="" /> <span>Change Password</span></a></li>
+                            alt="" /> <span>{{'Change_Password' | translate }}</span></a></li>
 
                 <li ng-if="loggedin" ng-click="logout()"><a href="javascript:void(0)"><img src="assets/img/icon/logout_red.png"
-                            alt="" /> <span>Log Out</span></a></li>
+                            alt="" /> <span>{{'Log_Out' | translate }}</span></a></li>
 
                 <li ng-if="!loggedin" ng-click="login()"><a href="javascript:void(0)"><img src="assets/img/icon/logout.png"
-                            alt="" /> <span>Log_In</span></a></li>
+                            alt="" /> <span>{{'Log_In' | translate }}</span></a></li>
 
             </ul>
         </div>
@@ -141,7 +141,7 @@
                         <ul class="nav navbar-nav top_header">
                             <li class="menu_icon "><a href="javascript:void(0)"><img onclick="openNav_2()" src="assets/img/icon/ham_icon_2.png"
                                         id="asdf" alt="menu icon" /></a></li>
-                            <li class="logo_name"><a class="text-left back">IFADA DELIVERY</a></li>
+                            <li class="logo_name"><a class="text-left back">{{ 'IFADA_DELIVERY' | translate }}</a></li>
 
                         </ul>
 
@@ -160,7 +160,7 @@
             <div class="db_calender">
                 <div class="demo-section k-content">
 				<div class="db_calender_1">
-					<h4>From:-</h4>
+					<h4>{{ 'From' | translate }}:-</h4>
 					<input kendo-date-picker
                     ng-model="fromDateString"
                     k-ng-model="fromDateObject"
@@ -173,7 +173,7 @@
 					
 				</div>
 				<div class="db_calender_2">
-					<h4>To:</h4>
+					<h4>{{ 'To' | translate }}:</h4>
 					<input kendo-date-picker
                     ng-model="toDateString"
                     k-ng-model="toDateObject"
@@ -193,7 +193,7 @@
                 <div class="pending_div">
                     <div class="notify_img_container"><img src="assets/img/notification_icon.png"></div>
                     <div class="notify_text">
-                        <p>Pending</p>
+                        <p>{{ 'Pending' | translate }}</p>
                     </div>
                     <span class="badge">{{listing.pending_orders.COUNT_PENDING}}</span>
                    
@@ -203,7 +203,7 @@
                 <div class="pending_div">
                     <div class="notify_img_container"><img src="assets/img/delivery_icon.png"></div>
                     <div class="notify_text pt-20">
-                        <p>Delivered</p>
+                        <p>{{ 'Delivered' | translate }}</p>
                     </div>
                     <span class="badge">{{listing.delivered_orders.COUNT_DELIVERED}}</span>
                 </div>
@@ -238,7 +238,7 @@
                                 <input type="text" id="location-search" placeholder="Seacrh location..." />
                             </div>
                             <div class="submit-btn text-center">
-                                <a href="javascript:void(0)">Submit</a>
+                                <a href="javascript:void(0)">{{ 'Submit' | translate }}</a>
                             </div>
                         </div>
                     </div>

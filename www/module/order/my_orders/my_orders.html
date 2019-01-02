@@ -37,7 +37,7 @@
                                     ng-click="home()" alt="menu icon" style="width: 13px;" /></a></li>
                         <li class="page_name left">
                             <a href="javascript:void(0)" class="text-left ">
-                                <p>List Orders</p>
+                                <p>{{ 'List_Orders' | translate }}</p>
                             </a>
                         </li>
                         <li class="cart_icon">
@@ -70,7 +70,7 @@
                             <ul class="nav navbar-nav top_header">
                                 <li class="menu_icon"><a href="javascript:void(0)"><img onclick="closeFilter()" src="assets/img/header/cross_icon.png"
                                             id="asdf" alt="menu icon" /></a></li>
-                                <li class="logo_name" style="width: 100%"><a class="text-center back">Filter</a></li>
+                                <li class="logo_name" style="width: 100%"><a class="text-center back">{{'Filter' | translate }}</a></li>
 
                             </ul>
                         </div>
@@ -79,7 +79,7 @@
             </header>
             <div class="filter-body">
                 <div class="filter-container">
-                    <button class="accordion" id="accord_2" ng-click="init(2);">Order Option</button>
+                    <button class="accordion" id="accord_2" ng-click="init(2);">{{'Order_Option' | translate }}</button>
                     <div class="accordion-panel accordion-panel_2">
                         <div class="accordion-container">
                             <div class="accordion-options" ng-repeat="x in order_status">
@@ -87,7 +87,7 @@
                                     <input type="radio" ng-model="sort" name="sort" ng-click="fetch_order_list('direct',x.id)" ng-value="x.id">
                                     <div class="state p-info-o">
                                         <i class="icon fa fa-check"></i>
-                                        <label ng-if="x.id == 3">Pending</label>
+                                        <label ng-if="x.id == 3">{{ 'Pending' | translate}}</label>
                                         <label ng-if="x.id != 3">{{x.order_type}}</label>
                                     </div>
                                 </div>
@@ -100,8 +100,8 @@
             </div>
             <footer>
                 <div class="apply_btn_container">
-                    <button onclick="closeFilter()"> Cancel</button>
-                    <button onclick="closeFilter()" ng-click="fetch_order_list('apply','')"> Apply</button>
+                    <button onclick="closeFilter()"> {{'Cancel' | translate }}</button>
+                    <button onclick="closeFilter()" ng-click="fetch_order_list('apply','')"> {{'Apply' | translate}}</button>
                 </div>
             </footer>
         </form>
@@ -117,11 +117,11 @@
                 <!-- About Product Of a Customer -->
                 <div class="about_customer db_order_main_div" ng-repeat="x in order_list" ng-if="hittoset == '1'">
                     <div class="cust_address">
-                        <h4 class="cust_name mb-0">Order ID: <span>{{x.ORDER_ID}}</span></h4>
+                        <h4 class="cust_name mb-0">{{ 'Order_ID' | translate }}: <span>{{x.ORDER_ID}}</span></h4>
                     </div>
                     <div class="db_delivery_add">
                         <div class="db_delivery">
-                            <h4>Deliver To<span>:</span></h4>
+                            <h4>{{'Deliver_To' | translate }}<span>:</span></h4>
                         </div>
                         <div class="db_place">
                             <h4>{{x.delivery_address.address}}, {{x.delivery_address.CITY_NAME}},
@@ -131,7 +131,7 @@
                     </div>
                     <div class="db_delivery_details mb-15">
                         <div class="db_phone">
-                            <h4>Mobile No.<span>:</span></h4>
+                            <h4>{{'Mobile_Number' | translate }}<span>:</span></h4>
                         </div>
                         <div class="db_number">
                             <h4>{{x.mobile_number}}</h4>
@@ -139,35 +139,35 @@
                     </div>
 
                     <div class="order_status" ng-click="statusWiseHit(x.status)" ng-if="x.status == 5">
-                        <div class="delivered status_btn"><a href="javascript:void(0)">Delivered</a></div>
+                        <div class="delivered status_btn"><a href="javascript:void(0)">{{'Delivered' | translate }}</a></div>
                     </div>
                     <div class="order_status" ng-click="statusWiseHit(x.status)" ng-if="x.status == 4">
-                        <div class="delivery status_btn"><a href="javascript:void(0)">Out For Delivery</a></div>
+                        <div class="delivery status_btn"><a href="javascript:void(0)">{{'Out_For_Delivery' | translate}}</a></div>
                     </div>
                     <div class="order_status" ng-click="statusWiseHit(x.status)" ng-if="x.status == 8">
-                        <div class="reschedule status_btn"><a href="javascript:void(0)">Re-scheduled</a></div>
+                        <div class="reschedule status_btn"><a href="javascript:void(0)">{{'Re_scheduled' | translate}}</a></div>
                     </div>
                     <div class="order_status" ng-click="statusWiseHit(x.status)" ng-if="x.status == 3">
-                        <div class="inprocess status_btn"><a href="javascript:void(0)">Pending</a></div>
+                        <div class="inprocess status_btn"><a href="javascript:void(0)">{{'Pending' | translate}}</a></div>
                     </div>
                     <div class="order_status" ng-click="statusWiseHit(x.status)" ng-if="x.status == 7">
-                        <div class="delivered status_btn"><a href="javascript:void(0)">Rejected</a></div>
+                        <div class="delivered status_btn"><a href="javascript:void(0)">{{'Rejected' | translate}}</a></div>
                     </div>
                     <div class="order_status" ng-click="statusWiseHit(x.status)" ng-if="x.status == 1">
-                        <div class="delivered status_btn"><a href="javascript:void(0)">Pending</a></div>
+                        <div class="delivered status_btn"><a href="javascript:void(0)">{{'Pending' | translate}}</a></div>
                     </div>
                     <div class="order_status" ng-click="statusWiseHit(x.status)" ng-if="x.status == 2">
-                        <div class="delivered status_btn"><a href="javascript:void(0)">Confirm</a></div>
+                        <div class="delivered status_btn"><a href="javascript:void(0)">{{'Confirm' | translate}}</a></div>
                     </div>
                     <div class="order_status" ng-click="statusWiseHit(x.status)" ng-if="x.status == 6">
-                        <div class="delivered status_btn"><a href="javascript:void(0)">Cancelled</a></div>
+                        <div class="delivered status_btn"><a href="javascript:void(0)">{{'Cancelled' | translate}}</a></div>
                     </div>
                     <div class="order_status" ng-click="statusWiseHit(x.status)" ng-if="x.status == 9">
-                        <div class="delivered status_btn"><a href="javascript:void(0)">No Contacted</a></div>
+                        <div class="delivered status_btn"><a href="javascript:void(0)">{{'No_Contacted' | translate}}</a></div>
                     </div>
 
                     <div class="db_view_order" ng-click="orderDetails(x.id, x.order_id)">
-                        <div class="view_details_btn"><a href="javascript:void(0)">View Details</a></div>
+                        <div class="view_details_btn"><a href="javascript:void(0)">{{'View_Details' | translate}}</a></div>
                     </div>
                 </div>
 
@@ -252,27 +252,27 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title text-center">Update Status</h4>
+                        <h4 class="modal-title text-center">{{'Update_Status' | translate }}</h4>
                     </div>
                     <div class="modal-body">
                         <!-- Content Of modal-->
                         <div class="radio mb-20 mt-10">
                             <input id="radio-1" name="radio" type="radio">
-                            <label for="radio-1" class="radio-label"><span>On the way</span></label>
+                            <label for="radio-1" class="radio-label"><span>{{'On_the_way' | translate }}</span></label>
                         </div>
                         <div class="radio mb-20">
                             <input id="radio-2" name="radio" type="radio">
-                            <label for="radio-2" class="radio-label"><span>Delivered</span></label>
+                            <label for="radio-2" class="radio-label"><span>{{'Delivered' | translate}}</span></label>
                         </div>
                         <div class="radio mb-20">
                             <input id="radio-3" name="radio" type="radio">
-                            <label for="radio-3" class="radio-label"><span>Cancelled</span></label>
+                            <label for="radio-3" class="radio-label"><span>{{'Cancelled' | translate }}</span></label>
                         </div>
 
                         <!-- Content Of modal-->
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">{{'OK' | translate }}</button>
                     </div>
                 </div>
 
