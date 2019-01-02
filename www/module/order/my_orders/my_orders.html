@@ -151,19 +151,19 @@
                         <div class="inprocess status_btn"><a href="javascript:void(0)">{{'Pending' | translate}}</a></div>
                     </div>
                     <div class="order_status" ng-click="statusWiseHit(x.status)" ng-if="x.status == 7">
-                        <div class="delivered status_btn"><a href="javascript:void(0)">{{'Rejected' | translate}}</a></div>
+                        <div class="cancelled status_btn"><a href="javascript:void(0)">{{'Rejected' | translate}}</a></div>
                     </div>
                     <div class="order_status" ng-click="statusWiseHit(x.status)" ng-if="x.status == 1">
-                        <div class="delivered status_btn"><a href="javascript:void(0)">{{'Pending' | translate}}</a></div>
+                        <div class="inprocess status_btn"><a href="javascript:void(0)">{{'Pending' | translate}}</a></div>
                     </div>
                     <div class="order_status" ng-click="statusWiseHit(x.status)" ng-if="x.status == 2">
                         <div class="delivered status_btn"><a href="javascript:void(0)">{{'Confirm' | translate}}</a></div>
                     </div>
                     <div class="order_status" ng-click="statusWiseHit(x.status)" ng-if="x.status == 6">
-                        <div class="delivered status_btn"><a href="javascript:void(0)">{{'Cancelled' | translate}}</a></div>
+                        <div class="cancelled status_btn"><a href="javascript:void(0)">{{'Cancelled' | translate}}</a></div>
                     </div>
                     <div class="order_status" ng-click="statusWiseHit(x.status)" ng-if="x.status == 9">
-                        <div class="delivered status_btn"><a href="javascript:void(0)">{{'No_Contacted' | translate}}</a></div>
+                        <div class="not_contacted status_btn"><a href="javascript:void(0)">{{'No_Contacted' | translate}}</a></div>
                     </div>
 
                     <div class="db_view_order" ng-click="orderDetails(x.id, x.order_id)">

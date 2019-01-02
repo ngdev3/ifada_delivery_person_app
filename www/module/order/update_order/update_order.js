@@ -92,9 +92,10 @@ app.controller('update_order', function ($filter, $scope, $http, $location, $coo
         console.log($scope.form.radio)
         if ($scope.form.radio == undefined || $scope.form.radio == '')
         {
-            error_str == "Order Status";
+            error_str = "Order Status";
+            console.log(error_str)
         }else{
-            error_str == "";
+            error_str = "";
         }
         if ($("input[name='radio']:checked").val() == '9') {
           
