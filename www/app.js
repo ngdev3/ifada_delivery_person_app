@@ -12,7 +12,7 @@ var uuid = sessionStorage.u_ids;
 var device_type = 'Android';
 var lat;
 var lng;
-var profile_image_path = 'http://projects.tekshapers.in/ifadabeta/uploads/user_image/';
+var profile_image_path = 'http://projects.tekshapers.org/ifadabeta/uploads/user_image/';
 
 var app = angular.module("myApp", ['ngRoute', 'ui.bootstrap', 'slickCarousel', 'ngSanitize', 'ngCookies', 'geolocation', 'ngMap', 'ngCordovaOauth', 'ngCordova', 'kendo.directives', 'pascalprecht.translate']);
 
