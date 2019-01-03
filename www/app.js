@@ -1,5 +1,6 @@
 var project_name = '/ifadabeta/webservices';
-var base_url = 'http://projects.tekshapers.org';
+var domain = 'org'
+var base_url = 'http://projects.tekshapers.'+domain;
 var country = 'en';
 var WebUrl = base_url + project_name;
 var app_upload_url = base_url + project_name; 
@@ -12,7 +13,7 @@ var uuid = sessionStorage.u_ids;
 var device_type = 'Android';
 var lat;
 var lng;
-var profile_image_path = 'http://projects.tekshapers.org/ifadabeta/uploads/user_image/';
+var profile_image_path = 'http://projects.tekshapers.'+domain+'/ifadabeta/uploads/user_image/';
 
 var app = angular.module("myApp", ['ngRoute', 'ui.bootstrap', 'slickCarousel', 'ngSanitize', 'ngCookies', 'geolocation', 'ngMap', 'ngCordovaOauth', 'ngCordova', 'kendo.directives', 'pascalprecht.translate']);
 
