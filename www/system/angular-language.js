@@ -177,7 +177,7 @@ app.config(function ($translateProvider) {
      Sub_Total_after_discount : 'Sub Total After Discount',
      Applied : 'Applied',
      Wallet_used_amount : 'Wallet Used Amount',
-     Qnty : 'Qnty',
+     Qnty : 'Qty',
      Terms_n_Conditions : 'Terms And Conditions',
      No_Order_Found:'No Order Found',
      Update_Status:'Update Status',

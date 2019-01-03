@@ -162,13 +162,12 @@
 				<div class="db_calender_1">
 					<h4>{{ 'From' | translate }}:-</h4>
                     <input kendo-date-picker
-                    onkeydown="return false;"
                     ng-model="fromDateString"
                     k-ng-model="fromDateObject"
                     k-max = "maxDate"
                     k-rebind="maxDate"
                     k-on-change="fromDateChanged()"
-                    k-format="'yyyy-MM-dd'"
+                    k-format="'dd-MM-yyyy'"
 					 style="width: 100%;"/>
 
 					
@@ -176,14 +175,13 @@
 				<div class="db_calender_2">
 					<h4>{{ 'To' | translate }}:</h4>
                     <input kendo-date-picker
-                    onkeydown="return false;"
                     ng-model="toDateString"
                     k-ng-model="toDateObject"
                     k-min = "minDate"
                     k-max = "toDateString"
                     k-rebind = "minDate"
                     k-on-change="toDateChanged()"
-                    k-format="'yyyy-MM-dd'"
+                    k-format="'dd-MM-yyyy'"
 					 style="width: 100%;" />
 				 </div>
 				

@@ -77,8 +77,8 @@
                         <div class="radio mb-20" ng-repeat="x in order_status">
                             <input type="radio" id="radio_{{x.id}}" ng-model="form.radio" name="radio" value="{{x.id}}" ng-click="check_conditions()" required>
                             <label for="radio_{{x.id}}" class="radio-label"><span>{{x.order_type}}</span>
-                                <span ng-if="dateString != '' && Reschedule == '1' && x.id == '8'"> {{dateString}}</span>
-                                <span ng-if="CODamount && x.id == '5' && delivered == '1'"> : (COD - {{currency}} {{CODamount}})</span>
+                                <span ng-if="dateString != '' && Reschedule == '1' && x.id == '8'"> {{dateString | date : 'dd-MM-yyyy'}}</span>
+                                <span ng-if="CODamount >= 0 && x.id == '5' && delivered == '1'"> : (COD - {{currency}} {{CODamount}})</span>
                             </label>
                         </div>
                     </div>
@@ -125,15 +125,14 @@
                                 <div class="demo-section k-content">
                                     <div>
                                         <input kendo-date-picker
-                                        onkeydown="return false;"
                                         name="dateString"
                                          ng-model="dateString"
                                          k-min = "dateString"
                                          k-ng-model="dateObject"
-                                         k-format="'yyyy-MM-dd'"
+                                         k-format="'dd-MM-yyyy'"
                                          style="width: 100%;" required>
                            
-                                        
+                                         <!-- oninput="this.value=this.value.replace(/[^0-9]/g,'');"                             -->
                                     </div>
                                     
                                 </div>
