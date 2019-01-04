@@ -114,7 +114,10 @@ app.controller('update_order', function ($filter, $scope, $http, $location, $coo
             alert(error_str);
             return;
         }
-     
+     if($rootScope.detail.status == $scope.form.radio){
+         alert('Already Updated you can not select this status');
+         return;
+     }
         console.log(error_str);
         loading.active();
 

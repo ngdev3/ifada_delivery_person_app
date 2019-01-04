@@ -128,6 +128,11 @@
     border: 1px solid #07bfe0;
     color: #fff;
 }
+.ticket_cancelled {
+    background-color: #3d6297;
+    border: 1px solid #3d6297;
+    color: #fff;
+}
 .about_customer{
 	width: 100%;
     float: left;
@@ -207,7 +212,11 @@
 .about_db_item{
 	width: 69%;
     display: inline-block;
-    vertical-align: top;
+    vertical-align: -webkit-baseline-middle;
+    padding: 0px 15px;
+}
+.about_db_item p span{
+	float:right;
 }
 .item_img_container > div{
 	max-width: 90px;

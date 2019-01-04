@@ -66,18 +66,18 @@
                                 <h5 class="tracking_heading db_track">
                                     <span>
                                         <img src="assets/img/db_orderl.png">
-                                    </span>{{detail.delivery_date | date:'dd-MM-yyyy'}}
+                                    </span>{{detail.updated_date.split(' ')[0] | date:'dd-MM-yyyy'}}
                                 </h5>
-                                <!-- <h5 class="tracking_heading db_track">
+                                 <h5 class="tracking_heading db_track">
                                     <span>
                                         <img src="assets/img/db_clock.png">
-                                    </span>{{detail.ORDER_TIME}}
-                                </h5> -->
+                                    </span>{{detail.updated_date.split(' ')[1]}}
+                                </h5> 
                                 
-                                <input type="button" class="btn btn-default tracking_btn ticket_process_btns ticket_reschedule" name="" ng-if="detail.order_type == 'Re-schedule'" ng-value="detail.order_type | ucwords">
+                                <input type="button" class="btn btn-default tracking_btn ticket_process_btns ticket_reschedule" name="" ng-if="detail.order_type == 'Re-schedule'" value="{{'Re_scheduled' | translate}}">
                                 <input type="button" class="btn btn-default tracking_btn ticket_process_btns ticket_not_contacted" name="" ng-if=" detail.order_type == 'No contacted'" ng-value="detail.order_type | ucwords">
                                  <input type="button" class="inprocess btn btn-default tracking_btn ticket_process_btns ticket_pending" name="" ng-if=" detail.order_type == 'Delivery Boy Assigned'" value="{{'Pending' | translate}}">
-                               <!-- <input type="button" class="cancelled btn btn-default tracking_btn ticket_process_btns ticket_pending" name="" ng-if=" detail.order_type == 'Re-schedule'" ng-value="detail.order_type | ucwords"> -->
+                                <input type="button" class="btn btn-default tracking_btn ticket_process_btns ticket_cancelled" name="" ng-if=" detail.order_type == 'Cancelled'" ng-value="detail.order_type | ucwords"> 
                                 <input type="button" class="btn btn-default tracking_btn ticket_process_btns ticket_delivered" name="" ng-if="detail.order_type == 'Delivered'" ng-value="detail.order_type | ucwords">
                                 <!-- <input type="button" class="btn btn-default tracking_btn ticket_process_btns ticket_pending" name="" ng-if="detail.order_type == 'Re-schedule'" ng-value="detail.order_type | ucwords">
                                 <input type="button" class="btn btn-default tracking_btn ticket_process_btns ticket_pending" name="" ng-if="detail.order_type == 'Re-schedule'" ng-value="detail.order_type | ucwords"> -->
@@ -97,10 +97,10 @@
                                 <div class="order_type">
                                     <div class="cod"><a href="javascript:void(0)">{{detail.order_by_leble | uppercase}}</a></div>
                                 </div>
-                                <div class="call_customer"  ng-if="detail.status != '5'" ng-click="callCustomer(detail.mobile_number)">
+                                <div class="call_customer"  ng-if="detail.status != '5' && detail.status != '6'" ng-click="callCustomer(detail.mobile_number)">
                                     <div class="cust_no pl-15 pr-15"><a href="javascript:void(0)">{{'Call_Customer' | translate}}</a></div>
                                 </div>
-                                <div class="view_map"  ng-if="detail.status != '5'">
+                                <div class="view_map"  ng-if="detail.status != '5' && detail.status != '6'">
                                     <div class="cust_location"><a href="javascript:void(0)" ng-click="orderlocationPoint(detail.delivery_address.lattitude, detail.delivery_address.longitude)">{{'View_Map' | translate}}</a></div>
                                 </div>
                             </div>
@@ -118,10 +118,10 @@
                                     </div>
                                     <div class="about_db_item">
                                         <h4>{{x.MENU_NAME}}</h4>
-                                        <p>{{'Units' | translate}} <span class="ml-25">{{x.UNIT_VALUE}}{{x.FS_UNIT_NAME}}</span></p>
-                                        <p>{{'Price' | translate}}  <span class="ml-25">{{currency}} {{x.unit_price}}</span></p>
-                                        <p>{{'VAT' | translate}}  <span class="ml-25">{{currency}}  {{x.tax_amount}}</span></p>
-                                        <p>{{'Qnty' | translate}}  <span class="ml-25">{{x.quantity}}</span></p>
+                                        <p>{{'Units' | translate}} <span>{{x.UNIT_VALUE}}{{x.FS_UNIT_NAME}}</span></p>
+                                        <p>{{'Price' | translate}}  <span>{{currency}} {{x.unit_price}}</span></p>
+                                        <p>{{'VAT' | translate}}  <span>{{currency}}  {{x.tax_amount}}</span></p>
+                                        <p>{{'Qnty' | translate}}  <span>{{x.quantity}}</span></p>
                                         
                                     </div>
                                 </div>
@@ -132,7 +132,7 @@
                                     <h4 ng-if="detail.amount_to_be_received > 0">{{'Amount_To_Be_Collected'  | translate}}: <span>{{currency}} {{detail.amount_to_be_received}}</span></h4>
                                 </div>
                             </div>
-                            <div class="update_status" ng-if="detail.status != '5'">
+                            <div class="update_status" ng-if="detail.status != '5' && detail.status != '6'">
                                 <div><a href="javascript:void(0)" ng-click="update_order()" >{{'Update_Status'  | translate}}</a></div>
                             </div>
                             <!-- Item Number Ends-->

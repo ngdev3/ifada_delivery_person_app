@@ -32,8 +32,10 @@ app.controller('home', function ($scope, $filter, $http, $location, $cookieStore
     }
 
   
+    // $('#notclick').on('click',function(){
+    //     $('#notclick').attr("readonly", true);
+    // })   
 
-   
     $scope.myorder = function(){
         $location.path('/order/myorder');
     }
@@ -150,6 +152,7 @@ app.controller('home', function ($scope, $filter, $http, $location, $cookieStore
     $scope.fromDateChanged = function(){
       $scope.minDate = $filter('date')(new Date($scope.fromDateString), 'yyyy-MM-dd');
       console.log("min changed " + $scope.minDate);
+    //    $('#notclick').removeAttr("readonly", true);
       $scope.fetcCounts()
     };
     $scope.toDateChanged = function(){
