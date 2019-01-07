@@ -1,5 +1,5 @@
 var project_name = '/ifadabeta/webservices';
-var domain = 'in'
+var domain = 'org'
 var base_url = 'http://projects.tekshapers.'+domain;
 var country = 'en';
 var WebUrl = base_url + project_name;
@@ -1583,20 +1583,28 @@ app.filter("ucwords", function () {
 })
 /* End filter*/
 
-app.directive('muteKey', ['$document', function($document) {
-    return function(scope, element, attrs) {
-      $document.on("keydown", function(e) {
-       /*
-        * you don't need the $(e.target) if you want to
-        * disable the key press in any place of the project
-        * and not just for inputs or textareas
-        */
-        if (e.which === 8) {
-          e.preventDefault();
+
+// Directive for test any regex by Sajal Goyal
+
+app.directive("regExInput", function(){
+    "use strict";
+    return {
+        restrict: "A",
+        require: "?regEx",
+        scope: {},
+        replace: false,
+        link: function(scope, element, attrs, ctrl){
+          element.bind('keypress', function (event) {
+            var regex = new RegExp(attrs.regEx);
+            var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+            if (!regex.test(key)) {
+               event.preventDefault();
+               return false;
+            }
+          });
         }
-      });
     };
-  }]);
+    });
   
 
 /* Making a directive for file upload*/

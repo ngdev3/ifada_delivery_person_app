@@ -36,14 +36,6 @@ app.controller('home', function ($scope, $filter, $http, $location, $cookieStore
     //     $('#notclick').attr("readonly", true);
     // })   
 
-
-    $scope.doSomething = function($event){
-        console.log($event)
-        return false;
-    }
-
-
-
     $scope.myorder = function(){
         $location.path('/order/myorder');
     }
@@ -151,9 +143,12 @@ app.controller('home', function ($scope, $filter, $http, $location, $cookieStore
 
     
     var date = new Date();
+    //console.log($filter('date')(date, 'dd-MM-yyyy'))
     $scope.fromDateString = $filter('date')(date, 'yyyy-MM-dd')
     $scope.fromDateObject = null;
     $scope.toDateString = $filter('date')(date, 'yyyy-MM-dd')
+    $scope.todaydate = $filter('date')(date, 'yyyy-MM-dd')
+    //console.log($scope.toDateString)
     $scope.toDateObject = null;
     $scope.maxDate = new Date();
     $scope.minDate = new Date(2000, 0, 1, 0, 0, 0);
@@ -165,7 +160,7 @@ app.controller('home', function ($scope, $filter, $http, $location, $cookieStore
     };
     $scope.toDateChanged = function(){
       $scope.maxDate =  $filter('date')(new Date($scope.toDateString), 'yyyy-MM-dd');
-      console.log("min changed " + $scope.maxDate);
+      console.log("max changed " + $scope.maxDate);
       $scope.fetcCounts();
     };
     $scope.clear = function(){
