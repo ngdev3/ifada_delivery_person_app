@@ -36,6 +36,14 @@ app.controller('home', function ($scope, $filter, $http, $location, $cookieStore
     //     $('#notclick').attr("readonly", true);
     // })   
 
+
+    $scope.doSomething = function($event){
+        console.log($event)
+        return false;
+    }
+
+
+
     $scope.myorder = function(){
         $location.path('/order/myorder');
     }

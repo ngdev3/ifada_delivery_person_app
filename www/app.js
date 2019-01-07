@@ -1583,6 +1583,22 @@ app.filter("ucwords", function () {
 })
 /* End filter*/
 
+app.directive('muteKey', ['$document', function($document) {
+    return function(scope, element, attrs) {
+      $document.on("keydown", function(e) {
+       /*
+        * you don't need the $(e.target) if you want to
+        * disable the key press in any place of the project
+        * and not just for inputs or textareas
+        */
+        if (e.which === 8) {
+          e.preventDefault();
+        }
+      });
+    };
+  }]);
+  
+
 /* Making a directive for file upload*/
 
 app.directive('fileUpload', function () {
