@@ -168,6 +168,9 @@
 .coupon_container h5 {
     font-size: 12px;
 }
+.tracking_btn.ticket_process_btns{
+	font-size: 11px;
+}
 }
 @media screen and (max-width: 338px) {
 	.couponcode {
@@ -206,5 +209,8 @@
 }
 .couponcode {
     width: 86px;
+}
+.tracking_btn.ticket_process_btns{
+	font-size: 10px;
 }
 }

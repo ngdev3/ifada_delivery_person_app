@@ -48,7 +48,7 @@
 
                     </ul>
                     <!--<ul class="nav navbar-nav bottom_header">
-                          <li class="menu_search_container"><a href="javascript:void(0)">
+                          <li class="menu_search_container"><a href="javascript:void(0)"> -->
                             <!--<img src="assets/img/header/search_icon.png" alt="cart icon" />-->
                     <!--<input type="text" class="menu_search" placeholder="Search products brands and more"/>
                           </a></li>
@@ -77,7 +77,7 @@
                     </nav>
                 </div>
             </header>
-            <div class="filter-body">
+            <div class="filter-body" ng-if="order_status">
                 <div class="filter-container">
                     <button class="accordion" id="accord_2" ng-click="init(2);">{{'Order_Option' | translate }}</button>
                     <div class="accordion-panel accordion-panel_2">

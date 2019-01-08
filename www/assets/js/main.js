@@ -33,6 +33,7 @@ function openNav_2() {
 	//document.getElementById("main").style.marginLeft = "250px";
 //document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
 	document.getElementById("main").style.width = "100%";
+	$(".backdrop").css("display","block");
 }
 
 function closeNav_2() {
@@ -40,8 +41,11 @@ function closeNav_2() {
 //document.getElementById("mySidenav").style.width = "0px";
 //document.getElementById("main").style.marginLeft= "0";
 //document.body.style.backgroundColor = "white";
+
 if(event.target.id != 'asdf'){
-	document.getElementById("mySidenav_2").style.width = "0";
+	//document.getElementById("mySidenav_2").style.width = "0";
+	$("#mySidenav_2").css("width","0");
+	$(".backdrop").css("display","none");
 	//document.getElementById("main").style.marginLeft= "0";
 			//document.body.style.backgroundColor = "white";
 }
@@ -333,7 +337,8 @@ function openFilter() {
 
 	document.getElementById("mySidenav-right").style.left = "0";
 	//document.getElementById("filter-header").style.left = "0";
-	document.getElementById("main").style.width = "100%";
+	//document.getElementById("main").style.width = "100%";
+	$('#main').css('width','100%');
 }
 
 function closeFilter() {

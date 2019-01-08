@@ -143,34 +143,39 @@ app.controller('home', function ($scope, $filter, $http, $location, $cookieStore
 
     
     var date = new Date();
-    //console.log($filter('date')(date, 'dd-MM-yyyy'))
-    $scope.fromDateString = $filter('date')(date, 'yyyy-MM-dd')
+    $scope.fromDateString = $filter('date')(date, 'dd-MM-yyyy')
     $scope.fromDateObject = null;
-    $scope.toDateString = $filter('date')(date, 'yyyy-MM-dd')
-    $scope.todaydate = $filter('date')(date, 'yyyy-MM-dd')
-    //console.log($scope.toDateString)
+    $scope.toDateString = $filter('date')(date, 'dd-MM-yyyy')
+    $scope.todaydate = $filter('date')(date, 'dd-MM-yyyy')
     $scope.toDateObject = null;
     $scope.maxDate = new Date();
     $scope.minDate = new Date(2000, 0, 1, 0, 0, 0);
     $scope.fromDateChanged = function(){
-      $scope.minDate = $filter('date')(new Date($scope.fromDateString), 'yyyy-MM-dd');
+        if(Date.parse($scope.toDateString) < Date.parse($scope.fromDateString)){
+            alert("Invalid Date Range");
+            return;
+         } 
+      $scope.minDate =  $filter('date')(new Date($scope.fromDateString), 'MM-dd-yyyy');
       console.log("min changed " + $scope.minDate);
-    //    $('#notclick').removeAttr("readonly", true);
       $scope.fetcCounts()
     };
     $scope.toDateChanged = function(){
-      $scope.maxDate =  $filter('date')(new Date($scope.toDateString), 'yyyy-MM-dd');
+         if(Date.parse($scope.toDateString) < Date.parse($scope.fromDateString)){
+            alert("Invalid Date Range");
+            return;
+         } 
+      $scope.maxDate =  $filter('date')(new Date($scope.toDateString), 'MM-dd-yyyy');
       console.log("max changed " + $scope.maxDate);
       $scope.fetcCounts();
     };
-    $scope.clear = function(){
+    /* $scope.clear = function(){
       $scope.fromDateString = '';
       $scope.toDateString = '';
       $scope.fromDateObject = null;
       $scope.toDateObject = null;
       $scope.maxDate = new Date();
       $scope.minDate = new Date(2000, 0, 1, 0, 0, 0);
-    }
+    } */
 
 
 /* Function For Hot Deals */

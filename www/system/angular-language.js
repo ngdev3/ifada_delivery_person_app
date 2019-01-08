@@ -6,7 +6,7 @@ app.config(function ($translateProvider) {
     Switch_Language:'Switch Language',
     SELECT_LANGUAGE: 'SELECT LANGUAGE',
     English:'English',
-    Arab:'Arab',
+    Arab:'Arabic',
     OK:'OK',
     Best_picks_of_the_season:'Best Picks of The Season',
     See_all:'See all',
@@ -224,7 +224,7 @@ app.config(function ($translateProvider) {
     Switch_Language: 'تبديل اللغة',
     SELECT_LANGUAGE: 'اختار اللغة',
     English: 'الإنجليزية',
-    Arab:'عربي',
+    Arab:'عربى',
     OK:'حسنا',
     Sign_Up:'سجل',
     Dont_Have_an_account:'لا تملك حساب',
@@ -417,5 +417,6 @@ app.config(function ($translateProvider) {
      Call_Customer : 'اتصل بالعميل',
      View_Map : 'إعرض الخريطة',
      Select_a_reason : 'اختر سببا',
+     Comment : 'تعليق',
   });
 }); 

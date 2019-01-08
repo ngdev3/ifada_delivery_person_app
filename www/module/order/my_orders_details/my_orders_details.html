@@ -74,7 +74,7 @@
                                     </span>{{detail.updated_date.split(' ')[1]}}
                                 </h5> 
                                 
-                                <input type="button" class="btn btn-default tracking_btn ticket_process_btns ticket_reschedule" name="" ng-if="detail.order_type == 'Re-schedule'" value="{{'Re_scheduled' | translate}}">
+                                <input type="button" class="btn btn-default tracking_btn ticket_process_btns ticket_reschedule" name="" ng-if="detail.order_type == 'Re-schedule' || detail.order_type == 'Re-scheduled'" value="{{'Re_scheduled' | translate}}">
                                 <input type="button" class="btn btn-default tracking_btn ticket_process_btns ticket_not_contacted" name="" ng-if=" detail.order_type == 'No contacted'" ng-value="detail.order_type | ucwords">
                                  <input type="button" class="inprocess btn btn-default tracking_btn ticket_process_btns ticket_pending" name="" ng-if=" detail.order_type == 'Delivery Boy Assigned'" value="{{'Pending' | translate}}">
                                 <input type="button" class="btn btn-default tracking_btn ticket_process_btns ticket_cancelled" name="" ng-if=" detail.order_type == 'Cancelled'" ng-value="detail.order_type | ucwords"> 
