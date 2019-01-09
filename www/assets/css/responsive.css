@@ -153,6 +153,9 @@
 .coupon_container h5 {
     font-size: 12px;
 }
+.box-col span.k-widget.k-datepicker.k-header{
+	width: 99%
+}
 }
 @media screen and (max-width: 360px) {
 

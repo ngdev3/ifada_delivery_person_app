@@ -78,7 +78,7 @@
                             <input type="radio" id="radio_{{x.id}}" ng-model="form.radio" name="radio" value="{{x.id}}" ng-click="check_conditions()" required>
                             <label for="radio_{{x.id}}" class="radio-label"><span>{{x.order_type}}</span>
                                 <span ng-if="dateString != '' && Reschedule == '1' && x.id == '8'"> {{dateString | date : 'dd-MM-yyyy'}}</span>
-                                <span ng-if="CODamount >= 0 && x.id == '5' && delivered == '1'"> : (COD - {{currency}} {{CODamount}})</span>
+                                <span ng-if="codamount >= 0 && x.id == '5' && delivered == '1'"> : (COD - {{currency}} {{codamount | number : 2}})</span>
                             </label>
                         </div>
                     </div>

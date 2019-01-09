@@ -127,9 +127,9 @@
                                 </div>
                                
                                 <div class="item_total">
-                                    <h4>{{'Total_Order_Amount'  | translate}}: <span>{{currency}} {{detail.FINAL_AMOUNT}}</span></h4>
+                                    <h4>{{'Total_Order_Amount'  | translate}}: <span>{{currency}} {{detail.final_amount}}</span></h4>
                                     <h4 ng-if="detail.IS_WALLET_USED == 1">{{'Amount_Paid_From_Wallet'  | translate}}: <span>{{currency}} {{detail.WALLET_USED_AMOUNT}}</span></h4>
-                                    <h4 ng-if="detail.amount_to_be_received > 0">{{'Amount_To_Be_Collected'  | translate}}: <span>{{currency}} {{detail.amount_to_be_received}}</span></h4>
+                                    <h4 ng-if="detail.amount_to_be_received > 0">{{'Amount_To_Be_Collected'  | translate}}: <span>{{currency}} {{codamount| number:2}}</span></h4>
                                 </div>
                             </div>
                             <div class="update_status" ng-if="detail.status != '5' && detail.status != '6'">
