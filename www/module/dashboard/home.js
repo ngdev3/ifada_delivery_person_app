@@ -152,8 +152,9 @@ app.controller('home', function ($scope, $filter, $http, $location, $cookieStore
     $scope.minDate = new Date(2000, 0, 1, 0, 0, 0);
     $scope.fromDateChanged = function(){
         if(Date.parse($scope.toDateString) < Date.parse($scope.fromDateString)){
+            $scope.fromDateString = $scope.toDateString;
             alert("Invalid Date Range");
-            return;
+            console.log($scope.fromDateString);
          } 
       $scope.minDate =  $filter('date')(new Date($scope.fromDateString), 'MM-dd-yyyy');
       console.log("min changed " + $scope.minDate);
@@ -161,8 +162,9 @@ app.controller('home', function ($scope, $filter, $http, $location, $cookieStore
     };
     $scope.toDateChanged = function(){
          if(Date.parse($scope.toDateString) < Date.parse($scope.fromDateString)){
+            $scope.toDateString = $scope.fromDateString;
             alert("Invalid Date Range");
-            return;
+            console.log($scope.toDateString);
          } 
       $scope.maxDate =  $filter('date')(new Date($scope.toDateString), 'MM-dd-yyyy');
       console.log("max changed " + $scope.maxDate);

@@ -67,7 +67,7 @@
                 <div class="row">
                     <nav class="navbar navbar-inverse">
                         <div class="container-fluid no-padding">
-                            <ul class="nav navbar-nav top_header">
+                            <ul class="nav navbar-nav top_header" ng-if="order_status">
                                 <li class="menu_icon"><a href="javascript:void(0)"><img onclick="closeFilter()" src="assets/img/header/cross_icon.png"
                                             id="asdf" alt="menu icon" /></a></li>
                                 <li class="logo_name" style="width: 100%"><a class="text-center back">{{'Filter' | translate }}</a></li>
@@ -77,7 +77,7 @@
                     </nav>
                 </div>
             </header>
-            <div class="filter-body" ng-if="order_status">
+            <div class="filter-body">
                 <div class="filter-container">
                     <button class="accordion" id="accord_2" ng-click="init(2);">{{'Order_Option' | translate }}</button>
                     <div class="accordion-panel accordion-panel_2">
