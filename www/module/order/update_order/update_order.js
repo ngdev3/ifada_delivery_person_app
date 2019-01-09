@@ -8,6 +8,7 @@ app.controller('update_order', function ($filter, $scope, $http, $location, $coo
     }
     $scope.home = function () {
         //$location.path('/home');
+        $('.modal-backdrop.in').css('opacity','')
         window.history.back();
     }
 
@@ -82,7 +83,7 @@ app.controller('update_order', function ($filter, $scope, $http, $location, $coo
        
         if ($("input[name='radio']:checked").val() == '8') {
         if($scope.dateString == undefined || $scope.dateString == ''){
-            alert('Please Provide Date & Time');
+            alert('Please Provide Date');
             return;
         }
      }else{
