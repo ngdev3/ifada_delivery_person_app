@@ -1706,6 +1706,8 @@ function onDeviceReady() {
 }
 
 function onBackKeyDown(ev) {
+    var loads = angular.element(document.querySelector('.obscure'));
+    loads.removeClass('show').addClass('hide');
     var home = $("#containernew div:first-child").hasClass("homes");
     if (home) {
         if (confirm('Do You Want To Exit App!')) {
