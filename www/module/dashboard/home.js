@@ -152,7 +152,7 @@ app.controller('home', function ($scope, $filter, $http, $location, $cookieStore
     $scope.minDate = new Date(2000, 0, 1, 0, 0, 0);
     $scope.fromDateChanged = function(){
         if(Date.parse($scope.toDateString) < Date.parse($scope.fromDateString)){
-            $scope.fromDateString = $scope.toDateString;
+            //$scope.fromDateString = $scope.toDateString;
             alert("Invalid Date Range");
             console.log($scope.fromDateString);
          } 
@@ -162,7 +162,7 @@ app.controller('home', function ($scope, $filter, $http, $location, $cookieStore
     };
     $scope.toDateChanged = function(){
          if(Date.parse($scope.toDateString) < Date.parse($scope.fromDateString)){
-            $scope.toDateString = $scope.fromDateString;
+            //$scope.toDateString = $scope.fromDateString;
             alert("Invalid Date Range");
             console.log($scope.toDateString);
          } 

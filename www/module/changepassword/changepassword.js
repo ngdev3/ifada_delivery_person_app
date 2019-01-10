@@ -64,12 +64,12 @@ app.controller('changepassword', function ($scope, $http, $location, $cookieStor
                     alert(error_str);
                     return false;
                 }
-                if (reg2.test($scope.conf_pwd) == false) {
+                 if (reg2.test($scope.new_pwd) == false) {
                     error_str = " Password should contain at least one Character & one Number and length should be 6 minimum! ";
                     // model.show('Alert', error_str);
                     alert(error_str);
                     return false;
-                }
+                } 
                 if (reg3.test($scope.new_pwd) == false) {
                     error_str = " Password should contain at least one Character & one Number and length should be 6 minimum! ";
                     // model.show('Alert', error_str);
@@ -80,6 +80,7 @@ app.controller('changepassword', function ($scope, $http, $location, $cookieStor
         
         
         if ($scope[form].$valid) {
+            
             if ($scope.conf_pwd != $scope.new_pwd)
             {
                 error_str += "Password and Confirm Password does not match.";

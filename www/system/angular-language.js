@@ -205,6 +205,7 @@ app.config(function ($translateProvider) {
      Call_Customer : 'Call Customer',
      View_Map : 'View Map',
      Select_a_reason : 'Select a reason',
+     Submit : 'Submit'
   });
 
 
