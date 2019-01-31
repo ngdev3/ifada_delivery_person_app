@@ -12,6 +12,18 @@ app.controller('update_order', function ($filter, $scope, $http, $location, $coo
         window.history.back();
     }
 
+   /*  if($rootScope.detail_status <= 4){
+        console.log('aaaaaaaaaa')
+         $("#radio_5").attr("disabled", true); 
+         $('#radio_8').attr("disabled", true); 
+         $('#radio_9').attr("disabled", true); 
+     }else{
+        console.log('bbbbbbbb')
+        $('#radio_5').attr('disabled', false);
+        $('#radio_8').attr('disabled', false);
+        $('#radio_9').attr('disabled', false);
+     } */
+
     var date = new Date();
     $scope.dateString = $filter('date')(date, 'yyyy-MM-dd')
 
@@ -23,7 +35,7 @@ app.controller('update_order', function ($filter, $scope, $http, $location, $coo
      * function name : orderAgain
      * work on clicking on Order Again and work using reorder API
      */
-    
+
     $scope.check_conditions = function () {
         //console.log('1')
         if ($("input[name='radio']:checked").val() == '8') {
@@ -88,6 +100,11 @@ app.controller('update_order', function ($filter, $scope, $http, $location, $coo
         }
      }else{
         $scope.dateString = ''
+     }
+
+     if($rootScope.detail_status < 4 && $scope.form.radio >4){
+        alert('Status should Out for delivery first');
+        return false;
      }
         var error_str = '';
         console.log($scope.form.radio)
