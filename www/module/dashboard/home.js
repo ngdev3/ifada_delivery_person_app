@@ -129,6 +129,7 @@ app.controller('home', function ($scope, $filter, $http, $location, $cookieStore
             if (res.data.responseCode == '200') {
                 //put cookie and redirect it    
                 $scope.listing = res.data.data;
+                $rootScope.currency = res.data.data.country_currency.currency;
               
             } else {
 
