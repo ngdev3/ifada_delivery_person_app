@@ -41,6 +41,7 @@ app.controller('update_order', function ($filter, $scope, $http, $location, $coo
         if ($("input[name='radio']:checked").val() == '8') {
             $scope.Reschedule = '1';
             $("#myModal").modal("show");
+            document.addEventListener("backbutton", yourCallbackFunction, false);
         } else {
             $scope.Reschedule = '';
             $("#myModal").modal("hide");
@@ -59,6 +60,10 @@ app.controller('update_order', function ($filter, $scope, $http, $location, $coo
             $('#hno').attr('required', true);
         }
 
+    }
+
+    $scope.yourCallbackFunction = function(){
+        return false;
     }
 
     
