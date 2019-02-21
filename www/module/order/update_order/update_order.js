@@ -42,6 +42,7 @@ app.controller('update_order', function ($filter, $scope, $http, $location, $coo
             $scope.Reschedule = '1';
             $("#myModal").modal("show");
             document.addEventListener("backbutton", function (e) {
+                alert();
                 e.preventDefault();
             }, false );
         } else {
