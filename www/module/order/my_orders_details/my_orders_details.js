@@ -8,7 +8,7 @@ app.controller('orderdetails', function (NgMap, $scope, $http, $location, $cooki
     }
 
     $( document ).ready(function() {
-       $('.modal-vcenter').hide();
+       $('#myModal').hide();
     });
    
 
