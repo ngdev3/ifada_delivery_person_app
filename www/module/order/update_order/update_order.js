@@ -73,6 +73,10 @@ app.controller('update_order', function ($filter, $scope, $http, $location, $coo
     $scope.schedule = function(myform){
         //console.log(myform)
         var reg1 = /[0-9]{2}[-|\/]{1}[0-9]{2}[-|\/]{1}[0-9]{4}/;
+
+        if($scope.dateString != $filter('date')(date, 'yyyy-MM-dd')){
+
+        
         if($scope.dateString == '' || $scope.dateString == undefined){
             alert("Date field should not blank");
             $scope.dateString = $filter('date')(date, 'yyyy-MM-dd');
@@ -84,6 +88,8 @@ app.controller('update_order', function ($filter, $scope, $http, $location, $coo
             alert(error_str);
             $scope.dateString = $filter('date')(date, 'yyyy-MM-dd');
             return false;
+        }
+
         }
         console.log($scope.dateString)
         //console.log($scope.scheduletime)
