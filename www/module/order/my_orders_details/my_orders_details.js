@@ -7,7 +7,9 @@ app.controller('orderdetails', function (NgMap, $scope, $http, $location, $cooki
         return false;
     }
 
-
+    $( document ).ready(function() {
+       $('.modal-vcenter').hide();
+    });
    
 
 
