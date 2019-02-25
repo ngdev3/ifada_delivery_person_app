@@ -76,7 +76,6 @@ app.controller('update_order', function ($filter, $scope, $http, $location, $coo
 
         if($scope.dateString != $filter('date')(date, 'yyyy-MM-dd')){
 
-        
         if($scope.dateString == '' || $scope.dateString == undefined){
             alert("Date field should not blank");
             $scope.dateString = $filter('date')(date, 'yyyy-MM-dd');
