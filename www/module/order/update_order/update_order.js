@@ -26,6 +26,8 @@ app.controller('update_order', function ($filter, $scope, $http, $location, $coo
 
     var date = new Date();
     $scope.dateString = $filter('date')(date, 'yyyy-MM-dd')
+    //console.log($scope.dateString);
+
 
     $scope.orderinfo = $cookieStore.get('orderinfo');
     /**
@@ -46,7 +48,7 @@ app.controller('update_order', function ($filter, $scope, $http, $location, $coo
                 $("#myModal").modal("hide");
                 return false;
             }, false );
-            
+
         } else {
             $scope.Reschedule = '';
             $("#myModal").modal("hide");
@@ -70,6 +72,19 @@ app.controller('update_order', function ($filter, $scope, $http, $location, $coo
     
     $scope.schedule = function(myform){
         //console.log(myform)
+        var reg1 = /[0-9]{2}[-|\/]{1}[0-9]{2}[-|\/]{1}[0-9]{4}/;
+        if($scope.dateString == '' || $scope.dateString == undefined){
+            alert("Date field should not blank");
+            $scope.dateString = $filter('date')(date, 'yyyy-MM-dd');
+            return false;
+        }
+        if (reg1.test($scope.dateString) == false) {
+            error_str = "Date Format Is Wrong";
+            // model.show('Alert', error_str);
+            alert(error_str);
+            $scope.dateString = $filter('date')(date, 'yyyy-MM-dd');
+            return false;
+        }
         console.log($scope.dateString)
         //console.log($scope.scheduletime)
 
