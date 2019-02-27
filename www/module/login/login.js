@@ -37,7 +37,7 @@ app.controller('login', function ($scope, $http, $location, $cookieStore, model,
             //  alert("Error");
             var error_str = '';
             if ($scope[form].mobileno.$error.required !== undefined || $scope[form].mobileno.$error.number) {
-                error_str += "Mobile No, ";
+                error_str += "Mobile Number, ";
             }
             if ($scope[form].userpassword.$error.required !== undefined) {
                 error_str += "Password";

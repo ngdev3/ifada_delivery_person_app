@@ -39,7 +39,7 @@ app.controller('forgot', function ($scope, $http, $location, $cookieStore, model
             var error_str = '';
             
             if ($scope[form].mobile_no.$error.required !== undefined || $scope[form].mobile_no.$error.number) {
-                error_str += "Mobile No ";
+                error_str += "Mobile Number ";
             }
 
             if (error_str !== '') {
