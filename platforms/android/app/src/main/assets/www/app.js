@@ -1,5 +1,6 @@
 var project_name = '/ifadabeta/webservices';
-var base_url = 'http://projects.tekshapers.in';
+var domain = 'org'
+var base_url = 'http://projects.tekshapers.'+domain;
 var country = 'en';
 var WebUrl = base_url + project_name;
 var app_upload_url = base_url + project_name; 
@@ -12,9 +13,9 @@ var uuid = sessionStorage.u_ids;
 var device_type = 'Android';
 var lat;
 var lng;
-var profile_image_path = 'http://projects.tekshapers.in/ifadabeta/uploads/user_image/';
+var profile_image_path = 'http://projects.tekshapers.'+domain+'/ifadabeta/uploads/user_image/';
 
-var app = angular.module("myApp", ['ngRoute', 'ui.bootstrap', 'slickCarousel', 'ngSanitize', 'ngCookies', 'geolocation', 'ngCordovaOauth', 'ngCordova', /*'kendo.directives',*/, 'pascalprecht.translate']);
+var app = angular.module("myApp", ['ngRoute', 'ui.bootstrap', 'slickCarousel', 'ngSanitize', 'ngCookies', 'geolocation', 'ngMap', 'ngCordovaOauth', 'ngCordova', 'kendo.directives', 'pascalprecht.translate']);
 
 //document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
 //document.getElementById("networkInfo").addEventListener("onload", networkInfo);
@@ -92,6 +93,8 @@ app.config(function ($routeProvider, $httpProvider) {
         })
         .when("/order/track_order", {
             templateUrl: "module/order/track_order/track_order.html"
+        }) .when("/order/update_order", {
+            templateUrl: "module/order/update_order/update_order.html"
         })       
         .when("/sidemenu", {
             templateUrl: "module/sidemenu/sidemenu.html"
@@ -107,6 +110,9 @@ app.config(function ($routeProvider, $httpProvider) {
         })
         .when("/newpassword", {
             templateUrl: "module/forgot/newpassword.html"
+
+        }) .when("/map", {
+            templateUrl: "module/map/map.html"
 
         })
 
@@ -652,6 +658,7 @@ app.run(function ($translate, $rootScope, $cookieStore, loading, model, $http, $
 
 
     $rootScope.mycart = function () {
+        return
         var args = $.param({
             country_id: sessionStorage.country,
             language_code: sessionStorage.lang_code,
@@ -1576,6 +1583,30 @@ app.filter("ucwords", function () {
 })
 /* End filter*/
 
+
+// Directive for test any regex by Sajal Goyal
+
+app.directive("regExInput", function(){
+    "use strict";
+    return {
+        restrict: "A",
+        require: "?regEx",
+        scope: {},
+        replace: false,
+        link: function(scope, element, attrs, ctrl){
+          element.bind('keypress', function (event) {
+            var regex = new RegExp(attrs.regEx);
+            var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+            if (!regex.test(key)) {
+               event.preventDefault();
+               return false;
+            }
+          });
+        }
+    };
+    });
+  
+
 /* Making a directive for file upload*/
 
 app.directive('fileUpload', function () {
@@ -1675,6 +1706,8 @@ function onDeviceReady() {
 }
 
 function onBackKeyDown(ev) {
+    var loads = angular.element(document.querySelector('.obscure'));
+    loads.removeClass('show').addClass('hide');
     var home = $("#containernew div:first-child").hasClass("homes");
     if (home) {
         if (confirm('Do You Want To Exit App!')) {

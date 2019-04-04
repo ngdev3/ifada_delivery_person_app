@@ -5,6 +5,7 @@ app.controller('myorders', function ($scope, $http, $location, $cookieStore, mod
         $location.path('/login');
         return false;
     }
+    
 
   //  var GlobalUID = $cookieStore.get('userinfo').uid; //Global Uid for get the response by sending the http request.
 
@@ -12,8 +13,8 @@ app.controller('myorders', function ($scope, $http, $location, $cookieStore, mod
     //loading.deactive();
 
     $scope.home = function () {
-        //$location.path('/home');
-        window.history.back();
+        $location.path('/dashboard/home');
+        //window.history.back();
     }
 
     $scope.orders = function () {
@@ -29,18 +30,36 @@ app.controller('myorders', function ($scope, $http, $location, $cookieStore, mod
      * Get the order list by sending the http request
      */
 
-
-    $scope.ordersInit = function () {
+    $scope.hittoset = 0
+    $scope.ordersInit = function (status = null, type = null) {
 
         loading.active();
+        $scope.hittoset = 1
+       if(status == 'direct'){
 
         var args = $.param({
             country_id: sessionStorage.country,
              user_id: $cookieStore.get('userinfo').uid,
              user_type: $cookieStore.get('userinfo').left_data.user_type,
              language_code : sessionStorage.lang_code,
-             page : 0,
+             page : 0,             
+             status:type
+             
+
         });
+
+       }else{
+
+        var args = $.param({
+            country_id: sessionStorage.country,
+             user_id: $cookieStore.get('userinfo').uid,
+             user_type: $cookieStore.get('userinfo').left_data.user_type,
+             language_code : sessionStorage.lang_code,
+             page : 0
+        });
+
+    }
+      
         
 
         $http({
@@ -55,13 +74,21 @@ app.controller('myorders', function ($scope, $http, $location, $cookieStore, mod
         }).then(function (response) {
 
             res = response;
-
-           console.log(res.data.data.order_list);
+            $cookieStore.remove('orderstatus');
+           //console.log(res.data.data.order_list);
            if(res.data.responseCode == 200){
             $scope.order_list = res.data.data.orders;
-           }else{
+           
+
+            if(status !== 'direct'){
+
+                $scope.order_status = res.data.data.order_status;
+            }
+           
+        }else{
+            $scope.hittoset = 2
                $scope.order_list= '';
-            alert("Order Doesn't Exist");
+           // alert("Order Doesn't Exist");
            }
 
         }).finally(function () {
@@ -70,6 +97,18 @@ app.controller('myorders', function ($scope, $http, $location, $cookieStore, mod
 
 
     }
+	
+	$scope.init =function(id){
+		    var max_heightss = $(".accordion-panel_"+id).css("maxHeight");
+		 var iScrollHeight = $(".accordion-panel_"+id).prop("scrollHeight");
+		 if(max_heightss!="0px"){
+			 $("#accord_"+id).removeClass("selected");
+			  $(".accordion-panel_"+id).css('max-height', '0');
+		 }else{
+			 $("#accord_"+id).addClass("selected");
+			   $(".accordion-panel_"+id).css('max-height', iScrollHeight+'px');
+		 }
+	}
 
     /**
      * created by Nitin
@@ -154,5 +193,28 @@ app.controller('myorders', function ($scope, $http, $location, $cookieStore, mod
         $cookieStore.put('orderID', orderData);
         $location.path('/order/myorderdetails');
     }
+
+
+    $scope.fetch_order_list = function (status = null, id = null) {
+        
+        if(status == 'direct'){
+            $scope.ordersInit(status,id);
+        }
+
+    }
+
+    if ($cookieStore.get('orderstatus')) {
+        $scope.ordersInit('direct',$cookieStore.get('orderstatus').status);
+        
+    }else{
+        
+        $scope.ordersInit('apply');
+    }
+
+
+
+    
+
+
 
 });

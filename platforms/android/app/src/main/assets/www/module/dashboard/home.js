@@ -18,22 +18,11 @@ app.controller('home', function ($scope, $filter, $http, $location, $cookieStore
         $location.path('/login');
     }
 
-  
-    date = new Date();
-    $scope.fromdate = $filter('date')(date, 'yyyy-MM-dd')
-   
-    console.log($scope.fromdate)
-    // return
     $scope.home = function () {
         //$location.path('dashboard/home')
         $route.reload()
     }
    
-
-   $scope.fromRange = function(){
-    //    console.log($scope.fromRangedate)
-       console.log($('#datepicker-example1-start').val())
-   }
 
     $scope.signout = function () {
         $rootScope.DeleteData();
@@ -43,13 +32,10 @@ app.controller('home', function ($scope, $filter, $http, $location, $cookieStore
     }
 
   
+    // $('#notclick').on('click',function(){
+    //     $('#notclick').attr("readonly", true);
+    // })   
 
-/* Function For Hot Deals */
-
-    
-
-
-   
     $scope.myorder = function(){
         $location.path('/order/myorder');
     }
@@ -93,6 +79,7 @@ app.controller('home', function ($scope, $filter, $http, $location, $cookieStore
         }else{
 
             $scope.profileImage = profile_image_path +$cookieStore.get("userinfo").profile_image; 
+            console.log($scope.profileImage)
         }
     }else{  
         if($cookieStore.get("userinfo")){
@@ -103,6 +90,7 @@ app.controller('home', function ($scope, $filter, $http, $location, $cookieStore
             }else{
 
                 $scope.profileImage = profile_image_path +$cookieStore.get("userinfo").profile_image; 
+                console.log($scope.profileImage)
             }
         }      
     }
@@ -112,15 +100,15 @@ app.controller('home', function ($scope, $filter, $http, $location, $cookieStore
        // alert()
        console.log($cookieStore.get('userinfo'))
       // return
-        loading.active();
+      //  loading.active();
         //store cookie if check box for remember me is checked and codition goes true only otherwise none
         var args = $.param({
             
             'user_id'   :   $cookieStore.get('userinfo').uid,
             'user_type'   :   $cookieStore.get('userinfo').left_data.user_type,
             'language_code'   :   'en',
-            'from_date'   :   $('#datepicker-example1-start').val(),
-            'to_date'   :   $('#datepicker-example1-end').val(),
+            'from_date'   :   $scope.fromDateString,
+            'to_date'   :   $scope.toDateString,
 
             
         });
@@ -135,12 +123,13 @@ app.controller('home', function ($scope, $filter, $http, $location, $cookieStore
             data: args //forms user object
 
         }).then(function (response) {
-            loading.deactive();
+        //    loading.deactive();
             res = response;
             console.log(res.data.data);
             if (res.data.responseCode == '200') {
                 //put cookie and redirect it    
                 $scope.listing = res.data.data;
+                $rootScope.currency = res.data.data.country_currency.currency;
               
             } else {
 
@@ -152,6 +141,71 @@ app.controller('home', function ($scope, $filter, $http, $location, $cookieStore
 
         });
     }
+
+    
+    var date = new Date();
+    $scope.fromDateString = $filter('date')(date, 'dd-MM-yyyy')
+    $scope.fromDateObject = null;
+    $scope.toDateString = $filter('date')(date, 'dd-MM-yyyy')
+    $scope.todaydate = $filter('date')(date, 'dd-MM-yyyy')
+    $scope.toDateObject = null;
+    $scope.maxDate = new Date();
+    $scope.minDate = new Date(2000, 0, 1, 0, 0, 0);
+    $scope.fromDateChanged = function(){
+        if(Date.parse($scope.toDateString) < Date.parse($scope.fromDateString)){
+            //$scope.fromDateString = $scope.toDateString;
+            alert("Invalid Date Range");
+            console.log($scope.fromDateString);
+         } 
+      $scope.minDate =  $filter('date')(new Date($scope.fromDateString), 'MM-dd-yyyy');
+      console.log("min changed " + $scope.minDate);
+      $scope.fetcCounts()
+    };
+    $scope.toDateChanged = function(){
+         if(Date.parse($scope.toDateString) < Date.parse($scope.fromDateString)){
+            //$scope.toDateString = $scope.fromDateString;
+            alert("Invalid Date Range");
+            console.log($scope.toDateString);
+         } 
+      $scope.maxDate =  $filter('date')(new Date($scope.toDateString), 'MM-dd-yyyy');
+      console.log("max changed " + $scope.maxDate);
+      $scope.fetcCounts();
+    };
+    /* $scope.clear = function(){
+      $scope.fromDateString = '';
+      $scope.toDateString = '';
+      $scope.fromDateObject = null;
+      $scope.toDateObject = null;
+      $scope.maxDate = new Date();
+      $scope.minDate = new Date(2000, 0, 1, 0, 0, 0);
+    } */
+
+
+/* Function For Hot Deals */
+
+    //datepicker
+	
+		$scope.monthSelectorOptions = {
+            start: "year",
+            depth: "year"
+          };
+          $scope.getType = function(x) {
+            return typeof x;
+          };
+          $scope.isDate = function(x) {
+            return x instanceof Date;
+          };
+ 	//datepicker
+
+     $scope.getorders = function(status){
+
+        var orderData = {
+            status:status
+        }
+        $cookieStore.put('orderstatus', orderData);
+        $location.path('/order/myorder');
+
+     }
 
 });
 

@@ -1898,3 +1898,9 @@ li.menu_search_container a input{
 .redeem_btn > button:focus{
 	color:#fff;
 }
+
+.box-col{
+    display: inline-block;
+    width: 49%;
+    text-align: left;
+}

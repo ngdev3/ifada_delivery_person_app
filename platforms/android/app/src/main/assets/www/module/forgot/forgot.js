@@ -39,7 +39,7 @@ app.controller('forgot', function ($scope, $http, $location, $cookieStore, model
             var error_str = '';
             
             if ($scope[form].mobile_no.$error.required !== undefined || $scope[form].mobile_no.$error.number) {
-                error_str += "Mobile No ";
+                error_str += "Mobile Number ";
             }
 
             if (error_str !== '') {
@@ -70,7 +70,7 @@ app.controller('forgot', function ($scope, $http, $location, $cookieStore, model
                     'Content-Type': 'application/x-www-form-urlencoded'
                 },
                 method: 'POST',
-                url: app_url + '/auth/forget',
+                url: app_url + '/delivery_boy/forget',
                 data: args //forms user object
 
             }).then(function (response) {

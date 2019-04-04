@@ -7,16 +7,25 @@
     "files": {}
   },
   "installed_plugins": {
+    "cordova-plugin-call-number": {
+      "PACKAGE_NAME": "com.tekshapers.ifadadeliveryboy"
+    },
+    "cordova-plugin-camera": {
+      "PACKAGE_NAME": "com.tekshapers.ifadadeliveryboy"
+    },
     "cordova-plugin-device": {
-      "PACKAGE_NAME": "com.tekshapers.ifadabeta"
+      "PACKAGE_NAME": "com.tekshapers.ifadadeliveryboy"
+    },
+    "cordova-plugin-file": {
+      "PACKAGE_NAME": "com.tekshapers.ifadadeliveryboy"
+    },
+    "cordova-plugin-file-transfer": {
+      "PACKAGE_NAME": "com.tekshapers.ifadadeliveryboy"
     },
     "cordova-plugin-network-information": {
-      "PACKAGE_NAME": "com.tekshapers.ifadabeta"
+      "PACKAGE_NAME": "com.tekshapers.ifadadeliveryboy"
     },
     "cordova-plugin-whitelist": {
-      "PACKAGE_NAME": "com.tekshapers.ifadabeta"
-    },
-    "cordova-plugin-call-number": {
       "PACKAGE_NAME": "com.tekshapers.ifadadeliveryboy"
     }
   },

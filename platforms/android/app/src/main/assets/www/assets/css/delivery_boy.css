@@ -108,6 +108,31 @@
     border: 1px solid #f8cb00;
     color: #fff;
 }
+.ticket_reschedule {
+    background-color: #f5ae48;
+    border: 1px solid #f5ae48;
+    color: #fff;
+}
+.ticket_not_contacted {
+    background-color: #df5739;
+    border: 1px solid #df5739;
+    color: #fff;
+}
+.ticket_delivered {
+    background-color: #00b80c;
+    border: 1px solid #00b80c;
+    color: #fff;
+}
+.ticket_delivery {
+    background-color: #07bfe0;
+    border: 1px solid #07bfe0;
+    color: #fff;
+}
+.ticket_cancelled {
+    background-color: #3d6297;
+    border: 1px solid #3d6297;
+    color: #fff;
+}
 .about_customer{
 	width: 100%;
     float: left;
@@ -129,10 +154,12 @@
     margin-top: 18px;
 }
 .order_type .cod a{
-	background: #ff7a22;
+    background: #ff7a22;
     color: #fff;
-    padding: 10px 20px;
+    padding: 10px 13px;
     border-radius: 50px;
+    font-size: 11px;
+
 }
 .about_customer .call_customer, .about_customer .view_map{
 	width: 49%;
@@ -185,7 +212,11 @@
 .about_db_item{
 	width: 69%;
     display: inline-block;
-    vertical-align: top;
+    vertical-align: -webkit-baseline-middle;
+    padding: 0px 15px;
+}
+.about_db_item p span{
+	float:right;
 }
 .item_img_container > div{
 	max-width: 90px;
@@ -204,11 +235,14 @@
 	text-align:right;
 }
 .item_total > h4 >span{
-	margin-left: 45px;
-    margin-right: 5px;
+    float:right;
+    color:#1f1f1f;
 }
 .item_total > h4{
-	font-size: 17px;
+	font-size: 14px;
+    text-align: left;
+    color:#93989b;
+   
 }
 .update_status{
 	width: 100%;
@@ -275,13 +309,21 @@ margin-top:0px;
 	 background: #f8cb00;
    
 }
+.order_status .not_contacted{
+	background: #df5739;
+   
+}
+.order_status .cancelled{
+	background: #3d6297;
+   
+}
 .order_status .status_btn a, .db_view_order > .view_details_btn > a{ 
 	color: #fff;
 }
 .db_view_order > .view_details_btn{
 	width: 90%;
     margin: 0 auto;
-    background-color: #ccc;
+    background-color: #cd457f;
     padding: 10px 0px;
     text-align: center;
     border-radius: 50px;

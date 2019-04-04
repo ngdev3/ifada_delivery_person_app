@@ -1,0 +1,180 @@
+<div ng-controller="update_order" ng-init="trackorderDetail()" >
+    <style type="text/css">
+        
+    .modal-header{
+        padding: 10px;
+        border-bottom: none;
+    }
+    .modal-body {
+        width: 100%;
+        float: left;
+    }
+    .modal-footer {
+        padding: 10px;
+        text-align: center;
+        clear: both;
+        border-top: 1px solid #e5e5e5;
+    }
+    .modal-footer button{
+        padding: 5px 25px;
+        background-color: #006d07;
+        color: #fff;
+    }
+    .tracking_btn {
+        padding: 5px 10px;
+    }
+    .mui-textfield, .mui-select {
+        display: block;
+        padding-top: 15px;
+        margin-bottom: 15px;
+        margin-top: 15px;
+        position: relative;
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+    .k-animation-container{
+        right:100px !important;
+    }
+    /* <!-- .k-list-container.k-list-scroller.k-popup.k-group.k-reset.k-state-border-up{ --> */
+        /* <!-- width:100px !important; -->
+    <!-- } --> */
+     /* .k-list-container.k-list-scroller.k-popup.k-group.k-reset.k-state-border-up{ 
+         width:100px !important; 
+     }  */
+    
+    </style>
+    <header class="container-fluid nav-down">
+        <div class="row">
+            <nav class="navbar navbar-inverse">
+              <div class="container no-padding">
+                <ul class="nav navbar-nav top_header">
+                  <li class="menu_icon "><a href="javascript:void(0)"  ><img src="assets/img/icon/back.png" ng-click="back()" alt="menu icon"style="width: 13px;" /></a></li>
+                    <li class="page_name left">
+                        <a href="javascript:void(0)" class="text-left ">
+                            <p>Select a reason</p>
+                        </a>
+                    </li>
+                  
+                </ul>
+                <ul class="nav navbar-nav bottom_header">
+                  <li class="menu_search_container"><a href="javascript:void(0)">
+                    <!--<img src="assets/img/header/search_icon.png" alt="cart icon" />-->
+                    <input type="text" class="menu_search" placeholder="Search products brands and more"/>
+                  </a></li>
+                </ul>
+              </div>
+            </nav>
+        
+        </div>
+        <!-- MOBILE-MENU-AREA END -->
+    </header>
+    <!-- END HEADER -->
+    
+    <!--  [PULSES] Sub categories content -->
+        <div class="container-fluid mt-55">
+            <div class="row">
+                <form name="update_order_status" nonvalidate>
+                <div class="" style="padding: 10px 20px;">
+                    <div class="mt-10">
+                        <div class="radio mb-20" ng-repeat="x in order_status">
+                            <input type="radio" id="radio_{{x.id}}" ng-model="form.radio" name="radio" value="{{x.id}}" ng-click="check_conditions()" required>
+                            <label for="radio_{{x.id}}" class="radio-label"><span>{{x.order_type}}</span></label>
+                        </div>
+                    </div>
+                    <div class="mui-textfield col-sm-12 col-xs-12">
+                        <input type="text" name="comment" ng-model="comment" id="hno" placeholder="Comment" required>
+                        <label for="hno">Comment</label>
+                      </div>
+                      <!-- <div class="mui-textfield col-sm-12 col-xs-12" ng-show="Reschedule == '1'">
+                            <input type="text" name="slots" ng-model="slots" id="hno" placeholder="Date time slot">
+                            <label for="hno">Date-time</label>
+                          </div> -->
+
+                          <!-- <div class="db_calender_2" ng-show="Reschedule == '1'">
+                                <label for="datepicker-example1-end">To:</label>
+                                <input type="text" ng-value="fromdate" id="datepicker-example1-end">
+                            </div> -->
+                </div>
+                <div class="reason_btn">
+                    <div class="reason_cancel pr-10">
+                        <a href="javascript:void(0)">Cancel</a>
+                    </div>
+                    <div class="reason_ok pl-10">
+                        <a href="javascript:void(0)" ng-click="update_status('update_order_status')">Ok</a>
+                        <!-- data-toggle="modal" data-target="#myModalmyModal" -->
+                    </div>
+                </div>
+            </form>
+            </div>
+        </div>
+    <!--  !. [PULSES] Sub categories content -->
+    <!-- modal box -->
+    <div id="myModal" class="modal fade" role="dialog" >
+        <form name="rescheduledate" nonvalidate>
+        <div class="modal-vcenter">
+          <div class="modal-dialog">
+    
+            <!-- Modal content-->
+            <div class="modal-content">
+              
+              <div class="modal-body">
+                <!-- Content Of modal-->
+                        <div class="mui-textfield col-sm-6 col-xs-6 mr-10">
+                            <div id="">
+                                <div class="demo-section k-content">
+                                    <div>
+                                        <input kendo-date-picker
+                                         ng-model="dateString"
+                                         k-ng-model="dateObject"
+                                         style="width: 100%;" required>
+                           
+                                        
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                      <!--   <div class="mui-textfield col-sm-6 col-xs-5">
+                           
+                            <div id="example">
+                                <div class="demo-section k-content">
+        
+                                   <input kendo-time-picker
+                                   name="scheduletime"
+                                          ng-model="scheduletime"
+                                          k-ng-model="obj"
+                                           style="width: 100%;" required/>
+                           
+                                </div>
+                            </div>
+                        </div> -->
+    
+                <!-- Content Of modal-->
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="schedule('rescheduledate')">OK</button>
+              </div>
+            </div>
+    
+          </div>
+      </div>
+    </form>
+    </div>	
+    
+</div>       
+    <script>
+    
+        
+    $(document).ready(function(){
+        $(".cart_icon a:last-child").click(function(){
+            //alert();
+            $(".bottom_header").slideToggle();
+            //$("#banner_slider").toggleClass("search-container")
+        });	
+    });
+
+    $('#datepicker-example1-start').Zebra_DatePicker({
+            direction: true,
+            pair: $('#datepicker-example7-end')
+        });
+        </script>	

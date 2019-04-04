@@ -105,29 +105,29 @@
 
         <div id="mySidenav_2" class="sidenav sidenav_db">
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav_2()">&times;</a>
-            <ul class="side_nav">
+            <ul class="side_nav"> 
                 <li><a class="text-center" href="javascript:void(0)">
-                        <div class="sidenav_img_cont"><img src="assets/img/profile_image.png" alt="" /> </div><span>Abd
-                            Al Alim</span>
+                        <div class="sidenav_img_cont" ng-if="profileImage != ''"><img src="{{profileImage}}" alt="" /> </div><!-- <span>{{fullName}}</span> -->
+                        <div class="sidenav_img_cont" ng-if="profileImage == ''"><img src="assets/img/icon/user_icon.png" alt="" /> </div><span>{{fullName}}</span>
                     </a></li>
 
                 <li ng-if="loggedin" ng-click="myorder()"><a href="javascript:void(0)"><img src="assets/img/icon/orders.png"
-                            alt="" /> <span>My Orders</span></a></li>
+                            alt="" /> <span>{{'My_Orders' | translate }}</span></a></li>
 
                 <li ng-if="loggedin" ng-click="profile()"><a href="javascript:void(0)"><img src="assets/img/icon/profile.png"
-                            alt="" /> <span>My Profile</span></a></li>
+                            alt="" /> <span>{{'My_Profile' | translate }}</span></a></li>
                 <li ng-click="language()"><a href="javascript:void(0)"><img src="assets/img/icon/language.png" alt="" />
                         <span>{{'Switch_Language' | translate}}</span></a></li>
 
 
                 <li ng-if="loggedin" ng-click="change_password()"><a href="javascript:void(0)"><img src="assets/img/icon/password.png"
-                            alt="" /> <span>Change Password</span></a></li>
+                            alt="" /> <span>{{'Change_Password' | translate }}</span></a></li>
 
-                <li ng-if="loggedin" ng-click="logout()"><a href="javascript:void(0)"><img src="aassets/img/icon/logout_red.png"
-                            alt="" /> <span>Log Out</span></a></li>
+                <li ng-if="loggedin" ng-click="logout()"><a href="javascript:void(0)"><img src="assets/img/icon/logout_red.png"
+                            alt="" /> <span>{{'Log_Out' | translate }}</span></a></li>
 
                 <li ng-if="!loggedin" ng-click="login()"><a href="javascript:void(0)"><img src="assets/img/icon/logout.png"
-                            alt="" /> <span>Log_In</span></a></li>
+                            alt="" /> <span>{{'Log_In' | translate }}</span></a></li>
 
             </ul>
         </div>
@@ -141,7 +141,7 @@
                         <ul class="nav navbar-nav top_header">
                             <li class="menu_icon "><a href="javascript:void(0)"><img onclick="openNav_2()" src="assets/img/icon/ham_icon_2.png"
                                         id="asdf" alt="menu icon" /></a></li>
-                            <li class="logo_name"><a class="text-left back">IFADA DELIVERY</a></li>
+                            <li class="logo_name"><a class="text-left back">{{ 'IFADA_DELIVERY' | translate }}</a></li>
 
                         </ul>
 
@@ -158,34 +158,107 @@
         <!--  START landing Section -->
         <div class="db_landing mt-50">
             <div class="db_calender">
-                <div class="db_calender_1">
-                    <label for="datepicker-example1-start">From:</label>
-                    <input type="text" ng-value="fromdate" name="fromRangedate" ng-model="fromRangedate" ng-click="fromRange()"
-                        id="datepicker-example1-start">
+                 <!-- <div class="demo-section k-content">
+				<div class="db_calender_1">
+					<h4>{{ 'From' | translate }}:-</h4>
+                    <input kendo-date-picker
+                    ng-model="fromDateString"
+                    k-ng-model="fromDateObject"
+                    k-max = "maxDate"
+                    k-rebind="maxDate"
+                    k-on-change="fromDateChanged()"
+                    k-format="'dd-MM-yyyy'"
+                    reg-ex-input reg-ex="^$"
+                     style="width: 100%;"
+                     id="fromdate"
+                     />
+
+					
+				</div>
+				<div class="db_calender_2">
+					<h4>{{ 'To' | translate }}:</h4>
+                    <input kendo-date-picker
+                    ng-model="toDateString"
+                    k-min = "minDate"
+                    k-max = "toDateString"
+                    k-ng-model="toDateObject"
+                    k-rebind = "minDate"
+                    reg-ex-input reg-ex="^$"
+                    k-format="'dd-MM-yyyy'"
+                     style="width: 100%;" 
+                     k-on-change="toDateChanged()"
+                     />
+				 </div>
+				
+				</div>  -->
+                <!-- <button class="btn btn-success" ng-click="fetcCounts()">Get Counts</button> -->
+                  <div class="demo-section k-content">
+                    <div class="box-col">
+                      <h4>{{ 'From' | translate }}:</h4>
+                      <input id="fromDatepicker" kendo-date-picker
+                             ng-model="fromDateString"
+                             k-ng-model="fromDateObject"
+                             k-max = "maxDate"
+                             reg-ex-input reg-ex="^$"
+                             k-format="'dd-MM-yyyy'"
+                             k-on-change="fromDateChanged()" />
+                     
+                    </div>
+                    <div class="box-col">
+                      <h4>{{ 'To' | translate }}:</h4>
+                      <input id="toDatepicker" kendo-date-picker
+                             ng-model="toDateString"
+                             k-ng-model="toDateObject"
+                             k-min = "minDate"
+                             k-max = "maxDate"
+                             reg-ex-input reg-ex="^$"
+                             k-format="'dd-MM-yyyy'"
+                             k-on-change="toDateChanged()"/>
+                      
+                    </div>
+                   </div>  
+                  <!--  <div class="form-group" style="position:relative">
+                    <label for=""> From:</label>
+                    <input type="text"  
+                    name="fromDateString" 
+                    ng-model="fromDateString" 
+                    id="valid_from" 
+                    autocomplete="off"  
+                    readonly value="" 
+                    class=" custom_filter2 datepicker trip_calander form-control" 
+                    ng-change="fromDateChanged()">
+                    <h3>{{fromDateString}}</h3>
                 </div>
-                <div class="db_calender_2">
-                    <label for="datepicker-example1-end">To:</label>
-                    <input type="text" ng-value="fromdate" id="datepicker-example1-end">
-                </div>
-                <button class="btn btn-success" ng-click="fetcCounts()">Get Counts</button>
-                
-            </div>
+                <div class="form-group" style="position:relative">
+                    <label for=""> To:</label>
+                    <input type="text"  
+                    name="toDateString" 
+                    ng-model="toDateString" 
+                    id="valid_to" 
+                    autocomplete="off"  
+                    readonly value="" 
+                    class=" custom_filter2 datepicker trip_calander form-control" 
+                    ng-change="toDateChanged()">
+                   
+                </div> -->
+
             <div class="pending_main_div">
-                <div class="pending_div">
+                <div class="pending_div" ng-click="getorders('3')">
                     <div class="notify_img_container"><img src="assets/img/notification_icon.png"></div>
                     <div class="notify_text">
-                        <p>Pending</p>
+                        <p>{{ 'Pending' | translate }}</p>
                     </div>
-                    <span class="badge">{{listing.delivered_orders.COUNT_DELIVERED}}</span>
+                    <span class="badge">{{listing.PENDING_COUNT}}</span>
+                   
                 </div>
             </div>
             <div class="pending_main_div">
-                <div class="pending_div">
+                <div class="pending_div"  ng-click="getorders('5')">
                     <div class="notify_img_container"><img src="assets/img/delivery_icon.png"></div>
                     <div class="notify_text pt-20">
-                        <p>Delivered</p>
+                        <p>{{ 'Delivered' | translate }}</p>
                     </div>
-                    <span class="badge">{{listing.pending_orders.COUNT_PENDING}}</span>
+                    <span class="badge">{{listing.DELIVERY_COUNT}}</span>
                 </div>
             </div>
         </div>
@@ -218,7 +291,7 @@
                                 <input type="text" id="location-search" placeholder="Seacrh location..." />
                             </div>
                             <div class="submit-btn text-center">
-                                <a href="javascript:void(0)">Submit</a>
+                                <a href="javascript:void(0)">{{ 'Submit' | translate }}</a>
                             </div>
                         </div>
                     </div>
@@ -263,4 +336,45 @@
             direction: 1
         });
 
+        //$('#fromdate').data('kendoDatePicker').enable(false);
+        //$("#fromdate").datepicker('disable');
+
     </script>
+<!-- 
+<script>
+    $(document).ready(function () {
+    $("#valid_from").datepicker({
+            dateFormat: "dd-mm-yy",
+            maxDate: 0,
+            onSelect: function () {
+                var dt2 = $('#valid_to');
+                var startDate = $(this).datepicker('getDate');
+                //add 90 days to selected date
+                var maxDate = 0;
+                var minDate = $(this).datepicker('getDate');
+                startDate.setDate(startDate.getDate()+maxDate);
+                var dt2Date = dt2.datepicker('getDate');
+                //difference in days. 86400 seconds in day, 1000 ms in second
+                var dateDiff = (dt2Date - minDate)/(86400 * 1000);
+    
+                //dt2 not set or dt1 date is greater than dt2 date
+                if (dt2Date == null || dateDiff < 0) {
+                        dt2.datepicker('setDate', minDate);
+                }
+    //dt1 date is 90 days under dt2 date
+                else if (dateDiff > 90){
+                        dt2.datepicker('setDate', startDate);
+                }
+                //sets dt2 maxDate to the last day of 30 days window
+                dt2.datepicker('option', 'maxDate', startDate);
+                //first day which can be selected in dt2 is selected date in dt1
+                dt2.datepicker('option', 'minDate', minDate);
+            }
+        });
+        $('#valid_to').datepicker({
+            dateFormat: "dd-mm-yy",
+            maxDate: 0
+        });
+    });
+    </script>
+     -->
