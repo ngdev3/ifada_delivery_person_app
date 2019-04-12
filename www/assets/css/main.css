@@ -697,7 +697,7 @@ nav.navbar{border-radius: 0px !important;}
 .nav>li>a {
     position: relative;
     display: block;
-    padding: 10px 8px;
+    padding: 10px 14px;
 }
 .nav > li.page_name{
 	float: none;
@@ -730,6 +730,7 @@ nav.navbar{border-radius: 0px !important;}
 .navbar-nav>li.logo_name > a.back{
 	padding-top: 10px;
 	font-family: Calibri-Light;
+	padding-left: 2px;
 }
 .nav > li.cart_icon {
     float: right;
