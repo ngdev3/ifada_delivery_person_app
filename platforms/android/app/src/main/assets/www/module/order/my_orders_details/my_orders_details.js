@@ -7,6 +7,8 @@ app.controller('orderdetails', function (NgMap, $scope, $http, $location, $cooki
         return false;
     }
 
+    $cookieStore.remove('update_status')
+
     $( document ).ready(function() {
        $('.modal-backdrop').hide();
     });
@@ -18,6 +20,7 @@ app.controller('orderdetails', function (NgMap, $scope, $http, $location, $cooki
         //window.history.back();
     }
     $scope.update_order = function () {
+        $cookieStore.put('update_status','yes')
         $location.path('/order/update_order');
         // window.history.back();
     }

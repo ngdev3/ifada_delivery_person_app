@@ -16,11 +16,21 @@ app.controller("update_order", function(
     $location.path("/login");
     return false;
   }
+  
+  if (!$cookieStore.get("update_status")) {
+    $location.path("/order/myorderdetails");
+    return false;
+  }
+
   $scope.home = function() {
     //$location.path('/home');
     $(".modal-backdrop.in").css("opacity", "");
     window.history.back();
   };
+
+  $scope.backtohome = function(){
+    $location.path("/order/myorderdetails");
+  }
 
   $scope.ordersInit();
 
@@ -230,11 +240,12 @@ app.controller("update_order", function(
     })
       .then(function(response) {
         res = response;
-
+        
         if (res.data.responseStatus == "success") {
           console.log(res);
           //put cookie and redirect it
           //model.show('Alert', res.data.responseMessage);
+          $cookieStore.get("update_status")
           $location.path("/order/myorderdetails");
         } else {
           //Throw error if not logged in

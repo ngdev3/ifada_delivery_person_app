@@ -120,6 +120,7 @@
                                         <h4>{{x.MENU_NAME}}</h4>
                                         <p>{{'Units' | translate}} <span>{{x.UNIT_VALUE}}{{x.FS_UNIT_NAME}}</span></p>
                                         <p>{{'Price' | translate}}  <span>{{currency}} {{x.unit_price}}</span></p>
+                                        <p>{{'Coupon_Discount' | translate}}  <span>{{currency}} {{detail.coupon_code_amount}}</span></p>
                                         <p>{{'VAT' | translate}}  <span>{{currency}}  {{x.tax_amount}}</span></p>
                                         <p>{{'Qnty' | translate}}  <span>{{x.quantity}}</span></p>
                                         
@@ -133,6 +134,7 @@
                                 </div>
                             </div>
                             <div class="update_status" ng-if="detail.status != '5' && detail.status != '6'">
+                            <!-- <div class="update_status" > -->
                                 <div><a href="javascript:void(0)" ng-click="update_order()" >{{'Update_Status'  | translate}}</a></div>
                             </div>
                             <!-- Item Number Ends-->
